@@ -11,3 +11,12 @@ class Favorite(db.Model):
     event_id = db.Column()
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "user_id" : self.user_id,
+            "event_id" : self.event_id,
+            "created_at" : self.created_at,
+            "updated_at" : self.updated_at
+        }

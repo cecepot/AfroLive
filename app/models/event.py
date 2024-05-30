@@ -26,3 +26,27 @@ class Event(db.Model):
     user_id = db.Column()
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp() )
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "title" : self.title,
+            "description" : self.description,
+            "date" : self.date,
+            "start_time" : self.start_time,
+            "end_time" : self.end_time,
+            "venue" : self.venue,
+            "city" : self.city,
+            "state" : self.state,
+            "image_url" : self.image_url,
+            "tickets_available" : self.tickets_available,
+            "ticket_price" : self.ticket_price,
+            "organizer_name" : self.organizer_name,
+            "organizer_contact" : self.organizer_contact,
+            "category" : self.category,
+            "event_website" : self.event_website,
+            "additional_notes" : self.additional_notes,
+            "user_id" : self.user_id,
+            "created_at" : self.created_at,
+            "updated_at" : self.updated_at
+        }

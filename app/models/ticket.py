@@ -13,3 +13,14 @@ class Ticket(db.Model):
     user_id = db.Column()
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp() )
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "seat_number" : self.seat_number,
+            "price" : self.price,
+            "event_id" : self.event_id,
+            "user_id" : self.user_id,
+            "created_at" : self.created_at,
+            "updated_at" : self.updated_at
+        }

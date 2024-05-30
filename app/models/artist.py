@@ -16,3 +16,17 @@ class artist(db.Model):
     event_id = db.Column()
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "name" : self.name,
+            "image_url" : self.image_url,
+            "spotify_url" : self.spotify_url,
+            "soundcloud_url" : self.soundcloud_url,
+            "applemusic_url" : self.applemusic_url,
+            "other_music_url" : self.other_music_url,
+            "event_id" : self.event_id,
+            "created_at" : self.created_at,
+            "updated_at" : self.updated_at
+            }
