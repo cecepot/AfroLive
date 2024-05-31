@@ -7,10 +7,13 @@ class Favorite(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column()
-    event_id = db.Column()
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    events = db.relationship("Event", back_populates = "favorites")
+    user = db.relationship("User", back_populates = "favorites")
 
     def to_dict(self):
         return {

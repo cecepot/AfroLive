@@ -9,10 +9,13 @@ class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seat_number = db.Column(db.Integer, unique = True, nullable = False)
     price = db.Column(db.Float, nullable = False)
-    event_id = db.Column()
-    user_id = db.Column()
-    created_at = db.Column(db.DateTime, default = db.func.current_timestamp() )
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    events = db.relationship("Event", back_populates = "tickets")
+    user = db.relationship("User", back_populates = "tickets")
 
     def to_dict(self):
         return {

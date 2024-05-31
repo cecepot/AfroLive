@@ -23,9 +23,14 @@ class Event(db.Model):
     category = db.Column(db.String, nullable = False)
     event_website = db.Column(db.String)
     additional_notes = db.Column(db.String)
-    user_id = db.Column()
-    created_at = db.Column(db.DateTime, default = db.func.current_timestamp() )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    tickets = db.relationship("Ticket", back_populates = "events")
+    user = db.relationship("User", back_populates = "events")
+    artists = db.relationship("Artist", back_populates = "events")
+    favorites = db.relationship("Favorite", back_populates = "events")
 
     def to_dict(self):
         return {

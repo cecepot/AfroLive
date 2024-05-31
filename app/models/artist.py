@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-class artist(db.Model):
+class Artist(db.Model):
     __tablename__='artists'
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -13,9 +13,11 @@ class artist(db.Model):
     soundcloud_url = db.Column(db.String)
     applemusic_url = db.Column(db.String)
     other_music_url = db.Column(db.String)
-    event_id = db.Column()
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    events = db.relatoinship("Event", back_populates = "artists")
 
     def to_dict(self):
         return {

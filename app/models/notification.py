@@ -8,9 +8,11 @@ class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable = False)
     read = db.Column(db.Boolean, default = False)
-    user_id = db.Column()
+    user_id = db.Column(db.Integer, db.ForeignKey("Users.id"))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
+
+    user = db.relationship("User", back_populates = "notifications")
 
     def to_dict(self):
         return {
