@@ -9,7 +9,7 @@ class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable = False)
     read = db.Column(db.Boolean, default = False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 

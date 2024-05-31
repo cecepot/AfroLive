@@ -13,7 +13,7 @@ class Artist(db.Model):
     soundcloud_url = db.Column(db.String)
     applemusic_url = db.Column(db.String)
     other_music_url = db.Column(db.String)
-    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
+    event_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("events.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 

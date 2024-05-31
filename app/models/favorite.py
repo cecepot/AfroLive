@@ -7,8 +7,8 @@ class Favorite(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    event_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("events.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 

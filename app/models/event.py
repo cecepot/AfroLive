@@ -23,7 +23,7 @@ class Event(db.Model):
     category = db.Column(db.String, nullable = False)
     event_website = db.Column(db.String)
     additional_notes = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 

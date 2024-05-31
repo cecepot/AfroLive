@@ -12,7 +12,7 @@ class Payment_option(db.Model):
     expiration_date =db.Column(db.Integer, nullable = False)
     cvv =db.Column(db.Integer, nullable = False)
     billing_address =db.Column(db.String, nullable = False)
-    user_id =db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id =db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 
