@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import date, time
 
 class Payment_option(db.Model):
     __tablename__='payment_options'

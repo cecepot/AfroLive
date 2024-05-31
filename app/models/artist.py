@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import date, time
 
 class Artist(db.Model):
     __tablename__='artists'
@@ -17,7 +17,7 @@ class Artist(db.Model):
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 
-    events = db.relatoinship("Event", back_populates = "artists")
+    events = db.relationship("Event", back_populates = "artists")
 
     def to_dict(self):
         return {

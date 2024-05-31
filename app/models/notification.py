@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import date, time
 
 class Notification(db.Model):
     __tablename__='notifications'
@@ -8,7 +9,7 @@ class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable = False)
     read = db.Column(db.Boolean, default = False)
-    user_id = db.Column(db.Integer, db.ForeignKey("Users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 
