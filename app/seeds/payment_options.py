@@ -6,7 +6,7 @@ from datetime import datetime
 def seed_payment_options():
     payment_option1 = Payment_option(
         card_type="Visa",
-        card_number=4111111111111111,
+        card_number="4111 1111 1111 1111",
         expiration_date=1225,
         cvv=123,
         billing_address="123 Demo Street, Demo City, Demo State, 12345",
@@ -17,7 +17,7 @@ def seed_payment_options():
 
     payment_option2 = Payment_option(
         card_type="MasterCard",
-        card_number=5555555555554444,
+        card_number="5555 5555 5555 4444",
         expiration_date=1125,
         cvv=456,
         billing_address="456 Marnie Lane, Music City, Music State, 67890",
@@ -28,7 +28,7 @@ def seed_payment_options():
 
     payment_option3 = Payment_option(
         card_type="American Express",
-        card_number=378282246310005,
+        card_number="378 2822 4631 0005",
         expiration_date=1025,
         cvv=789,
         billing_address="789 Bobbie Blvd, Rock City, Rock State, 54321",
