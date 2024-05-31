@@ -8,11 +8,11 @@ class Payment_option(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     card_type =db.Column(db.String, nullable = False)
-    card_number =db.Column(db.Integer, nullable = False)
+    card_number =db.Column(db.String, nullable = False)
     expiration_date =db.Column(db.Integer, nullable = False)
     cvv =db.Column(db.Integer, nullable = False)
     billing_address =db.Column(db.String, nullable = False)
-    user_id =db.Column(db.String, db.ForeignKey(add_prefix_for_prod("users.id")))
+    user_id =db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 
