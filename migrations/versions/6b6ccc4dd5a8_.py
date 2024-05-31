@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f59a054c313a
+Revision ID: 6b6ccc4dd5a8
 Revises: 
-Create Date: 2024-05-31 16:10:17.804110
+Create Date: 2024-05-31 16:28:17.173774
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f59a054c313a'
+revision = '6b6ccc4dd5a8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -64,11 +64,11 @@ def upgrade():
     op.create_table('payment_options',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('card_type', sa.String(), nullable=False),
-    sa.Column('card_number', sa.Integer(), nullable=False),
+    sa.Column('card_number', sa.String(), nullable=False),
     sa.Column('expiration_date', sa.Integer(), nullable=False),
     sa.Column('cvv', sa.Integer(), nullable=False),
     sa.Column('billing_address', sa.String(), nullable=False),
-    sa.Column('user_id', sa.String(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
