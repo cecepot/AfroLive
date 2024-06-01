@@ -6,7 +6,7 @@ def seed_events():
     event1 = Event(
         title="Afrobeat Summer Concert",
         description="Join us for a vibrant night of Afrobeat music with top artists from across Africa.",
-        date=date(2024, 7, 10),
+        date=date(2024, 12, 10),
         start_time=time(19, 0),
         end_time=time(22, 0),
         venue="City Park Amphitheater",
@@ -106,7 +106,7 @@ def seed_events():
     event6 = Event(
         title="Afrobeat Festival",
         description="Two days of non-stop Afrobeat music featuring artists from around the world.",
-        date=date(2024, 12, 14),
+        date=date(2024, 7, 14),
         start_time=time(10, 0),
         end_time=time(22, 0),
         venue="Festival Grounds",
