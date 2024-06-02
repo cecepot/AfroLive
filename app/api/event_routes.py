@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Event, Ticket, db
-from app.forms import EventForm, TicketForm
+from app.models import Event, Ticket, Artist, db
+from app.forms import EventForm, TicketForm, ArtistForm
 
 event_routes = Blueprint('events', __name__)
 
@@ -169,3 +169,74 @@ def delete_ticket(id):
         db.session.commit()
         return {"message" : "Your ticket was sucessfully deleted"}
     return {"message" : "You are not authorized to perform this action"}, 401
+
+
+# Create (Add an artist to an event)
+@event_routes.route('/<int:id>/artists', methods=['POST'])
+@login_required
+def add_artist(id):
+    """
+    Add an artist to an event
+    """
+    form = ArtistForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+      artist = ArtistForm(
+      name = form.data['name'],
+      image_url = form.data['image_url'],
+      spotify_url = form.data['spotify_url'],
+      soundcloud_url = form.data['soundcloud_url'],
+      applemusic_url = form.data['applemusic_url'],
+      other_music_url = form.data['other_music_url'],
+      event_id = id
+      )
+      db.session.commit()
+      return artist.to_dict()
+    return artist.errors, 400
+
+# Read (get all artists for an event)
+@event_routes.route('/<int:id>/artists')
+@login_required
+def all_artists(id):
+    """
+    returns all artists for an event
+    """
+    artists = Artist.query.filter_by(Artist.event_id == id).all()
+    return artists.to_dict()
+
+# Update (update an artist)
+@event_routes.route('/<int:id>/artists/<int:artistId>', methods=['PUT'])
+@login_required
+def update_artist(artistId, id):
+    """
+    updates a single event by id
+    """
+    artist = Artist.query.get(artistId)
+    form = ArtistForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        artist.name = form.data['name'],
+        artist.image_url = form.data['image_url'],
+        artist.spotify_url = form.data['spotify_url'],
+        artist.soundcloud_url = form.data['soundcloud_url'],
+        artist.applemusic_url = form.data['applemusic_url'],
+        artist.other_music_url = form.data['other_music_url'],
+        artist.event_id = id
+        db.session.commit()
+        return artist.to_dict()
+    return artist.errors
+
+# Destroy (delete an artist)
+@event_routes.route('/<int:id>/artists/<int:artistId>', methods=["DELETE"])
+@login_required
+def delete_artist(artistId):
+    """
+        Delete an artist
+    """
+    artist = Artist.query.get(artistId)
+    if artist == None:
+        return {"message" : "Looks like this artist does not exist"}, 404
+
+    db.session.delete(artist)
+    db.session.commit()
+    return {"message" : "Your event was sucessfully deleted"}
