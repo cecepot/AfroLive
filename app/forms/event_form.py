@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, DateField, TimeField, IntegerField, URLField
+from wtforms import SelectField, StringField, DateField, TimeField, IntegerField, URLField, FileField, FileAllowed, FileRequired
 from wtforms.validators import DataRequired
-
+from app.api.helper import ALLOWED_EXTENSIONS
 
 
 
@@ -14,7 +14,7 @@ class EventForm(FlaskForm):
     venue = StringField('venue', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = SelectField('state', validators=[DataRequired()], choices=['Maryland', 'Virginia', ])
-    image_url = StringField('image')
+    image_url = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     tickets_available = IntegerField('number of tickets', validators=[DataRequired()])
     ticket_price = IntegerField('price', validators=[DataRequired()])
     organizer_name = StringField('name of organizer', validators=[DataRequired()])

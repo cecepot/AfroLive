@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Event, Ticket, Artist, db
 from app.forms import EventForm, TicketForm, ArtistForm
+from app.api.helper import (upload_file_to_s3, get_unique_filename)
+
 
 event_routes = Blueprint('events', __name__)
 # ========================= EVENT 🥳================================
@@ -33,6 +35,9 @@ def create_event():
       additional_notes = form.data['additional_notes'],
       user_id = current_user.id,
       title = form.data['title'])
+      event.image_url.filename = get_unique_filename(event.image_url.filename)
+      upload = upload_file_to_s3(event.image_url)
+      print(upload)
       db.session.commit()
       return event.to_dict()
     return event.errors, 400
@@ -89,6 +94,9 @@ def update_event(id):
         event.event_website = form.data['event_website']
         event.additional_notes = form.data['additional_notes']
         event.user_id = current_user.id
+        event.image_url.filename = get_unique_filename(event.image_url.filename)
+        upload = upload_file_to_s3(event.image_url)
+        print(upload)
         db.session.commit()
         return event.to_dict()
     return event.errors
@@ -191,6 +199,9 @@ def add_artist(id):
       other_music_url = form.data['other_music_url'],
       event_id = id
       )
+      artist.image_url.filename = get_unique_filename(artist.image_url.filename)
+      upload = upload_file_to_s3(artist.image_url)
+      print(upload)
       db.session.commit()
       return artist.to_dict()
     return artist.errors, 400
@@ -223,6 +234,9 @@ def update_artist(artistId, id):
         artist.applemusic_url = form.data['applemusic_url'],
         artist.other_music_url = form.data['other_music_url'],
         artist.event_id = id
+        artist.image_url.filename = get_unique_filename(artist.image_url.filename)
+        upload = upload_file_to_s3(artist.image_url)
+        print(upload)
         db.session.commit()
         return artist.to_dict()
     return artist.errors
