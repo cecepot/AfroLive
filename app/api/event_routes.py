@@ -4,7 +4,7 @@ from app.models import Event, Ticket, Artist, db
 from app.forms import EventForm, TicketForm, ArtistForm
 
 event_routes = Blueprint('events', __name__)
-
+# ========================= EVENT 🥳================================
 # Create (create an event)
 @event_routes.route('/', methods=['POST'])
 @login_required
@@ -110,6 +110,7 @@ def delete_event(id):
         return {"message" : "Your event was sucessfully deleted"}
     return {"message" : "You are not authorized to perform this action"}, 401
 
+# ======================= TICKETS 🎫====================================================
 # Create (create a ticket for an event)
 @event_routes.route('/<int:id>/tickets', methods=['POST'])
 @login_required
@@ -170,7 +171,7 @@ def delete_ticket(id):
         return {"message" : "Your ticket was sucessfully deleted"}
     return {"message" : "You are not authorized to perform this action"}, 401
 
-
+# =============================== ARTISTS 🎺=====================================
 # Create (Add an artist to an event)
 @event_routes.route('/<int:id>/artists', methods=['POST'])
 @login_required
