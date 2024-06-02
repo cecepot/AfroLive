@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, DateField, TimeField, IntegerField, URLField, FileField, FileAllowed, FileRequired
+from wtforms import SelectField, StringField, DateField, TimeField, IntegerField, URLField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms.validators import DataRequired
 from app.api.helper import ALLOWED_EXTENSIONS
 
