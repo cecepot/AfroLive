@@ -52,7 +52,7 @@ def all_events():
     events = Event.query.all()
     all_events = [event.to_dict() for event in events]
     sorted_events = sorted(all_events, key=lambda x : x['date'])
-    return {'events': sorted_events}
+    return sorted_events
 
 # Read (get event by id)
 @event_routes.route('/<int:id>')

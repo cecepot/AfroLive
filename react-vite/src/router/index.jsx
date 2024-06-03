@@ -1,7 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import HomePage from '../components/HomePage/HomePage';
 import Layout from './Layout';
+import EventPage from '../components/EventsPage/EventPage';
+import ProfilePage from '../components/UserProfilePage/ProfilePage';
+
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <HomePage/>,
       },
       {
         path: "login",
@@ -21,16 +25,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "events/:id",
-        element: <SignupFormPage />,
+        element: <EventPage />,
       },
       {
         path: "users/:id",
-        element: <SignupFormPage />,
+        element: <ProfilePage />,
       },
-      {
-        path: "events/new",
-        element: <SignupFormPage />,
-      },
+        // {
+      //   path: "events/new",
+      //   element: <SignupFormPage />,
+      // },
+      // {
+      //   path: "users/:id",
+      //   element: <SignupFormPage />,
+      // },
     ],
   },
 ]);
