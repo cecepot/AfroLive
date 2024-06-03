@@ -1,16 +1,15 @@
+import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-
-NavLink
 
 
 function ProfilePage(){
-
+const currentUser = useSelector((state) => state.session.user)
 
     return(
         <>
         <h1>User Profile Page</h1>
         <button>My Tickets</button>
-        <NavLink><button>My Listings</button></NavLink>
+        <NavLink to={`/users/${currentUser.id}/listings`}><button>My Listings</button></NavLink>
         <button>Payment Options</button>
         </>
     )

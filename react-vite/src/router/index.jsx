@@ -5,7 +5,8 @@ import HomePage from '../components/HomePage/HomePage';
 import Layout from './Layout';
 import EventPage from '../components/EventsPage/EventPage';
 import ProfilePage from '../components/UserProfilePage/ProfilePage';
-
+import Listings from '../components/EventsPage/Listings';
+import NewListing from '../components/EventsPage/newListingForm';
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>,
+        element: <HomePage />,
       },
       {
         path: "login",
@@ -31,11 +32,15 @@ export const router = createBrowserRouter([
         path: "users/:id",
         element: <ProfilePage />,
       },
+      {
+        path: "users/:id/listings",
+        element: <Listings />,
+      },
+      {
+        path: "users/:id/listings/new",
+        element: <NewListing />,
+      },
         // {
-      //   path: "events/new",
-      //   element: <SignupFormPage />,
-      // },
-      // {
       //   path: "users/:id",
       //   element: <SignupFormPage />,
       // },

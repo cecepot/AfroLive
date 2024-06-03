@@ -54,6 +54,7 @@ def all_events():
     sorted_events = sorted(all_events, key=lambda x : x['date'])
     return sorted_events
 
+
 # Read (get event by id)
 @event_routes.route('/<int:id>')
 @login_required
