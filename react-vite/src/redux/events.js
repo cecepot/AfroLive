@@ -1,7 +1,7 @@
 const GET_EVENTS = 'event/getAll'
 const GET_CURRENT_EVENT = 'event/current'
 const GET_EVENTS_OF_USER = 'event/userEvents'
-
+const CREATE_EVENT = 'event/create'
 
 const getEvents = (events) => ({
     type: GET_EVENTS,
@@ -15,7 +15,10 @@ const userEvents = (events) => ({
     type: GET_EVENTS_OF_USER,
     payload: events
 })
-
+const createEvent = (event) => ({
+    type: CREATE_EVENT,
+    payload: event
+})
 
 export const thunkGetEvents = () => async dispatch => {
     const response = await fetch('/api/events/');
@@ -47,8 +50,23 @@ export const thunkUserEvents = (id) => async dispatch => {
         dispatch(userEvents(events))
     }
 }
+export const thunkCreateEvent = (reqBody) => async dispatch => {
+    console.log('=========================>', reqBody)
+    const response = await fetch(`/api/events/`, {
+        method: "POST",
+        body: reqBody
+    });
+    if (response.ok) {
+        const  event  = await response.json();
+        console.log(event)
+        dispatch(createEvent(event));
+        return event
+    } else {
+        console.log("There was an error making your post!")
+    }
+}
 
-const initialState = { events: [], singleEvent: [], userEvents: [] }
+const initialState = { events: [], singleEvent: [], userEvents: [], newEvent:[] }
 
 function eventsReducer(state = initialState, action) {
     switch (action.type) {
@@ -58,6 +76,8 @@ function eventsReducer(state = initialState, action) {
             return { ...state, singleEvent: action.payload }
         case GET_EVENTS_OF_USER:
             return { ...state, userEvents: action.payload }
+        case CREATE_EVENT:
+            return { ...state, newEvent: action.payload }
         default:
             return state
     }

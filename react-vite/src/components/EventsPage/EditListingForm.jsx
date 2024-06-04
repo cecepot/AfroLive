@@ -23,7 +23,7 @@ function EditListing() {
 
     return (
         <>
-            <h1>new listing form</h1>
+            <h1>Update your listing</h1>
             <form action="">
                 <div>
                     <label htmlFor="title">Title</label>

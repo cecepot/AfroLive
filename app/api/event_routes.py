@@ -16,7 +16,15 @@ def create_event():
     """
     form = EventForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    # print('lllllllllllllllllllllllll', form.data)
     if form.validate_on_submit():
+      image_url = form.data['image_url']
+    #   print('=========url=======', form.data)
+      image_url.filename = get_unique_filename(image_url.filename)
+
+      upload = upload_file_to_s3(image_url)
+      print('=========upload=======',upload)
+
       event = Event(
       description = form.data['description'],
       date = form.data['date'],
@@ -25,7 +33,7 @@ def create_event():
       venue = form.data['venue'],
       city = form.data['city'],
       state = form.data['state'],
-      image_url = form.data['image_url'],
+      image_url = upload['url'],
       tickets_available = form.data['tickets_available'],
       ticket_price = form.data['ticket_price'],
       organizer_name = form.data['organizer_name'],
@@ -35,12 +43,11 @@ def create_event():
       additional_notes = form.data['additional_notes'],
       user_id = current_user.id,
       title = form.data['title'])
-      event.image_url.filename = get_unique_filename(event.image_url.filename)
-      upload = upload_file_to_s3(event.image_url)
-      print(upload)
+      db.session.add(event)
       db.session.commit()
       return event.to_dict()
-    return event.errors, 400
+    print(form.errors)
+    return form.errors, 400
 
 # Read (get all events)
 @event_routes.route('/')

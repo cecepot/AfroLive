@@ -20,6 +20,8 @@ function Listings() {
                 return(
                     <div key={listing.id}>
                         <p>{listing.title}</p>
+                        <button>Delete Listing</button>
+                        <NavLink to={`/users/${user.id}/listings/${listing.id}`}><button>Update Listing</button></NavLink>
                     </div>
                 )
             })}

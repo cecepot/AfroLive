@@ -7,6 +7,8 @@ import EventPage from '../components/EventsPage/EventPage';
 import ProfilePage from '../components/UserProfilePage/ProfilePage';
 import Listings from '../components/EventsPage/Listings';
 import NewListing from '../components/EventsPage/newListingForm';
+import EditListing from '../components/EventsPage/EditListingForm';
+
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +42,11 @@ export const router = createBrowserRouter([
         path: "users/:id/listings/new",
         element: <NewListing />,
       },
-        // {
+      {
+        path: "users/:id/listings/:listingId",
+        element: <EditListing />,
+      },
+      // {
       //   path: "users/:id",
       //   element: <SignupFormPage />,
       // },
