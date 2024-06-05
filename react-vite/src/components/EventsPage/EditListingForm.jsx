@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { thunkCurrentEvent, thunkUpdateEvent } from "../../redux/events"
-import { useParams } from "react-router-dom"
+import { thunkCurrentEvent, thunkUpdateEvent, thunkUserEvents } from "../../redux/events"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 
@@ -24,6 +24,8 @@ function EditListing() {
     const [event_website, setEvent_website] = useState("")
     const [additional_notes, setAdditional_notes] = useState("")
     const [imageLoading, setImageLoading] = useState(false);
+    const navigate = useNavigate()
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const { listingId } = useParams()
 
@@ -33,13 +35,38 @@ function EditListing() {
     }, [dispatch, listingId])
     const currentEvent = useSelector((state) => state.event.singleEvent)
 
+    // const formatTime = (time) => {
+    //     let timeArray = time.split(':')
+    //     let hours = +timeArray[0]
+    //     let minutes = +timeArray[1]
+    //     let seconds = +timeArray[2]
+    //     let date = new Date()
+    //     date.setHours(hours, minutes, seconds)
+    //     let newTime = date.toISOString().split("T")[1].split('.')[0]
+    //     // console.log(newTime)
+    //     return newTime
+    // }
+
+    const formatTime = (time) => {
+        let timeArray = time.split(':')
+        let hours = +timeArray[0]
+        let minutes = +timeArray[1]
+        let seconds = +timeArray[2]
+        let date = new Date()
+        date.setHours(hours, minutes, seconds)
+        // let newTime = date.toISOString().split("T")[1].split('.')[0]
+        // let options = {timeStyle: 'short', hour12: true}
+        let newTime = date.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit" , hour12: true}).split(' ')[0]
+        // console.log(newTime)
+        return newTime
+    }
 
     useEffect(() => {
         setTitle(currentEvent.title)
         setDescription(currentEvent.description)
         setDate(new Date(currentEvent.date).toISOString().split("T")[0])
-        setStart_time(currentEvent.start_time)
-        setEnd_time(currentEvent.end_time)
+        setStart_time(formatTime(currentEvent.start_time))
+        setEnd_time(formatTime(currentEvent.end_time))
         setVenue(currentEvent.venue)
         setCity(currentEvent.city)
         setState(currentEvent.state)
@@ -54,23 +81,7 @@ function EditListing() {
 
     }, [currentEvent, date])
 
-    const fileWrap = (e) => {
-        e.stopPropagation();
-
-        const tempFile = e.target.files[0];
-
-        // Check for max image size of 5Mb
-        // if (tempFile.size > 5000000) {
-        //   setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
-        //   return
-        // }
-
-        const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
-        setImage_url(newImageURL);
-        setFile(tempFile);
-        // setFilename(tempFile.name);
-        setOptional("");
-      }
+    console.log('start========', start_time, end_time)
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -92,6 +103,15 @@ function EditListing() {
         formData.append("category", category);
         formData.append("additional_notes", additional_notes);
 
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+        const updatedEvent = await dispatch(thunkUpdateEvent(formData, listingId))
+        if (updatedEvent){
+            dispatch(thunkUserEvents(user.id))
+            navigate(`/users/${user.id}/listings`)
+
+        }
     }
 
     return (
@@ -199,7 +219,6 @@ function EditListing() {
                         accept="image/*"
                         onChange={(e) => setImage_url(e.target.files[0])}
                         placeholder="image File"
-                        required
                     />
                     {(imageLoading) && <p>Loading...</p>}
                 </div>

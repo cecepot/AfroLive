@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Event, Ticket, Artist, db
-from app.forms import EventForm, TicketForm, ArtistForm
+from app.forms import EventForm, TicketForm, ArtistForm, UpdateEventForm
 from app.api.helper import (upload_file_to_s3, get_unique_filename)
 
 
@@ -80,34 +80,36 @@ def update_event(id):
     updates a single event by id
     """
     event = Event.query.get(id)
+    print('event======>', event.to_dict())
     if event.user_id != current_user.id:
         return {"message" : "You are not authorized to perform this action"}, 401
-    form = EventForm()
+    form = UpdateEventForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-    print(form.data)
+    print('=====type=========',(form.data['start_time']))
     if form.validate_on_submit():
-        image_url = form.data['image_url']
-    #   print('=========url=======', form.data)
-        image_url.filename = get_unique_filename(image_url.filename)
-
-        upload = upload_file_to_s3(image_url)
-        print('=========upload=======',upload)
-        event.title = form.data['title']
-        event.description = form.data['description']
-        event.date = form.data['date']
-        if event.start_time: event.start_time = form.data['start_time']
-        if event.end_time: event.end_time = form.data['end_time']
-        event.venue = form.data['venue']
-        event.city = form.data['city']
-        event.state = form.data['state']
-        if image_url: image_url = upload['url'],
-        event.tickets_available = form.data['tickets_available']
-        event.ticket_price = form.data['ticket_price']
-        event.organizer_name = form.data['organizer_name']
-        event.organizer_contact = form.data['organizer_contact']
-        event.category = form.data['category']
-        event.event_website = form.data['event_website']
-        event.additional_notes = form.data['additional_notes']
+        if (form.data['image_url']):
+            image_url = form.data['image_url']
+        #   print('=========url=======', form.data)
+            image_url.filename = get_unique_filename(image_url.filename)
+            upload = upload_file_to_s3(image_url)
+            event.image_url = upload['url']
+            print('=========upload=======',upload)
+        if form.data['title']:event.title = form.data['title']
+        if form.data['description']:event.description = form.data['description']
+        if form.data['date']:event.date = form.data['date']
+        if (form.data['start_time'] != None):event.start_time = form.data['start_time']
+        if (form.data['end_time'] != None):event.end_time = form.data['end_time']
+        if form.data['venue']:event.venue = form.data['venue']
+        if form.data['city']:event.city = form.data['city']
+        if form.data['state']:event.state = form.data['state']
+        # if (upload['url'] != None):image_url = upload['url'],
+        if form.data['tickets_available']:event.tickets_available = form.data['tickets_available']
+        if form.data['ticket_price']:event.ticket_price = form.data['ticket_price']
+        if form.data['organizer_name']:event.organizer_name = form.data['organizer_name']
+        if form.data['organizer_contact']:event.organizer_contact = form.data['organizer_contact']
+        if form.data['category']:event.category = form.data['category']
+        if form.data['event_website']:event.event_website = form.data['event_website']
+        if form.data['additional_notes']:event.additional_notes = form.data['additional_notes']
         event.user_id = current_user.id
         db.session.commit()
         return event.to_dict()

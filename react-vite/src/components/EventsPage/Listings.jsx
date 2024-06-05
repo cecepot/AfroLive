@@ -18,7 +18,7 @@ function Listings() {
         // e.preventDefault()
         // console.log(e)
 
-        if (window.confirm("Do you want to delete this event?")) {
+        if (window.confirm("You are about to delete this event")) {
             dispatch(thunkDeleteEvent(listingId))
             dispatch(thunkUserEvents(user.id))
           }
