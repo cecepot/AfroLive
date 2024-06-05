@@ -84,16 +84,23 @@ def update_event(id):
         return {"message" : "You are not authorized to perform this action"}, 401
     form = EventForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    print(form.data)
     if form.validate_on_submit():
+        image_url = form.data['image_url']
+    #   print('=========url=======', form.data)
+        image_url.filename = get_unique_filename(image_url.filename)
+
+        upload = upload_file_to_s3(image_url)
+        print('=========upload=======',upload)
         event.title = form.data['title']
         event.description = form.data['description']
         event.date = form.data['date']
-        event.start_time = form.data['start_time']
-        event.end_time = form.data['end_time']
+        if event.start_time: event.start_time = form.data['start_time']
+        if event.end_time: event.end_time = form.data['end_time']
         event.venue = form.data['venue']
         event.city = form.data['city']
         event.state = form.data['state']
-        event.image_url = form.data['image_url']
+        if image_url: image_url = upload['url'],
         event.tickets_available = form.data['tickets_available']
         event.ticket_price = form.data['ticket_price']
         event.organizer_name = form.data['organizer_name']
@@ -102,12 +109,10 @@ def update_event(id):
         event.event_website = form.data['event_website']
         event.additional_notes = form.data['additional_notes']
         event.user_id = current_user.id
-        event.image_url.filename = get_unique_filename(event.image_url.filename)
-        upload = upload_file_to_s3(event.image_url)
-        print(upload)
         db.session.commit()
         return event.to_dict()
-    return event.errors
+    print(form.errors)
+    return form.errors, 400
 
 # Destroy (delete an event)
 @event_routes.route('/<int:id>', methods=["DELETE"])

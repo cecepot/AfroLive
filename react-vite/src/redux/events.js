@@ -2,6 +2,8 @@ const GET_EVENTS = 'event/getAll'
 const GET_CURRENT_EVENT = 'event/current'
 const GET_EVENTS_OF_USER = 'event/userEvents'
 const CREATE_EVENT = 'event/create'
+const UPDATE_EVENT = 'event/update'
+const DELETE_EVENT = 'event/delete'
 
 const getEvents = (events) => ({
     type: GET_EVENTS,
@@ -18,6 +20,14 @@ const userEvents = (events) => ({
 const createEvent = (event) => ({
     type: CREATE_EVENT,
     payload: event
+})
+const updateEvent = (event) => ({
+    type: UPDATE_EVENT,
+    payload: event
+})
+const deleteEvent = (events) => ({
+    type: DELETE_EVENT,
+    payload: events
 })
 
 export const thunkGetEvents = () => async dispatch => {
@@ -57,7 +67,7 @@ export const thunkCreateEvent = (reqBody) => async dispatch => {
         body: reqBody
     });
     if (response.ok) {
-        const  event  = await response.json();
+        const event = await response.json();
         console.log(event)
         dispatch(createEvent(event));
         return event
@@ -65,8 +75,30 @@ export const thunkCreateEvent = (reqBody) => async dispatch => {
         console.log("There was an error making your post!")
     }
 }
+export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
+    const response = await fetch(`/api/events/${id}`, {
+        method: "PUT",
+        body: reqBody
+    });
+    if (response.ok) {
+        const event = await response.json();
+        console.log(event)
+        dispatch(updateEvent(event));
+        return event
+    } else {
+        console.log("There was an error making your post!")
+    }
+}
+export const thunkDeleteEvent = (id) => async () => {
+    const res = await fetch(`/api/events/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    const deleted = await res.json();
+    return deleted;
+  };
 
-const initialState = { events: [], singleEvent: [], userEvents: [], newEvent:[] }
+const initialState = { events: [], singleEvent: [], userEvents: [], newEvent: [] }
 
 function eventsReducer(state = initialState, action) {
     switch (action.type) {
@@ -77,6 +109,8 @@ function eventsReducer(state = initialState, action) {
         case GET_EVENTS_OF_USER:
             return { ...state, userEvents: action.payload }
         case CREATE_EVENT:
+            return { ...state, newEvent: action.payload }
+        case UPDATE_EVENT:
             return { ...state, newEvent: action.payload }
         default:
             return state

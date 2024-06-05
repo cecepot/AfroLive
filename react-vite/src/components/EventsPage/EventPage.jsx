@@ -23,6 +23,7 @@ function EventPage(){
         <p>{currentEvent.venue}</p>
         <p>{currentEvent.description}</p>
         <p>{currentEvent.organizer_name}</p>
+        <img src={currentEvent.image_url} alt="" />
         </span>
         <button>buy ticket</button>
         </>
