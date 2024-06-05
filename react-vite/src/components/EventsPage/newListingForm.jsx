@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreateEvent } from "../../redux/events";
 import { thunkUserEvents } from "../../redux/events";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NewListing() {
     const dispatch = useDispatch()
@@ -150,14 +150,12 @@ function NewListing() {
                 </div>
                 <div>
                     <label htmlFor="state">State</label>
-                    <input
-                        type="text"
-                        name="state"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        placeholder="state"
-                        required
-                    />
+                    <select name="state" onChange={(e) => setState(e.target.value)} required>
+                        <option value="">Select a state</option>
+                        <option value="Maryland">Maryland</option>
+                        <option value="New York">New York</option>
+                        <option value="Virginia">Virginia</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="image File">Image File</label>
@@ -217,15 +215,14 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="category">Category</label>
-                    <input
-                        type="text"
-                        name="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        placeholder="category"
-                        required
-                    />
+                    <label htmlFor="category">category</label>
+                    <select name="category" onChange={(e) => setCategory(e.target.value)} required>
+                        <option value="">Select a category</option>
+                        <option value="concert">concert</option>
+                        <option value="festival">festival</option>
+                        <option value="live performance">live performance</option>
+                        <option value="album release party">album release party</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="event website">Event website</label>

@@ -56,7 +56,7 @@ function EditListing() {
         date.setHours(hours, minutes, seconds)
         // let newTime = date.toISOString().split("T")[1].split('.')[0]
         // let options = {timeStyle: 'short', hour12: true}
-        let newTime = date.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit" , hour12: true}).split(' ')[0]
+        let newTime = date.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: true }).split(' ')[0]
         // console.log(newTime)
         return newTime
     }
@@ -83,7 +83,7 @@ function EditListing() {
 
     console.log('start========', start_time, end_time)
 
-    const handleSubmit = async(e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("title", title);
@@ -107,7 +107,7 @@ function EditListing() {
             console.log(`${key}: ${value}`);
         }
         const updatedEvent = await dispatch(thunkUpdateEvent(formData, listingId))
-        if (updatedEvent){
+        if (updatedEvent) {
             dispatch(thunkUserEvents(user.id))
             navigate(`/users/${user.id}/listings`)
 
@@ -203,14 +203,12 @@ function EditListing() {
                 </div>
                 <div>
                     <label htmlFor="state">State</label>
-                    <input
-                        type="text"
-                        name="state"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        placeholder="state"
-                        required
-                    />
+                    <select name="state" onChange={(e) => setState(e.target.value)} >
+                        <option value="">Select a state</option>
+                        <option value="Maryland">Maryland</option>
+                        <option value="New York">New York</option>
+                        <option value="Virginia">Virginia</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="image File">Image File</label>
@@ -270,14 +268,13 @@ function EditListing() {
                 </div>
                 <div>
                     <label htmlFor="category">Category</label>
-                    <input
-                        type="text"
-                        name="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        placeholder="category"
-                        required
-                    />
+                    <select name="category" onChange={(e) => setCategory(e.target.value)} required>
+                        <option value="">Select a category</option>
+                        <option value="concert">concert</option>
+                        <option value="festival">festival</option>
+                        <option value="live performance">live performance</option>
+                        <option value="album release party">album release party</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="event website">Event website</label>

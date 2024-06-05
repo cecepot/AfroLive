@@ -14,7 +14,7 @@ class EventForm(FlaskForm):
     end_time = TimeField('end time', validators=[DataRequired()])
     venue = StringField('venue', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
-    state = SelectField('state', validators=[DataRequired()], choices=['Maryland', 'Virginia', ])
+    state = SelectField('state', validators=[DataRequired()], choices=['Maryland', 'Virginia', 'New York'])
     image_url = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     tickets_available = IntegerField('number of tickets', validators=[DataRequired()])
     ticket_price = IntegerField('price', validators=[DataRequired()])
