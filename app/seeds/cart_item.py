@@ -4,10 +4,10 @@ from sqlalchemy.sql import text
 
 def seed_cart_item():
     cart_item = Cart_item(
-        cart_id=1,  # Assuming the cart_id exists
-        ticket_id=1,  # Assuming the ticket_id exists
+        cart_id=1,  
+        ticket_id=1,
         quantity=2,
-        price=60.00  # Assuming each ticket costs 30.00
+        price=60.00
     )
 
     db.session.add(cart_item)
