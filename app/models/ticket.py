@@ -15,10 +15,10 @@ class Ticket(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
-    
+
     events = db.relationship("Event", back_populates = "tickets")
     user = db.relationship("User", back_populates = "tickets")
-    cart_items = db.relationship("Cart_item", back_populates = "cart_items", cascade="all, delete-orphan")
+    cart_items = db.relationship("Cart_item", back_populates = "tickets", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

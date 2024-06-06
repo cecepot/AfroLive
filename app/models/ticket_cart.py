@@ -14,7 +14,7 @@ class Ticket_cart(db.Model):
     finished = db.Column(db.Boolean, default=False)
 
     user = db.relationship("User", back_populates="ticket_carts")
-    cart_items = db.relationship("Cart_item", back_populates="Ticket_cart", cascade="all, delete-orphan")
+    cart_items = db.relationship("Cart_item", back_populates="ticket_carts", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

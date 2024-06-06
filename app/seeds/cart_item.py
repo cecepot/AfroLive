@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy.sql import text
 
 def seed_cart_item():
-    cart_item = cart_item(
+    cart_item = Cart_item(
         cart_id=1,  # Assuming the cart_id exists
         ticket_id=1,  # Assuming the ticket_id exists
         quantity=2,

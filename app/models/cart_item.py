@@ -12,8 +12,8 @@ class Cart_item(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
 
-    Ticket_cart = db.relationship("Ticket_cart", back_populates="cart_items")
-    ticket = db.relationship("Ticket", back_populates="cart_items")
+    ticket_carts = db.relationship("Ticket_cart", back_populates="cart_items")
+    tickets = db.relationship("Ticket", back_populates="cart_items")
 
     def to_dict(self):
         return {

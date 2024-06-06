@@ -26,8 +26,8 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_favorites()
         undo_notifications()
-        undo_cart_item()
         undo_ticket_cart()
+        undo_cart_item()
         undo_tickets()
         undo_artists()
         undo_events()
@@ -38,8 +38,8 @@ def seed():
     seed_events()
     seed_artists()
     seed_tickets()
-    seed_ticket_cart()
     seed_cart_item()
+    seed_ticket_cart()
     seed_notifications()
     seed_favorites()
     # Add other seed functions here
