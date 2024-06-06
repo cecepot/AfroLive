@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { thunkGetTickets } from "../../redux/tickets"
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 
 
-function ListedTickets(){
+function ManageTickets(){
 const dispatch = useDispatch()
 const {id} = useParams()
 
@@ -17,18 +17,19 @@ const tickets = useSelector((state)=>state.tickets.tickets)
 
     return (
         <>
-        <h1>listed tickets page</h1>
+        <h1>Your tickets</h1>
         {tickets.map((ticket) =>{
             return (<>
             <div>
                 <p>{ticket.section}.{ticket.row}</p>
                 <p>$ {ticket.price}</p>
-                <button>add to cart</button>
+                <button>delete ticket</button>
             </div>
             </>)
         })}
+        <NavLink><button>Add Tickets</button></NavLink>
         </>
     )
 }
 
-export default ListedTickets
+export default ManageTickets

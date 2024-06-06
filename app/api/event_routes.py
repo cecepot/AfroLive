@@ -156,26 +156,17 @@ def create_ticket(id):
     return ticket.errors, 400
 
 # Read (get all tickets for an event)
-@event_routes.route('/<int:id>/tickets')
+@event_routes.route('/<int:eventId>/tickets')
 @login_required
-def all_tickets():
+def all_tickets(eventId):
     """
     Query for all tickets for an event and returns them in a list of dictionaries
     """
-    tickets = Ticket.query.all()
+    tickets = Ticket.query.filter(Ticket.event_id == eventId).all()
     all_tickets = [ticket.to_dict() for ticket in tickets]
-    return {'tickets': all_tickets}
+    return all_tickets
 
-# Read (get all tickets for the current user)
-@event_routes.route('/<int:id>/tickets')
-@login_required
-def all_tickets_by_id():
-    """
-    Query for all tickets for an event and returns them in a list of dictionaries
-    """
-    tickets = Ticket.query.filter_by(Ticket.user_id == current_user.id).all()
-    all_tickets = [ticket.to_dict() for ticket in tickets]
-    return {'tickets': all_tickets}
+
 
 # Destroy (delete a ticket)
 @event_routes.route('/<int:Eventid>/tickets/<int:id>', methods=["DELETE"])

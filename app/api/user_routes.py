@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Payment_option, db, Event
+from app.models import User, Payment_option, db, Event, Ticket
 from app.forms import PaymentForm
 
 
@@ -37,6 +37,18 @@ def all_current_user_events(userId):
     all_events = [event.to_dict() for event in events]
     sorted_events = sorted(all_events, key=lambda x : x['date'])
     return sorted_events
+
+
+# Read (get all tickets for the current user)
+@user_routes.route('/<int:id>/tickets')
+@login_required
+def all_tickets_by_id():
+    """
+    Query for all tickets for an event and returns them in a list of dictionaries
+    """
+    tickets = Ticket.query.filter_by(Ticket.user_id == current_user.id).all()
+    all_tickets = [ticket.to_dict() for ticket in tickets]
+    return {'tickets': all_tickets}
 # =============================== PAYMENT OPTIONS 💳=====================================
 # Create (Add a payment option to a user)
 @user_routes.route('/<int:id>/payments', methods=['POST'])

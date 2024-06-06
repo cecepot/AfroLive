@@ -9,7 +9,7 @@ import Listings from '../components/EventsPage/Listings';
 import NewListing from '../components/EventsPage/newListingForm';
 import EditListing from '../components/EventsPage/EditListingForm';
 import ListedTickets from '../components/TicketPage/TicketPage';
-
+import ManageTickets from '../components/TicketPage/ManageTickets';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "events/:id/tickets",
         element: <ListedTickets />,
+      },
+      {
+        path: "users/:id/listings/:listingId/tickets",
+        element: <ManageTickets />,
       },
       // {
       //   path: "users/:id",
