@@ -14,7 +14,7 @@ def seed_tickets():
         user_id=1,
         created_at=datetime.now(),
         updated_at=datetime.now()
-    )
+    ) 
 
     ticket2 = Ticket(
         seat_number=2,

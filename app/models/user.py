@@ -13,12 +13,14 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+   
 
-    payment_options = db.relationship("Payment_option", back_populates = "user")
-    tickets = db.relationship("Ticket", back_populates = "user")
-    events = db.relationship("Event", back_populates = "user")
-    notifications = db.relationship("Notification", back_populates = "user")
-    favorites = db.relationship("Favorite", back_populates = "user")
+    payment_options = db.relationship("Payment_option", back_populates = "user", cascade="all, delete-orphan")
+    tickets = db.relationship("Ticket", back_populates = "user", cascade="all, delete-orphan")
+    events = db.relationship("Event", back_populates = "user", cascade="all, delete-orphan")
+    notifications = db.relationship("Notification", back_populates = "user", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", back_populates = "user", cascade="all, delete-orphan")
+    ticket_carts = db.relationship("Ticket_cart", back_populates = "user", cascade="all, delete-orphan")
 
     @property
     def password(self):

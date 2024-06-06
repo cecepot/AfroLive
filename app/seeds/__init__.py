@@ -6,6 +6,8 @@ from .favorites import seed_favorites, undo_favorites
 from .notifications import seed_notifications, undo_notifications
 from .payment_options import seed_payment_options, undo_payment_options
 from .tickets import seed_tickets, undo_tickets
+from .cart_item import seed_cart_item, undo_cart_item
+from .ticket_cart import seed_ticket_cart, undo_ticket_cart
 
 from app.models.db import db, environment, SCHEMA
 
@@ -24,6 +26,8 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_favorites()
         undo_notifications()
+        undo_cart_item()
+        undo_ticket_cart()
         undo_tickets()
         undo_artists()
         undo_events()
@@ -34,6 +38,8 @@ def seed():
     seed_events()
     seed_artists()
     seed_tickets()
+    seed_ticket_cart()
+    seed_cart_item()
     seed_notifications()
     seed_favorites()
     # Add other seed functions here

@@ -27,10 +27,10 @@ class Event(db.Model):
     created_at = db.Column(db.DateTime, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default = db.func.current_timestamp())
 
-    tickets = db.relationship("Ticket", back_populates = "events")
+    tickets = db.relationship("Ticket", back_populates = "events", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates = "events")
-    artists = db.relationship("Artist", back_populates = "events")
-    favorites = db.relationship("Favorite", back_populates = "events")
+    artists = db.relationship("Artist", back_populates = "events", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", back_populates = "events", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

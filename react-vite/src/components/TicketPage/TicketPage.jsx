@@ -21,7 +21,7 @@ const tickets = useSelector((state)=>state.tickets.tickets)
         {tickets.map((ticket) =>{
             return (<>
             <div>
-                <p>{ticket.section}.{ticket.row}</p>
+                <p>Section{ticket.section}. Row{ticket.row}</p>
                 <p>$ {ticket.price}</p>
                 <button>add to cart</button>
             </div>
