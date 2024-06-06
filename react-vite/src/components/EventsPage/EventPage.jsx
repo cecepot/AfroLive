@@ -25,7 +25,7 @@ function EventPage(){
         <p>{currentEvent.organizer_name}</p>
         <img src={currentEvent.image_url} alt="" />
         </span>
-        <button>buy ticket</button>
+        <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>
         </>
     )
 }

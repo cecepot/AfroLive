@@ -34,10 +34,12 @@ function Listings() {
                         <p>{listing.title}</p>
                         <button onClick={e => {e.preventDefault();handleDelete(listing.id)}}>Delete Listing</button>
                         <NavLink to={`/users/${user.id}/listings/${listing.id}`}><button>Update Listing</button></NavLink>
+                        <button>View Tickets for this listing</button>
                     </div>
                 )
             })}
             <NavLink to={`/users/${user.id}/listings/new`}><button>Add a new Listing</button></NavLink>
+
         </>
     )
 

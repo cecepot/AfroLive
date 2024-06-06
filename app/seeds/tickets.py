@@ -7,6 +7,8 @@ from datetime import datetime
 def seed_tickets():
     ticket1 = Ticket(
         seat_number=1,
+        row = 'A',
+        section = 'B',
         price=30.00,
         event_id=1,
         user_id=1,
@@ -16,6 +18,8 @@ def seed_tickets():
 
     ticket2 = Ticket(
         seat_number=2,
+        row = 'A',
+        section = 'B',
         price=50.00,
         event_id=2,
         user_id=2,
@@ -25,6 +29,8 @@ def seed_tickets():
 
     ticket3 = Ticket(
         seat_number=3,
+        row = 'B',
+        section = 'B',
         price=25.00,
         event_id=3,
         user_id=3,
@@ -34,6 +40,8 @@ def seed_tickets():
 
     ticket4 = Ticket(
         seat_number=4,
+        row = 'B',
+        section = 'B',
         price=20.00,
         event_id=4,
         user_id=1,
@@ -43,6 +51,8 @@ def seed_tickets():
 
     ticket5 = Ticket(
         seat_number=5,
+        row = 'B',
+        section = 'I',
         price=35.00,
         event_id=5,
         user_id=2,
@@ -52,6 +62,8 @@ def seed_tickets():
 
     ticket6 = Ticket(
         seat_number=6,
+        row = 'C',
+        section = 'I',
         price=75.00,
         event_id=6,
         user_id=3,
@@ -61,6 +73,8 @@ def seed_tickets():
 
     ticket7 = Ticket(
         seat_number=7,
+        row = 'A',
+        section = 'A',
         price=30.00,
         event_id=1,
         user_id=2,
@@ -70,6 +84,8 @@ def seed_tickets():
 
     ticket8 = Ticket(
         seat_number=8,
+        row = 'A',
+        section = 'A',
         price=50.00,
         event_id=2,
         user_id=3,
@@ -79,6 +95,8 @@ def seed_tickets():
 
     ticket9 = Ticket(
         seat_number=9,
+        row = 'F',
+        section = 'G',
         price=25.00,
         event_id=3,
         user_id=1,
@@ -88,6 +106,8 @@ def seed_tickets():
 
     ticket10 = Ticket(
         seat_number=10,
+        row = 'F',
+        section = 'G',
         price=20.00,
         event_id=4,
         user_id=3,
@@ -97,6 +117,8 @@ def seed_tickets():
 
     ticket11 = Ticket(
         seat_number=11,
+        row = 'F',
+        section = 'D',
         price=35.00,
         event_id=5,
         user_id=1,
@@ -106,6 +128,8 @@ def seed_tickets():
 
     ticket12 = Ticket(
         seat_number=12,
+        row = 'A',
+        section = 'D',
         price=75.00,
         event_id=6,
         user_id=2,

@@ -5,6 +5,7 @@ const CREATE_EVENT = 'event/create'
 const UPDATE_EVENT = 'event/update'
 const DELETE_EVENT = 'event/delete'
 
+
 const getEvents = (events) => ({
     type: GET_EVENTS,
     payload: events

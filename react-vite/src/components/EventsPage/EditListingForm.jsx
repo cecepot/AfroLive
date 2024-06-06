@@ -35,18 +35,8 @@ function EditListing() {
     }, [dispatch, listingId])
     const currentEvent = useSelector((state) => state.event.singleEvent)
 
-    // const formatTime = (time) => {
-    //     let timeArray = time.split(':')
-    //     let hours = +timeArray[0]
-    //     let minutes = +timeArray[1]
-    //     let seconds = +timeArray[2]
-    //     let date = new Date()
-    //     date.setHours(hours, minutes, seconds)
-    //     let newTime = date.toISOString().split("T")[1].split('.')[0]
-    //     // console.log(newTime)
-    //     return newTime
-    // }
-
+    
+    // console.log(currentEvent.start_time) //14:44:00
     const formatTime = (time) => {
         let timeArray = time.split(':')
         let hours = +timeArray[0]
