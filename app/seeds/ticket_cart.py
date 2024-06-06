@@ -15,8 +15,8 @@ def seed_ticket_cart():
 
 def undo_ticket_cart():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.carts RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.ticket_carts RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM carts"))
+        db.session.execute(text("DELETE FROM ticket_cart"))
 
     db.session.commit()
