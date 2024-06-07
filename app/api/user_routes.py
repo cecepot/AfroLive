@@ -130,7 +130,7 @@ def update_card(id, cardId):
 # Destroy (delete a card)
 @user_routes.route('/<int:id>/cards/<int:cardId>', methods=["DELETE"])
 @login_required
-def delete_card(cardId):
+def delete_card(id, cardId):
     """
         Delete an artist
     """

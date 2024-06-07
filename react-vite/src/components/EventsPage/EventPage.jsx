@@ -2,16 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkCurrentEvent } from "../../redux/events";
 import { NavLink, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function EventPage(){
     const dispatch = useDispatch()
     const {id} = useParams()
+    const location = useLocation()
 
     useEffect(() => {
         dispatch(thunkCurrentEvent(id))
     }, [dispatch, id])
 
-    const currentEvent = useSelector(state => state.event.singleEvent)
+    // const currentEvent = useSelector(state => state.event.singleEvent)
+    const currentEvent = location.state.data
     // console.log(currentEvent)
     return(
         <>

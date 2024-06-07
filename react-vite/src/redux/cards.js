@@ -2,7 +2,7 @@ const GET_CARDS = 'cards/getall'
 const CREATE_CARD = 'cards/new'
 const UPDATE_CARD = 'cards/update'
 const GET_CURRENT_CARD = 'cards/current'
-
+const DELETE_CARD = 'card/delete'
 
 const getCards = (cards) => ({
     type: GET_CARDS,
@@ -77,7 +77,14 @@ export const thunkGetCurrentCard = (id, cardId) => async dispatch => {
 
     }
 }
-
+export const thunkDeleteCard = (id, cardId) => async () => {
+    const res = await fetch(`/api/users/${id}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    const deleted = await res.json();
+    return deleted;
+  };
 
 const initialState = { cards: [], currentCard: [] }
 

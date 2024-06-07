@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { thunkGetCards, thunkGetCurrentCard } from "../../redux/cards"
+import { thunkDeleteCard, thunkGetCards, thunkGetCurrentCard } from "../../redux/cards"
 import { useEffect, useState } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import Loader from "../LoadingComponent/Loader"
@@ -13,6 +13,12 @@ function PaymentOptions(){
     // if (isLoading) {
     //     return <Loader />;
     //   }
+    const handleDelete = (id, cardId) =>{
+        if (window.confirm("You are about to delete this card")) {
+            dispatch(thunkDeleteCard(id, cardId))
+            dispatch(thunkGetCards(id))
+          }
+    }
 
     useEffect(()=>{
         dispatch(thunkGetCards(id))
@@ -25,7 +31,6 @@ function PaymentOptions(){
         navigate(`/users/${id}/cards/${cardId}/edit`, { state: { data: card } })
     }
 
-
     return (
         <>
         <h1>Payment Options</h1>
@@ -36,7 +41,7 @@ function PaymentOptions(){
                 <p>{card.card_company}({card.card_type})</p>
                 <p>{card.name}</p>
                 <button onClick={(e)=> handleCurrent(e,id, card.id, card)}>Update Card</button>
-                <button>Delete card</button>
+                <button onClick={e => {e.preventDefault();handleDelete(id, card.id)}}>Delete card</button>
                 </div>
             )
         })}
