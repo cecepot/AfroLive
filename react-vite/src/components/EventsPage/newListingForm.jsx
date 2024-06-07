@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkCreateEvent } from "../../redux/events";
 import { thunkUserEvents } from "../../redux/events";
 import { useNavigate } from "react-router-dom";
+import Loader from "../LoadingComponent/Loader";
+
 
 function NewListing() {
     const dispatch = useDispatch()
@@ -24,13 +26,40 @@ function NewListing() {
     const [event_website, setEvent_website] = useState("")
     const [additional_notes, setAdditional_notes] = useState("")
     const [imageLoading, setImageLoading] = useState(false);
+    const [validationErrors, setValidationErrors] = useState({})
     const user = useSelector(state => state.session.user)
     // const history = useHistory();
     const navigate = useNavigate()
 
+    const compareTimes = (date, start, end) => {
+        const startHours = +start.split(':')[0]
+        const startMinutes = +start.split(':')[1]
+        const endHours = +end.split(':')[0]
+        const endMinutes = +end.split(':')[1]
+        let newStartDate = new Date(date).setHours(startHours, startMinutes)
+        let newEndDate = new Date(date).setHours(endHours, endMinutes)
+        return newStartDate < newEndDate
+    }
+
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        let errors = {}
+        if (description.length < 50){ errors.description = 'Please describe your event in at least fifty characters'}
+        if (new Date(date).getTime() <= Date.now()){ errors.date = 'Please choose a date that is yet to occur'}
+        if (compareTimes(date, start_time, end_time) === false) {errors.start_time = "The event's start time must be before it's end time"}
+        if (compareTimes(date, end_time, start_time) === true){ errors.end_time = "The event's end time must be after it's start time"}
+        if (tickets_available < 20){errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available."}
+        if (ticket_price.length <= 0){ errors.ticket_price = 'Events should cost at least $ 1.00'}
+
+
+
+        if (Object.keys(errors).length > 0) {
+            setValidationErrors(errors)
+            return
+        }
+
+
         const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
@@ -53,15 +82,22 @@ function NewListing() {
         for (const [key, value] of formData.entries()) {
             console.log(`${key}: ${value}`);
         }
+
+
         const newEvent = await dispatch(thunkCreateEvent(formData));
         // history.push("/images");
         if (newEvent) {
             console.log('=====hurray=========>', newEvent)
             dispatch(thunkUserEvents(user.id))
+            setImageLoading(false)
             navigate(`/users/${user.id}/listings`)
         }
     }
 
+    if (imageLoading){
+        return <Loader/>
+    }
+    
     return (
         <>
             <h1>new listing form</h1>
@@ -69,6 +105,7 @@ function NewListing() {
                 onSubmit={handleSubmit}
                 encType="multipart/form-data">
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
@@ -80,6 +117,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error">{validationErrors.description && validationErrors.description}</p>
                     <label htmlFor="description">Description</label>
                     <input
                         type="text"
@@ -91,6 +129,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error">{validationErrors.date && validationErrors.date}</p>
                     <label htmlFor="date">Date</label>
                     <input
                         type="date"
@@ -103,6 +142,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error">{validationErrors.start_time && validationErrors.start_time}</p>
                     <label htmlFor="start time">Start Time</label>
                     <input
                         type="time"
@@ -115,6 +155,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error">{validationErrors.end_time && validationErrors.end_time}</p>
                     <label htmlFor="end time">End Time</label>
                     <input
                         type="time"
@@ -127,6 +168,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="venue">Venue</label>
                     <input
                         type="text"
@@ -138,6 +180,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -149,6 +192,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="state">State</label>
                     <select name="state" onChange={(e) => setState(e.target.value)} required>
                         <option value="">Select a state</option>
@@ -158,6 +202,7 @@ function NewListing() {
                     </select>
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="image File">Image File</label>
                     <input
                         type="file"
@@ -166,9 +211,10 @@ function NewListing() {
                         placeholder="image File"
                         required
                     />
-                    {(imageLoading) && <p>Loading...</p>}
+                    {/* {(imageLoading) && <p>Loading...</p>} */}
                 </div>
                 <div>
+                    <p className="error">{validationErrors.tickets_available && validationErrors.tickets_available}</p>
                     <label htmlFor="number of tickets">Number of Tickets</label>
                     <input
                         type="number"
@@ -181,6 +227,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="price of ticket">Price of ticket</label>
                     <input
                         type="number"
@@ -193,6 +240,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="organizer's name">Name of Organizer</label>
                     <input
                         type="text"
@@ -204,6 +252,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="organizer's contact">Contact of Organizer</label>
                     <input
                         type="text"
@@ -215,6 +264,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="category">category</label>
                     <select name="category" onChange={(e) => setCategory(e.target.value)} required>
                         <option value="">Select a category</option>
@@ -225,6 +275,7 @@ function NewListing() {
                     </select>
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="event website">Event website</label>
                     <input
                         type="text"
@@ -235,6 +286,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="additional notes">Additional notes</label>
                     <input
                         type="text"

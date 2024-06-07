@@ -31,11 +31,20 @@ function PaymentOptions(){
         navigate(`/users/${id}/cards/${cardId}/edit`, { state: { data: card } })
     }
 
+    if(!cards.length){
+        return (
+            <>
+            <h1>Payment Options</h1>
+            <p>Looks like you have no cards on your account</p>
+            <NavLink to={`/users/${id}/cards/add`}><button>Add new Card</button></NavLink>
+            </>
+        )
+    }
+
     return (
         <>
         <h1>Payment Options</h1>
         {cards.length && cards.map((card)=>{
-            console.log(card)
             return(
                 <div key={card.id}>
                 <p>{card.card_company}({card.card_type})</p>

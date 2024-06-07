@@ -14,15 +14,24 @@ import CreateTickets from '../components/TicketPage/CreateTickets';
 import PaymentOptions from '../components/PaymentOptions/PaymentOptions';
 import AddCardForm from '../components/PaymentOptions/AddCardForm';
 import EditCardForm from '../components/PaymentOptions/EditCardForm';
-
+import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
+import LandingPage from '../components/LandingPage/LandingPage';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
+        path: "/landing",
+        element: <LandingPage/>,
+      },
+      {
         path: "/",
-        element: <HomePage />,
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "login",
@@ -34,47 +43,91 @@ export const router = createBrowserRouter([
       },
       {
         path: "events/:id",
-        element: <EventPage />,
+        element: (
+          <ProtectedRoute>
+            <EventPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id",
-        element: <ProfilePage />,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/listings",
-        element: <Listings />,
+        element: (
+          <ProtectedRoute>
+            <Listings />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/listings/new",
-        element: <NewListing />,
+        element: (
+          <ProtectedRoute>
+            <NewListing />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/listings/:listingId",
-        element: <EditListing />,
+        element: (
+          <ProtectedRoute>
+            <EditListing />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "events/:id/tickets",
-        element: <ListedTickets />,
+        element: (
+          <ProtectedRoute>
+            <ListedTickets />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/listings/:listingId/tickets",
-        element: <ManageTickets />,
+        element: (
+          <ProtectedRoute>
+            <ManageTickets />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/listings/:listingId/tickets/new",
-        element: <CreateTickets />,
+        element: (
+          <ProtectedRoute>
+            <CreateTickets />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/cards",
-        element: <PaymentOptions />,
+        element: (
+          <ProtectedRoute>
+            <PaymentOptions />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/cards/add",
-        element: <AddCardForm />,
+        element: (
+          <ProtectedRoute>
+            <AddCardForm />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "users/:id/cards/:cardId/edit",
-        element: <EditCardForm />,
+        element: (
+          <ProtectedRoute>
+            <EditCardForm />
+          </ProtectedRoute>
+        ),
       },
       // {
       //   path: "users/:id",

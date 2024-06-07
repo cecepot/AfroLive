@@ -1,1 +1,10 @@
 /* TODO: Add sitewide styles */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.error{
+    color: brown;
+    min-height: 20px;
+}

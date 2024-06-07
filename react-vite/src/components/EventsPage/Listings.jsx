@@ -12,7 +12,6 @@ function Listings() {
         dispatch(thunkUserEvents(user.id))
     }, [dispatch, user.id])
 
-    const listings = useSelector(state => state.event.userEvents)
 
     const handleDelete = (listingId) =>{
         // e.preventDefault()
@@ -20,9 +19,11 @@ function Listings() {
 
         if (window.confirm("You are about to delete this event")) {
             dispatch(thunkDeleteEvent(listingId))
-            dispatch(thunkUserEvents(user.id))
-          }
+        }
+        dispatch(thunkUserEvents(user.id))
     }
+    const listings = useSelector(state => state.event.userEvents)
+
     const handleNav = (e, userId, listingId, listing) =>{
         e.preventDefault()
         navigate(`/users/${userId}/listings/${listingId}`, {state : {data :listing}})
@@ -31,7 +32,7 @@ function Listings() {
     return (
         <>
             <h1>listings for current user</h1>
-            {listings.map(listing =>{
+            {listings && listings.map(listing =>{
                 return(
                     <div key={listing.id}>
                         <p>{listing.title}</p>

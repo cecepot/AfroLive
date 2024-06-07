@@ -5,7 +5,7 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 
 
@@ -14,11 +14,11 @@ function ProfileButton() {
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
-
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
+
 
   useEffect(() => {
     if (!showMenu) return;
@@ -42,40 +42,41 @@ function ProfileButton() {
     closeMenu();
   };
 
-  return (
-    <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
-      </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <NavLink to={`/users/${user.id}`}>Profile Page</NavLink>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
-      )}
-    </>
-  );
+return (
+   <>
+     <button onClick={toggleMenu}>
+       <FaUserCircle />
+     </button>
+     {showMenu && (
+       <ul className={"profile-dropdown"} ref={ulRef}>
+         {user ? (
+           <>
+             <li>{user.username}</li>
+             <li>{user.email}</li>
+             <NavLink to={`/users/${user.id}`}>Profile Page</NavLink>
+             <li>
+               <button onClick={logout}>Log Out</button>
+             </li>
+           </>
+         ) : (
+           <>
+             <OpenModalMenuItem
+               itemText="Log In"
+               onItemClick={closeMenu}
+               modalComponent={<LoginFormModal />}
+             />
+             <OpenModalMenuItem
+               itemText="Sign Up"
+               onItemClick={closeMenu}
+               modalComponent={<SignupFormModal />}
+             />
+           </>
+         )}
+       </ul>
+     )}
+   </>
+ );
+
 }
 
 export default ProfileButton;
