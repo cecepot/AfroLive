@@ -71,9 +71,9 @@ export const thunkCreateEvent = (reqBody) => async dispatch => {
         const event = await response.json();
         console.log(event)
         dispatch(createEvent(event));
-        return event
-    } else {
-        console.log("There was an error making your post!")
+    } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        return errorMessages
     }
 }
 export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
@@ -92,12 +92,12 @@ export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
 }
 export const thunkDeleteEvent = (id) => async () => {
     const res = await fetch(`/api/events/${id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
     });
     const deleted = await res.json();
     return deleted;
-  };
+};
 
 const initialState = { events: [], singleEvent: [], userEvents: [], newEvent: [] }
 

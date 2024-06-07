@@ -27,6 +27,7 @@ function NewListing() {
     const [additional_notes, setAdditional_notes] = useState("")
     const [imageLoading, setImageLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({})
+    const [errors, setErrors] = useState({});
     const user = useSelector(state => state.session.user)
     // const history = useHistory();
     const navigate = useNavigate()
@@ -45,13 +46,17 @@ function NewListing() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
-        if (description.length < 50){ errors.description = 'Please describe your event in at least fifty characters'}
-        if (new Date(date).getTime() <= Date.now()){ errors.date = 'Please choose a date that is yet to occur'}
-        if (compareTimes(date, start_time, end_time) === false) {errors.start_time = "The event's start time must be before it's end time"}
-        if (compareTimes(date, end_time, start_time) === true){ errors.end_time = "The event's end time must be after it's start time"}
-        if (tickets_available < 20){errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available."}
-        if (ticket_price.length <= 0){ errors.ticket_price = 'Events should cost at least $ 1.00'}
+        if (title.length > 100){ errors.title = 'You have reached the maximum limit of 100 characters for a title ' }
+        if (description.length < 50) { errors.description = 'Please describe your event in at least fifty characters' }
+        if (description.length > 1000) { errors.description = 'You have reached the maximum limit. Please describe your event in at less than a  thousand characters' }
+        if (new Date(date).getTime() <= Date.now()) { errors.date = 'Please choose a date that is yet to occur' }
+        if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "The event's start time must be before it's end time" }
+        if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "The event's end time must be after it's start time" }
+        if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
+        if (ticket_price.length <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
+        if (organizer_contact.length < 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
 
+        console.log("====contact===========", +organizer_contact)
 
 
         if (Object.keys(errors).length > 0) {
@@ -87,17 +92,23 @@ function NewListing() {
         const newEvent = await dispatch(thunkCreateEvent(formData));
         // history.push("/images");
         if (newEvent) {
-            console.log('=====hurray=========>', newEvent)
-            dispatch(thunkUserEvents(user.id))
             setImageLoading(false)
-            navigate(`/users/${user.id}/listings`)
+            setErrors(newEvent)
+        } else {
+            {
+                console.log('=====hurray=========>', newEvent)
+                dispatch(thunkUserEvents(user.id))
+                navigate(`/users/${user.id}/listings`)
+            }
+
         }
+
     }
 
-    if (imageLoading){
-        return <Loader/>
+    if (imageLoading) {
+        return <Loader />
     }
-    
+
     return (
         <>
             <h1>new listing form</h1>
@@ -105,7 +116,7 @@ function NewListing() {
                 onSubmit={handleSubmit}
                 encType="multipart/form-data">
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.title && validationErrors.title}</p>
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
@@ -202,7 +213,7 @@ function NewListing() {
                     </select>
                 </div>
                 <div>
-                    <p className="error"></p>
+                    <p className="error">{errors.image_url && errors.image_url}</p>
                     <label htmlFor="image File">Image File</label>
                     <input
                         type="file"
@@ -252,14 +263,14 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                    <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact}</p>
                     <label htmlFor="organizer's contact">Contact of Organizer</label>
                     <input
                         type="text"
                         name="organizer's contact"
                         value={organizer_contact}
                         onChange={(e) => setOrganizer_contact(e.target.value)}
-                        placeholder="organizer's name"
+                        placeholder="eg. 1236752348"
                         required
                     />
                 </div>

@@ -12,6 +12,13 @@ useEffect(()=>{
     dispatch(thunkGetTickets(id))
 }, [id, dispatch])
 
+
+const handleAlert = (e) =>{
+    e.preventDefault()
+    return alert("feature coming soon")
+}
+
+
 const tickets = useSelector((state)=>state.tickets.tickets)
 
 
@@ -23,7 +30,7 @@ const tickets = useSelector((state)=>state.tickets.tickets)
             <div>
                 <p>Section{ticket.section}. Row{ticket.row}</p>
                 <p>$ {ticket.price}</p>
-                <button>add to cart</button>
+                <button onClick={e => handleAlert(e)}>add to cart</button>
             </div>
             </>)
         })}

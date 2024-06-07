@@ -13,7 +13,7 @@ function Listings() {
     }, [dispatch, user.id])
 
 
-    const handleDelete = (listingId) =>{
+    const handleDelete = (listingId) => {
         // e.preventDefault()
         // console.log(e)
 
@@ -24,20 +24,28 @@ function Listings() {
     }
     const listings = useSelector(state => state.event.userEvents)
 
-    const handleNav = (e, userId, listingId, listing) =>{
+    const handleNav = (e, userId, listingId, listing) => {
         e.preventDefault()
-        navigate(`/users/${userId}/listings/${listingId}`, {state : {data :listing}})
+        navigate(`/users/${userId}/listings/${listingId}`, { state: { data: listing } })
     }
 
     return (
         <>
-            <h1>listings for current user</h1>
-            {listings && listings.map(listing =>{
-                return(
+            <h1 className="margin-top">listings for current user</h1>
+            {listings && listings.map(listing => {
+                return (
                     <div key={listing.id}>
-                        <p>{listing.title}</p>
-                        <button onClick={e => {e.preventDefault();handleDelete(listing.id)}}>Delete Listing</button>
-                        <button onClick={(e)=>handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
+                        <div className="events-container" >
+                            <div className="event-flyer"  >
+                                <img className="image" src={listing.image_url} alt="" />
+                            </div>
+                            <div>
+                            <p>{listing.title}</p>
+                                <p>{listing.date}</p>
+                            </div>
+                        </div>
+                        <button onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
+                        <button onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
                         <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink>
                     </div>
                 )

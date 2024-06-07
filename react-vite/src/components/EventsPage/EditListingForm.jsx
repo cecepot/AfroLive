@@ -23,6 +23,7 @@ function EditListing() {
     const [category, setCategory] = useState("")
     const [event_website, setEvent_website] = useState("")
     const [additional_notes, setAdditional_notes] = useState("")
+    
     const [imageLoading, setImageLoading] = useState(false);
     const location = useLocation()
     const navigate = useNavigate()
