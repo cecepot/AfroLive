@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, Payment_option, db, Event, Ticket
-from app.forms import PaymentForm
+from app.forms import PaymentForm, EditCardForm
 
 
 user_routes = Blueprint('users', __name__)
@@ -51,7 +51,7 @@ def all_tickets_by_id():
     return {'tickets': all_tickets}
 # =============================== PAYMENT OPTIONS 💳=====================================
 # Create (Add a payment option to a user)
-@user_routes.route('/<int:id>/payments', methods=['POST'])
+@user_routes.route('/<int:id>/cards', methods=['POST'])
 @login_required
 def add_card(id):
     """
@@ -60,51 +60,75 @@ def add_card(id):
     form = PaymentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+      print('================validddd', form.data)
       card = Payment_option(
-      card_type = form.data['name'],
-      card_number = form.data['name'],
-      expiration_date = form.data['image_url'],
-      cvv = form.data['spotify_url'],
-      billing_address = form.data['soundcloud_url'],
+      card_type = form.data['card_type'],
+      owner_name = form.data['owner_name'],
+      name = form.data['name'],
+      card_number = form.data['card_number'],
+      expiration_date = form.data['expiration_date'],
+      cvv = form.data['cvv'],
+      billing_address = form.data['billing_address'],
+      card_company = form.data['card_company'],
       user_id = id
       )
+      db.session.add(card)
       db.session.commit()
       return card.to_dict()
-    return card.errors, 400
+    print(form.errors)
+    return form.errors, 400
 
 # Read (get all cards of a particular user)
-@user_routes.route('/<int:id>/payments')
+@user_routes.route('/<int:id>/cards')
 @login_required
-def all_cards():
+def all_cards(id):
     """
     returns all cards on a user's account
     """
-    cards = Payment_option.query.filter_by(Payment_option.user_id == current_user.id).all()
-    return cards.to_dict()
+    cards = Payment_option.query.filter(Payment_option.user_id == id).all()
+    return [card.to_dict() for card in cards]
+
+# Read (get a card of a particular user by id)
+@user_routes.route('/<int:id>/cards/<int:cardId>')
+@login_required
+def current_card(id, cardId):
+    """
+    returns all cards on a user's account
+    """
+
+    card = Payment_option.query.get(cardId)
+    return card.to_dict()
+
 
 # Update (update a payment option)
-@user_routes.route('/<int:id>/payments/<int:cardId>', methods=['PUT'])
+@user_routes.route('/<int:id>/cards/<int:cardId>', methods=['PUT'])
 @login_required
-def update_card(cardId):
+def update_card(id, cardId):
     """
     updates a single card on the user's account
     """
     card = Payment_option.query.get(cardId)
-    form = PaymentForm()
+    form = EditCardForm()
+    print('========1=========', form.data)
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        card.card_type = form.data['name'],
-        card.card_number = form.data['name'],
-        card.expiration_date = form.data['image_url'],
-        card.cvv = form.data['spotify_url'],
-        card.billing_address = form.data['soundcloud_url'],
+        print('========2=========')
+        if (form.data['card_type']!= None):card.card_type = form.data['card_type']
+        if (form.data['owner_name']!= None): card.owner_name = form.data['owner_name']
+        if (form.data['name']!= None): card.name = form.data['name']
+        if (form.data['card_number']!= None): card.card_number = form.data['card_number']
+        if (form.data['expiration_date']!= None): card.expiration_date = form.data['expiration_date']
+        if (form.data['expiration_date']!= None): card.cvv = form.data['cvv']
+        if (form.data['billing_address']!= None): card.billing_address = form.data['billing_address']
+        if (form.data['card_company']!= None): card.card_company = form.data['card_company']
         card.user_id = id
         db.session.commit()
         return card.to_dict()
-    return card.errors
+    print(form.errors)
+    return form.errors
 
 # Destroy (delete a card)
-@user_routes.route('/<int:id>/payments/<int:cardId>', methods=["DELETE"])
+@user_routes.route('/<int:id>/cards/<int:cardId>', methods=["DELETE"])
 @login_required
 def delete_card(cardId):
     """

@@ -9,7 +9,7 @@ const currentUser = useSelector((state) => state.session.user)
         <>
         <h1>User Profile Page</h1>
         <NavLink to={`/users/${currentUser.id}/listings`}><button>My Listings</button></NavLink>
-        <button>Payment Options</button>
+        <NavLink to={`/users/${currentUser.id}/cards`}><button>Payment Options</button></NavLink>
         </>
     )
 }

@@ -5,3 +5,4 @@ from .ticket_form import TicketForm
 from .artist_form import ArtistForm
 from .payment_options_form import PaymentForm
 from .updateEventForm import UpdateEventForm
+from .edit_card_form import EditCardForm

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { thunkCurrentEvent, thunkUpdateEvent, thunkUserEvents } from "../../redux/events"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 
 
@@ -24,18 +24,19 @@ function EditListing() {
     const [event_website, setEvent_website] = useState("")
     const [additional_notes, setAdditional_notes] = useState("")
     const [imageLoading, setImageLoading] = useState(false);
+    const location = useLocation()
     const navigate = useNavigate()
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const { listingId } = useParams()
 
 
-    useEffect(() => {
-        dispatch(thunkCurrentEvent(listingId))
-    }, [dispatch, listingId])
-    const currentEvent = useSelector((state) => state.event.singleEvent)
+    // useEffect(() => {
+    //     dispatch(thunkCurrentEvent(listingId))
+    // }, [dispatch, listingId])
+    // const currentEvent = useSelector((state) => state.event.singleEvent)
+    const currentEvent = location.state.data
 
-    
     // console.log(currentEvent.start_time) //14:44:00
     const formatTime = (time) => {
         let timeArray = time.split(':')
@@ -258,7 +259,7 @@ function EditListing() {
                 </div>
                 <div>
                     <label htmlFor="category">Category</label>
-                    <select name="category" onChange={(e) => setCategory(e.target.value)} required>
+                    <select name="category" onChange={(e) => setCategory(e.target.value)}>
                         <option value="">Select a category</option>
                         <option value="concert">concert</option>
                         <option value="festival">festival</option>

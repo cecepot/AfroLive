@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { thunkDeleteEvent, thunkUserEvents } from "../../redux/events"
-import { NavLink } from "react-router-dom"
-
+import { NavLink, Navigate, useNavigate } from "react-router-dom"
+useNavigate
 
 function Listings() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-
+    const navigate = useNavigate()
     useEffect(() => {
         dispatch(thunkUserEvents(user.id))
     }, [dispatch, user.id])
@@ -23,7 +23,10 @@ function Listings() {
             dispatch(thunkUserEvents(user.id))
           }
     }
-
+    const handleNav = (e, userId, listingId, listing) =>{
+        e.preventDefault()
+        navigate(`/users/${userId}/listings/${listingId}`, {state : {data :listing}})
+    }
 
     return (
         <>
@@ -33,7 +36,7 @@ function Listings() {
                     <div key={listing.id}>
                         <p>{listing.title}</p>
                         <button onClick={e => {e.preventDefault();handleDelete(listing.id)}}>Delete Listing</button>
-                        <NavLink to={`/users/${user.id}/listings/${listing.id}`}><button>Update Listing</button></NavLink>
+                        <button onClick={(e)=>handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
                         <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink>
                     </div>
                 )

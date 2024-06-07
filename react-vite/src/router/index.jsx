@@ -11,7 +11,9 @@ import EditListing from '../components/EventsPage/EditListingForm';
 import ListedTickets from '../components/TicketPage/TicketPage';
 import ManageTickets from '../components/TicketPage/ManageTickets';
 import CreateTickets from '../components/TicketPage/CreateTickets';
-
+import PaymentOptions from '../components/PaymentOptions/PaymentOptions';
+import AddCardForm from '../components/PaymentOptions/AddCardForm';
+import EditCardForm from '../components/PaymentOptions/EditCardForm';
 
 
 export const router = createBrowserRouter([
@@ -61,6 +63,18 @@ export const router = createBrowserRouter([
       {
         path: "users/:id/listings/:listingId/tickets/new",
         element: <CreateTickets />,
+      },
+      {
+        path: "users/:id/cards",
+        element: <PaymentOptions />,
+      },
+      {
+        path: "users/:id/cards/add",
+        element: <AddCardForm />,
+      },
+      {
+        path: "users/:id/cards/:cardId/edit",
+        element: <EditCardForm />,
       },
       // {
       //   path: "users/:id",
