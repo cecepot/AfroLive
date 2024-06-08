@@ -34,7 +34,8 @@ function EventPage() {
                     <p>{currentEvent.description}</p>
                     <p>{currentEvent.organizer_name}</p>
 
-                    <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>
+                    {/* <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>  */}
+                    {/* ticket feature commented out for initial grading */}
                 </div>
             </div>
         </>

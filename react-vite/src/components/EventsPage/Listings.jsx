@@ -48,7 +48,8 @@ function Listings() {
                         </div>
                         <button onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
                         <button onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
-                        <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink>
+                        {/* <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink> */}
+                        {/* functionality commented out for grading */}
                     </div>
                 )
             })}
