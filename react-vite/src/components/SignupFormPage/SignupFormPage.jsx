@@ -70,7 +70,7 @@ function SignupFormPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               placeholder="eg.janeDoe@google.com"
               required
             />
