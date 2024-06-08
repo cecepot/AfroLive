@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 155405beb791
+Revision ID: 403b82701af6
 Revises: 
-Create Date: 2024-06-06 18:13:50.845513
+Create Date: 2024-06-07 20:39:24.050215
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '155405beb791'
+revision = '403b82701af6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -65,7 +65,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('card_type', sa.String(), nullable=False),
     sa.Column('owner_name', sa.String(), nullable=False),
-    sa.Column('name', sa.String(), nullable=True),
+    sa.Column('name', sa.String(), nullable=False),
     sa.Column('card_number', sa.String(), nullable=False),
     sa.Column('expiration_date', sa.Integer(), nullable=False),
     sa.Column('cvv', sa.Integer(), nullable=False),
@@ -75,7 +75,8 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('ticket_carts',
     sa.Column('id', sa.Integer(), nullable=False),

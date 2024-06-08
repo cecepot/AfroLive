@@ -75,7 +75,7 @@ def add_card(id):
       db.session.add(card)
       db.session.commit()
       return card.to_dict()
-    print(form.errors)
+    print('========errrr============>',form.errors)
     return form.errors, 400
 
 # Read (get all cards of a particular user)

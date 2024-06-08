@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Event, Ticket, Artist, db
 from app.forms import EventForm, TicketForm, ArtistForm, UpdateEventForm
-from app.api.helper import (upload_file_to_s3, get_unique_filename)
+from app.api.helper import (upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 
 event_routes = Blueprint('events', __name__)
@@ -92,6 +92,7 @@ def update_event(id):
         #   print('=========url=======', form.data)
             image_url.filename = get_unique_filename(image_url.filename)
             upload = upload_file_to_s3(image_url)
+            remove_file_from_s3(event.image_url)
             event.image_url = upload['url']
             print('=========upload=======',upload)
         if form.data['title']:event.title = form.data['title']
@@ -128,6 +129,7 @@ def delete_event(id):
         return {"message" : "Looks like this event does not exist"}, 404
 
     if event.user_id == current_user.id:
+        remove_file_from_s3(event.image_url)
         db.session.delete(event)
         db.session.commit()
         return {"message" : "Your event was sucessfully deleted"}

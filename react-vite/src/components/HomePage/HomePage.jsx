@@ -21,14 +21,19 @@ function HomePage() {
 
     return (
         <>
-            <h1>Homepage</h1>
+            <h1 className="margin-top">Homepage</h1>
             <h2>events</h2>
             {events && events.map((event) => {
                 return (
                     <NavLink key={event.id} to={`/events/${event.id}`}>
-                        <div onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
+                        <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
+                            <div className="event-flyer"  >
+                            <img className="image" src={event.image_url} alt="" />
+                            </div>
+                            <div>
                             <p>{event.title}</p>
                             <p>{event.date}</p>
+                            </div>
                         </div>
                     </NavLink>
                 )

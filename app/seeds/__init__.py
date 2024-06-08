@@ -50,6 +50,8 @@ def seed():
 def undo():
     undo_favorites()
     undo_notifications()
+    undo_cart_item()
+    undo_ticket_cart()
     undo_tickets()
     undo_artists()
     undo_events()

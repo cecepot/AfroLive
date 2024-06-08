@@ -6,14 +6,21 @@ import { NavLink, useParams } from "react-router-dom"
 
 function ManageTickets(){
 const dispatch = useDispatch()
-const {id} = useParams()
+const {listingId} = useParams()
 
 useEffect(()=>{
-    dispatch(thunkGetTickets(id))
-}, [id, dispatch])
+    dispatch(thunkGetTickets(listingId))
+}, [listingId, dispatch])
 
 const tickets = useSelector((state)=>state.tickets.tickets)
 
+if(!tickets.length){
+    return (
+        <>
+        <h1>listed tickets page</h1>
+        <p>there are no tickets available for this event </p>
+        </>
+    )}
 
     return (
         <>
