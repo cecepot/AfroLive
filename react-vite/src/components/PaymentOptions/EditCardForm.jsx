@@ -36,7 +36,7 @@ function EditCardForm() {
         if (!(owner_name.split(" ")[1]) || !owner_name) { errors.owner_name = 'Please provide your full name as is on the card' }
         if (new Date(expiration_date).getTime() <= Date.now()) { errors.expiration_date = 'Please provide a card with a valid expiration date.' }
         if (!(billing_address.split(" ")[1]) || !billing_address) { errors.billing_address = 'Please provide a valid address' }
-        if (100 > cvv > 999 || !cvv) { errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
+        if (cvv < 100 || cvv > 999 || !cvv) { errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
 
 
         if (Object.values(errors).length > 0) {
@@ -83,7 +83,7 @@ function EditCardForm() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.name && errors.name}</p>
+                    <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.owner_name && errors.owner_name}</p>
                     <p>What is the name on your card ?</p>
                     <label htmlFor="owner_name">Name on card</label>
                     <input

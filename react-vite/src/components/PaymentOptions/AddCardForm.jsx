@@ -25,7 +25,7 @@ function AddCardForm() {
         if ( +card_number.length !== 15 && +card_number.length !== 16 || ! +card_number){ errors.card_number = 'Please provide a valid card number  (15 - 16 numbers long, without spaces)' }
         if (new Date(expiration_date).getTime() <= Date.now()){ errors.expiration_date = 'Please provide a card with a valid expiration date.' }
         if (!(billing_address.split(" ")[1]) || !billing_address){ errors.billing_address = 'Please provide a valid address' }
-        if (100 > cvv > 999 || !cvv){ errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
+        if (cvv < 100 || cvv > 999 || !cvv){ errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
         // console.log(Object.values(errors).length > 0)
 
         if (Object.values(errors).length > 0) {
@@ -72,9 +72,8 @@ function AddCardForm() {
             <h1>Add a Card</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{errors.name && errors.name}</p>
                     <label htmlFor="name">Name</label>
-                    <p className="error">{errors.name && errors.name}</p>
                     <p>choose a unique name to identify your card by. This card's number will not be viewable after it is added</p>
                     <input
                         type="text"
@@ -86,7 +85,7 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
-                <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.name && errors.name}</p>
+                <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.owner_name && errors.owner_name}</p>
                 <p>What is the name on your card ?</p>
                     <label htmlFor="owner_name">Name on card</label>
                     <input
