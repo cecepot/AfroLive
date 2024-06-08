@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SelectField, StringField, DateField
-from wtforms.validators import  ValidationError, DataRequired
+from wtforms.validators import  ValidationError, DataRequired, Optional
 from app.models import Payment_option
 
 def name_exists(form, field):
@@ -11,7 +11,7 @@ def name_exists(form, field):
         raise ValidationError('Name is already in use.')
 
 class EditCardForm(FlaskForm):
-    card_type = SelectField('card type', choices=['credit card', 'debit card'])
+    card_type = SelectField('card type', choices=['credit card', 'debit card'], validators=[Optional()] )
     name = StringField('card name', validators=[DataRequired(), name_exists])
     card_number = StringField('card number')
     card_company = StringField('name on card')

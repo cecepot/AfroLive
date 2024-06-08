@@ -109,6 +109,7 @@ def update_card(id, cardId):
     """
     card = Payment_option.query.get(cardId)
     form = EditCardForm()
+   
     print('========1=========', form.data)
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
@@ -124,7 +125,7 @@ def update_card(id, cardId):
         card.user_id = id
         db.session.commit()
         return card.to_dict()
-    print(form.errors)
+    print('=========err===========>',form.errors)
     return form.errors
 
 # Destroy (delete a card)
