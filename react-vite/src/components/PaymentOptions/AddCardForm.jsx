@@ -25,7 +25,7 @@ function AddCardForm() {
         if ( +card_number.length !== 15 && +card_number.length !== 16 || ! +card_number){ errors.card_number = 'Please provide a valid card number  (15 - 16 numbers long, without spaces)' }
         if (new Date(expiration_date).getTime() <= Date.now()){ errors.expiration_date = 'Please provide a card with a valid expiration date.' }
         if (!(billing_address.split(" ")[1]) || !billing_address){ errors.billing_address = 'Please provide a valid address' }
-        if (cvv.length !== 3 || !cvv){ errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
+        if (100 > cvv > 999 || !cvv){ errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
         // console.log(Object.values(errors).length > 0)
 
         if (Object.values(errors).length > 0) {

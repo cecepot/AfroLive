@@ -5,16 +5,17 @@ import { thunkUpdateCards, thunkGetCards } from "../../redux/cards";
 
 
 
-function EditCardForm(){
+function EditCardForm() {
     const [name, setName] = useState("")
     const [owner_name, setOwner_name] = useState("")
-    const [card_type, setCard_type] = useState("")
     const [card_number, setCard_number] = useState("")
     const [expiration_date, setExpiration_date] = useState("")
     const [cvv, setCvv] = useState("")
     const [billing_address, setBilling_address] = useState("")
+    const [validationErrors, setValidationErrors] = useState({})
+    const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
-    const {id, cardId} = useParams()
+    const { id, cardId } = useParams()
     const navigate = useNavigate()
     let location = useLocation()
     const card = location.state.data
@@ -22,40 +23,42 @@ function EditCardForm(){
     useEffect(() => {
         setName(card.name)
         setOwner_name(card.owner)
-        setCard_type(card.card_type)
-        setCard_number(card.card_number)
         setExpiration_date(new Date(card.expiration_date).toISOString().split("T")[0])
         setCvv(parseInt(card.cvv))
         setBilling_address(card.billing_address)
     }, [card])
 
 
-    const handleSubmit = async(e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // let card_company
-        // const company_name = (card_number) =>{
-        //     if (card_number[0] == '3') card_company = 'American Express'
-        //     else if ( card_number[0] == '4') card_company = 'Visa'
-        //     else if ( card_number[0] == '2' || card_number[0] == '5') card_company = 'Mastercard'
-        //     else if ( card_number[0] == '6') card_company = 'Discover'
-        //     else card_company = 'Unknown'
+        let errors = {}
+        if (!(owner_name.split(" ")[1]) || !owner_name) { errors.owner_name = 'Please provide your full name as is on the card' }
+        if (new Date(expiration_date).getTime() <= Date.now()) { errors.expiration_date = 'Please provide a card with a valid expiration date.' }
+        if (!(billing_address.split(" ")[1]) || !billing_address) { errors.billing_address = 'Please provide a valid address' }
+        if (100 > cvv > 999 || !cvv) { errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
 
-        // }
-        // company_name(card_number)
 
-       const formData =  {
+        if (Object.values(errors).length > 0) {
+            console.log(Object.values(errors))
+            setValidationErrors(errors)
+            return
+        }
+
+        const formData = {
             name,
             owner_name,
-            card_type,
             expiration_date,
             cvv,
-            billing_address}
+            billing_address
+        }
 
 
         const newCard = await dispatch(thunkUpdateCards(id, formData, cardId))
         console.log(newCard)
-        if (newCard){
+        if (newCard) {
+            return setErrors(newCard)
+        } else {
             dispatch(thunkGetCards(id))
             navigate(`/users/${id}/cards`)
         }
@@ -64,10 +67,10 @@ function EditCardForm(){
 
     return (
         <>
-        <h1>Edit Card Form</h1>
-        <form onSubmit={handleSubmit}>
+            <h1>Edit Card Form</h1>
+            <form onSubmit={handleSubmit}>
                 <div>
-                <p className="error"></p>
+                    <p className="error">{errors.name && errors.name}</p>
                     <label htmlFor="name">Name</label>
                     <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p>
                     <input
@@ -80,8 +83,8 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
-                <p className="error"></p>
-                <p>What is the name on your card ?</p>
+                    <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.name && errors.name}</p>
+                    <p>What is the name on your card ?</p>
                     <label htmlFor="owner_name">Name on card</label>
                     <input
                         type="text"
@@ -93,16 +96,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
-                <p className="error"></p>
-                    <label htmlFor="card_type">Type</label>
-                    <select name="card_type" onChange={(e) => setCard_type(e.target.value)}>
-                        <option value="">Select a card type</option>
-                        <option value="debit card">Debit</option>
-                        <option value="credit card">Credit</option>
-                    </select>
-                </div>
-                <div>
-                <p className="error"></p>
+                    <p className="error">{validationErrors.expiration_date && validationErrors.expiration_date || errors.expiration_date && errors.expiration_date}</p>
                     <label htmlFor="expiration_date">expiration date</label>
                     <input
                         type="date"
@@ -115,7 +109,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
-                <p className="error"></p>
+                    <p className="error">{validationErrors.billing_address && validationErrors.billing_address || errors.billing_address && errors.billing_address}</p>
                     <label htmlFor="billing_address">Billing Address</label>
                     <input
                         type="text"
@@ -127,7 +121,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
-                <p className="error"></p>
+                <p className="error">{validationErrors.cvv && validationErrors.cvv || errors.cvv && errors.cvv}</p>
                     <label htmlFor="cvv">cvv</label>
                     <input
                         type="number"
