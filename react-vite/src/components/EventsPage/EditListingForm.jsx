@@ -339,11 +339,11 @@ function EditListing() {
                     <p className="error"></p>
                     <label htmlFor="event website">Event website</label>
                     <input
-                        type="text"
+                        type="url"
                         name="event website"
                         value={event_website}
                         onChange={(e) => setEvent_website(e.target.value)}
-                        placeholder="event website"
+                        placeholder='https://example.com'
                     />
                 </div>
                 <div>
