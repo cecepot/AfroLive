@@ -18,21 +18,23 @@ function EventPage() {
     // console.log(currentEvent)
     return (
         <>
-            <h1>Event Page</h1>
-            <div className="events-conatiner">
+
+            <div className="event-display">
                 <div className="image-flyer">
                     <img className='image' src={currentEvent.image_url} alt="" />
                 </div>
-                <div>
-                    <p>{currentEvent.title}</p>
-                    <span>
+                <div className="event-display-left">
+                    <h1>{currentEvent.title}</h1>
+                    <div className="event-time">
                         <p>{currentEvent.start_time}</p>
-                        <p> - {currentEvent.end_time}</p>
-                    </span>
+                        <p> - </p>
+                        <p>{currentEvent.end_time}</p>
+                    </div>
                     <p>{currentEvent.venue}</p>
                     <p>{currentEvent.description}</p>
                     <p>{currentEvent.organizer_name}</p>
-                <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>
+
+                    <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>
                 </div>
             </div>
         </>
