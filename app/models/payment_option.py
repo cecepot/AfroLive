@@ -11,7 +11,7 @@ class Payment_option(db.Model):
     owner_name = db.Column(db.String, nullable = False)
     name = db.Column(db.String, nullable = False, unique = True)
     card_number =db.Column(db.String, nullable = False)
-    expiration_date =db.Column(db.Integer, nullable = False)
+    expiration_date =db.Column(db.date, nullable = False)
     cvv =db.Column(db.Integer, nullable = False)
     billing_address =db.Column(db.String, nullable = False)
     card_company = db.Column(db.String, nullable = False)
