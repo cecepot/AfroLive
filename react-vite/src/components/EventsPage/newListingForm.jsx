@@ -53,8 +53,8 @@ function NewListing() {
         if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "The event's start time must be before it's end time" }
         if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "The event's end time must be after it's start time" }
         if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
-        if (ticket_price.length <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
-        if (organizer_contact.length < 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
+        if (ticket_price <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
+        if (organizer_contact.length !== 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
 
         console.log("====contact===========", +organizer_contact)
 
@@ -93,7 +93,7 @@ function NewListing() {
         // history.push("/images");
         if (newEvent) {
             setImageLoading(false)
-            setErrors(newEvent)
+           return setErrors(newEvent)
         } else {
             {
                 console.log('=====hurray=========>', newEvent)
@@ -217,7 +217,7 @@ function NewListing() {
                     <label htmlFor="image File">Image File</label>
                     <input
                         type="file"
-                        accept="image/*"
+                        accept="image/png, image/jpeg, image/jpg"
                         onChange={(e) => setImage_url(e.target.files[0])}
                         placeholder="image File"
                         required
@@ -238,7 +238,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                    <p className="error">{validationErrors.ticket_price && validationErrors.ticket_price}</p>
                     <label htmlFor="price of ticket">Price of ticket</label>
                     <input
                         type="number"

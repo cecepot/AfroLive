@@ -14,9 +14,27 @@ function AddCardForm() {
     const dispatch = useDispatch()
     const {id} = useParams()
     const navigate = useNavigate()
+    const [errors, setErrors] = useState({});
+    const [validationErrors, setValidationErrors] = useState({})
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
+
+        let errors = {}
+        if (!(owner_name.split(" ")[1]) || !owner_name){ errors.owner_name = 'Please provide your full name as is on the card' }
+        if ( +card_number.length !== 15 && +card_number.length !== 16 || ! +card_number){ errors.card_number = 'Please provide a valid card number  (15 - 16 numbers long, without spaces)' }
+        if (new Date(expiration_date).getTime() <= Date.now()){ errors.expiration_date = 'Please provide a card with a valid expiration date.' }
+        if (!(billing_address.split(" ")[1]) || !billing_address){ errors.billing_address = 'Please provide a valid address' }
+        if (cvv.length !== 3 || !cvv){ errors.cvv = 'Please provide a valid cvv. These are the three digits behind your card' }
+        // console.log(Object.values(errors).length > 0)
+
+        if (Object.values(errors).length > 0) {
+            console.log(card_number.length)
+            setValidationErrors(errors)
+            return
+        }
+
+
 
         let card_company
         const company_name = (card_number) =>{
@@ -41,6 +59,8 @@ function AddCardForm() {
 
         const newCard = await dispatch(thunkCreateCard(id, formData))
         if (newCard){
+           return setErrors(newCard)
+        }else{
             dispatch(thunkGetCards(id))
             navigate(`/users/${id}/cards`)
         }
@@ -52,7 +72,10 @@ function AddCardForm() {
             <h1>Add a Card</h1>
             <form onSubmit={handleSubmit}>
                 <div>
+                    <p className="error"></p>
                     <label htmlFor="name">Name</label>
+                    <p className="error">{errors.name && errors.name}</p>
+                    <p>choose a unique name to identify your card by. This card's number will not be viewable after it is added</p>
                     <input
                         type="text"
                         name="name"
@@ -63,6 +86,8 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
+                <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.name && errors.name}</p>
+                <p>What is the name on your card ?</p>
                     <label htmlFor="owner_name">Name on card</label>
                     <input
                         type="text"
@@ -74,6 +99,7 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
+                <p className="error">{errors.card_type && errors.card_type}</p>
                     <label htmlFor="card_type">Type</label>
                     <select name="card_type" onChange={(e) => setCard_type(e.target.value)} required>
                         <option value="">Select a card type</option>
@@ -82,6 +108,7 @@ function AddCardForm() {
                     </select>
                 </div>
                 <div>
+                <p className="error">{validationErrors.card_number && validationErrors.card_number|| errors.card_number && errors.card_number}</p>
                     <label htmlFor="card_number">card number</label>
                     <input
                         type="text"
@@ -93,6 +120,7 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
+                <p className="error">{validationErrors.expiration_date && validationErrors.expiration_date || errors.expiration_date && errors.expiration_date}</p>
                     <label htmlFor="expiration_date">expiration date</label>
                     <input
                         type="date"
@@ -105,6 +133,7 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
+                <p className="error">{validationErrors.billing_address && validationErrors.billing_address || errors.billing_address && errors.billing_address}</p>
                     <label htmlFor="billing_address">Billing Address</label>
                     <input
                         type="text"
@@ -116,6 +145,7 @@ function AddCardForm() {
                     />
                 </div>
                 <div>
+                <p className="error">{validationErrors.cvv && validationErrors.cvv || errors.cvv && errors.cvv}</p>
                     <label htmlFor="cvv">cvv</label>
                     <input
                         type="number"

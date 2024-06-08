@@ -86,6 +86,10 @@ export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
         console.log(event)
         dispatch(updateEvent(event));
         return event
+    } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        console.log(errorMessages)
+        return errorMessages
     } else {
         console.log("There was an error making your post!")
     }

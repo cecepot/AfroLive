@@ -45,7 +45,9 @@ export const thunkCreateCard = (id, reqBody) => async dispatch => {
     if (response.ok) {
         const card = await response.json()
         dispatch(createCard(card))
-        return card
+    } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        return errorMessages
     } else {
         console.log("There was an error making your post!")
     }
@@ -61,7 +63,9 @@ export const thunkUpdateCards = (id, reqBody, cardId) => async dispatch => {
     if (response.ok) {
         const card = await response.json()
         dispatch(updateCard(card))
-        return card
+    } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        return errorMessages
     } else {
         console.log("There was an error making your post!")
     }
@@ -79,12 +83,12 @@ export const thunkGetCurrentCard = (id, cardId) => async dispatch => {
 }
 export const thunkDeleteCard = (id, cardId) => async () => {
     const res = await fetch(`/api/users/${id}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
     });
     const deleted = await res.json();
     return deleted;
-  };
+};
 
 const initialState = { cards: [], currentCard: [] }
 

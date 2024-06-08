@@ -9,7 +9,7 @@ class Payment_option(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     card_type =db.Column(db.String, nullable = False)
     owner_name = db.Column(db.String, nullable = False)
-    name = db.Column(db.String)
+    name = db.Column(db.String, nullable = False, unique = True)
     card_number =db.Column(db.String, nullable = False)
     expiration_date =db.Column(db.Integer, nullable = False)
     cvv =db.Column(db.Integer, nullable = False)

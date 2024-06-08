@@ -25,3 +25,21 @@
 .margin-top{
     margin-top: 3em;
 }
+.thumbnails-noname {
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--minimal-border);
+    border-radius: 6px;
+  }
+  /* .file-input-labels-noname {
+    position: absolute;
+    top: -48px;
+    right: 0px;
+    display: block;
+    border-radius: 6px;
+    color: var(--minimal-border);
+    background-color: var(--minimal-background);
+    width: 120px;
+    height: 120px;
+    transition: all 0.3s ease-in-out;
+  } */

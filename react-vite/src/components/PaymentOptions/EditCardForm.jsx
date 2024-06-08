@@ -67,7 +67,9 @@ function EditCardForm(){
         <h1>Edit Card Form</h1>
         <form onSubmit={handleSubmit}>
                 <div>
+                <p className="error"></p>
                     <label htmlFor="name">Name</label>
+                    <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p>
                     <input
                         type="text"
                         name="name"
@@ -78,6 +80,8 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
+                <p className="error"></p>
+                <p>What is the name on your card ?</p>
                     <label htmlFor="owner_name">Name on card</label>
                     <input
                         type="text"
@@ -89,6 +93,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
+                <p className="error"></p>
                     <label htmlFor="card_type">Type</label>
                     <select name="card_type" onChange={(e) => setCard_type(e.target.value)}>
                         <option value="">Select a card type</option>
@@ -97,17 +102,7 @@ function EditCardForm(){
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="card_number">card number</label>
-                    <input
-                        type="text"
-                        name="card_number"
-                        value={card_number}
-                        onChange={(e) => setCard_number(e.target.value)}
-                        placeholder="card number"
-                        required
-                    />
-                </div>
-                <div>
+                <p className="error"></p>
                     <label htmlFor="expiration_date">expiration date</label>
                     <input
                         type="date"
@@ -120,6 +115,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
+                <p className="error"></p>
                     <label htmlFor="billing_address">Billing Address</label>
                     <input
                         type="text"
@@ -131,6 +127,7 @@ function EditCardForm(){
                     />
                 </div>
                 <div>
+                <p className="error"></p>
                     <label htmlFor="cvv">cvv</label>
                     <input
                         type="number"

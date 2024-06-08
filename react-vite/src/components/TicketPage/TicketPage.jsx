@@ -15,12 +15,18 @@ useEffect(()=>{
 
 const handleAlert = (e) =>{
     e.preventDefault()
-    return alert("feature coming soon")
+    return alert("feature coming")
 }
 
 
 const tickets = useSelector((state)=>state.tickets.tickets)
-
+if(!tickets.length){
+    return (
+        <>
+        <h1>listed tickets page</h1>
+        <p>there are no tickets available for this event </p>
+        </>
+    )}
 
     return (
         <>
