@@ -31,7 +31,8 @@ function EditCardForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setErrors({})
+        setValidationErrors({})
         let errors = {}
         if (!(owner_name.split(" ")[1]) || !owner_name) { errors.owner_name = 'Please provide your full name as is on the card' }
         if (new Date(expiration_date).getTime() <= Date.now()) { errors.expiration_date = 'Please provide a card with a valid expiration date.' }

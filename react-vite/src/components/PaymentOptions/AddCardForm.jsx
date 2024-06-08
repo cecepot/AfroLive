@@ -19,7 +19,8 @@ function AddCardForm() {
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
-
+        setErrors({})
+        setValidationErrors({})
         let errors = {}
         if (!(owner_name.split(" ")[1]) || !owner_name){ errors.owner_name = 'Please provide your full name as is on the card' }
         if ( +card_number.length !== 15 && +card_number.length !== 16 || ! +card_number){ errors.card_number = 'Please provide a valid card number  (15 - 16 numbers long, without spaces)' }
