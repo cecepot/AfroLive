@@ -23,14 +23,14 @@ const tickets = useSelector((state)=>state.tickets.tickets)
 if(!tickets.length){
     return (
         <>
-        <h1>listed tickets page</h1>
+        <h1>listed tickets</h1>
         <p>there are no tickets available for this event </p>
         </>
     )}
 
     return (
         <>
-        <h1>listed tickets page</h1>
+        <h1>listed tickets</h1>
         {tickets.map((ticket) =>{
             return (<>
             <div>
