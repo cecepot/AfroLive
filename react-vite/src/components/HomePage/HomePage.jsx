@@ -15,24 +15,31 @@ function HomePage() {
     const events = useSelector(state => state.event.events)
     // console.log(events)
     const handleNav = (e, eventId, event) => {
-            e.preventDefault()
-            navigate(`/events/${eventId}`, {state : {data: event}})
+        e.preventDefault()
+        navigate(`/events/${eventId}`, { state: { data: event } })
     }
 
     return (
         <>
-            <h1 className="margin-top">Homepage</h1>
-            <h2>events</h2>
+            <div className="upcoming-events">
+                <h1>Upcoming Events</h1>
+            </div>
             {events && events.map((event) => {
+                const day = event.date.split(' ')[1]
+                const month = event.date.split(' ')[2]
                 return (
-                    <NavLink key={event.id} to={`/events/${event.id}`}>
+                    <NavLink  key={event.id} to={`/events/${event.id}`}>
                         <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
-                            <div className="event-flyer"  >
-                            <img className="image" src={event.image_url} alt="" />
+                            <div className="day-month">
+                                <p>{day}</p>
+                                <p>{month}</p>
                             </div>
-                            <div>
-                            <p>{event.title}</p>
-                            <p>{event.date}</p>
+                            <div className="event-flyer"  >
+                                <img className="image" src={event.image_url} alt="" />
+                            </div>
+                            <div className="title-date">
+                                <p className="event-title">{event.title}</p>
+                                <p>{event.date}</p>
                             </div>
                         </div>
                     </NavLink>

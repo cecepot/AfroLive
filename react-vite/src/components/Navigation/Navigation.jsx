@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-
+import { HiTicket } from "react-icons/hi2";
 
 
 function Navigation() {
@@ -12,16 +12,25 @@ function Navigation() {
 
 
   return (
-    showProfileButton && 
-    <ul>
-      <li>
+    showProfileButton &&
+    <div className="nav-bar">
+      <div>
         <NavLink to="/">Home</NavLink>
-      </li>
-
-      <li>
+      </div>
+      <div>
+        <NavLink>About</NavLink>
+      </div>
+      <div>
+        <NavLink>Location</NavLink>
+      </div>
+      <div>
         <ProfileButton />
-      </li>
-    </ul>
+      </div>
+      <div className="profile-button">
+        <HiTicket className="ticket-icon"/>
+        Cart
+      </div>
+    </div>
   );
 }
 
