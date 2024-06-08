@@ -1,13 +1,13 @@
 from app.models import db, User, Payment_option, environment, SCHEMA
 from sqlalchemy.sql import text
 
-from datetime import datetime
+from datetime import datetime, date
 
 def seed_payment_options():
     payment_option1 = Payment_option(
         card_type="Credit",
         card_number="4111 1111 1111 1111",
-        expiration_date=1225,
+        expiration_date=date(2024, 12, 10),
         card_company = "Visa",
         owner_name = "Demo User",
         name = "Demo's happy card",
@@ -24,7 +24,7 @@ def seed_payment_options():
         card_company = "MasterCard",
         owner_name = "Marnie Marnie",
         name = "Marnie's happy card",
-        expiration_date=1125,
+        expiration_date=date(2024, 12, 10),
         cvv=456,
         billing_address="456 Marnie Lane, Music City, Music State, 67890",
         user_id=2,
@@ -38,7 +38,7 @@ def seed_payment_options():
         card_company = "American Express",
         owner_name = "Bobbie Bobbie",
         name = "Bobby's happy card",
-        expiration_date=1025,
+        expiration_date=date(2024, 12, 10),
         cvv=789,
         billing_address="789 Bobbie Blvd, Rock City, Rock State, 54321",
         user_id=3,
