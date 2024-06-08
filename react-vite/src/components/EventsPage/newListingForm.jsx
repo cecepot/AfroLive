@@ -46,15 +46,20 @@ function NewListing() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
-        if (title.length > 100){ errors.title = 'You have reached the maximum limit of 100 characters for a title ' }
-        if (description.length < 50) { errors.description = 'Please describe your event in at least fifty characters' }
-        if (description.length > 1000) { errors.description = 'You have reached the maximum limit. Please describe your event in at less than a  thousand characters' }
-        if (new Date(date).getTime() <= Date.now()) { errors.date = 'Please choose a date that is yet to occur' }
-        if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "The event's start time must be before it's end time" }
-        if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "The event's end time must be after it's start time" }
+        if (title.length > 200){ errors.title = "Your title should be between 3 and 200 characters long. It seems you've exceeded the limit—please shorten it a bit!" }
+        if (title.length < 3){ errors.title = "Your title needs to be between 3 and 200 characters long. Just add a few more characters, and you're all set!" }
+        if (description.length < 50) { errors.description = "Please share more about your event with at least 50 characters. We'd love to hear all the exciting details!"}
+        if (description.length > 1000) { errors.description = "You've reached the maximum limit. Could you please describe your event in fewer than a 1000 characters?" }
+        if (new Date(date).getTime() <= Date.now()) { errors.date = "It appears you've entered a date that is either in the past or today. To proceed, please select a date that is at least one day in the future." }
+        if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "To ensure everything goes smoothly, please make sure the event's start time is before its end time." }
+        if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "To ensure everything goes smoothly, please make sure the event's end time is after its start time." }
         // if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
         // if (ticket_price <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
         if (organizer_contact.length !== 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
+        if (venue.length < 3|| venue.length > 100 ){errors.venue = "Are you sure this venue exists? Please enter a venue name between 3 and 100 characters."}
+        if (city.length < 4 || city.length > 16 ){errors.city = "Are you sure this city exists? All cities in the DMV and New York are at least four letters long and at most 16 letters. Please enter a valid city."}
+        if (organizer_name.length > 200 || organizer_name.length < 3){ errors.organizer_name = "Uh-oh! The organizer's name cannot exceed 100 or be less than 3 characters.Please provide a valid name" }
+        if (additional_notes && (additional_notes.length > 1000 || additional_notes.length < 50)){ errors.additional_notes = "Looks like you provided either more or less than the limit. Please ensure your additional notes are between 50 and 1000 characters long." }
 
         console.log("====contact===========", +organizer_contact)
 
@@ -179,7 +184,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.venue && validationErrors.venue}</p>
                     <label htmlFor="venue">Venue</label>
                     <input
                         type="text"
@@ -191,7 +196,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.city && validationErrors.city}</p>
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -251,7 +256,7 @@ function NewListing() {
                     />
                 </div> */}
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.organizer_name && validationErrors.organizer_name}</p>
                     <label htmlFor="organizer's name">Name of Organizer</label>
                     <input
                         type="text"
@@ -264,7 +269,7 @@ function NewListing() {
                 </div>
                 <div>
                     <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact}</p>
-                    <label htmlFor="organizer's contact">Contact of Organizer</label>
+                    <label htmlFor="organizer's contact">Phone number of Organizer</label>
                     <input
                         type="text"
                         name="organizer's contact"
@@ -296,7 +301,7 @@ function NewListing() {
                         placeholder='https://example.com'                   />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.additional_notes && validationErrors.additional_notes}</p>
                     <label htmlFor="additional notes">Additional notes</label>
                     <input
                         type="text"

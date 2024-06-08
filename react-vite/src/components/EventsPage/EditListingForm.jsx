@@ -314,7 +314,7 @@ function EditListing() {
                 </div>
                 <div>
                     <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact}</p>
-                    <label htmlFor="organizer's contact">Contact of Organizer</label>
+                    <label htmlFor="organizer's contact">Phone number of Organizer</label>
                     <input
                         type="text"
                         name="organizer's contact"
