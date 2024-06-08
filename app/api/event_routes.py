@@ -34,8 +34,8 @@ def create_event():
       city = form.data['city'],
       state = form.data['state'],
       image_url = upload['url'],
-      tickets_available = form.data['tickets_available'],
-      ticket_price = form.data['ticket_price'],
+    #   tickets_available = form.data['tickets_available'],
+    #   ticket_price = form.data['ticket_price'],
       organizer_name = form.data['organizer_name'],
       organizer_contact = form.data['organizer_contact'],
       category = form.data['category'],
@@ -104,8 +104,8 @@ def update_event(id):
         if form.data['city']:event.city = form.data['city']
         if form.data['state']:event.state = form.data['state']
         # if (upload['url'] != None):image_url = upload['url'],
-        if form.data['tickets_available']:event.tickets_available = form.data['tickets_available']
-        if form.data['ticket_price']:event.ticket_price = form.data['ticket_price']
+        # if form.data['tickets_available']:event.tickets_available = form.data['tickets_available']
+        # if form.data['ticket_price']:event.ticket_price = form.data['ticket_price']
         if form.data['organizer_name']:event.organizer_name = form.data['organizer_name']
         if form.data['organizer_contact']:event.organizer_contact = form.data['organizer_contact']
         if form.data['category']:event.category = form.data['category']

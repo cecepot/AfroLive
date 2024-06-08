@@ -16,8 +16,8 @@ class Event(db.Model):
     city = db.Column(db.String, nullable = False)
     state = db.Column(db.String, nullable = False)
     image_url = db.Column(db.String)
-    tickets_available = db.Column(db.Integer, nullable = False)
-    ticket_price = db.Column(db.Float, nullable = False)
+    # tickets_available = db.Column(db.Integer, nullable = False)
+    # ticket_price = db.Column(db.Float, nullable = False)
     organizer_name = db.Column(db.String, nullable = False)
     organizer_contact = db.Column(db.String, nullable = False)
     category = db.Column(db.String, nullable = False)
@@ -44,8 +44,8 @@ class Event(db.Model):
             "city" : self.city,
             "state" : self.state,
             "image_url" : self.image_url,
-            "tickets_available" : self.tickets_available,
-            "ticket_price" : self.ticket_price,
+            # "tickets_available" : self.tickets_available,
+            # "ticket_price" : self.ticket_price,
             "organizer_name" : self.organizer_name,
             "organizer_contact" : self.organizer_contact,
             "category" : self.category,

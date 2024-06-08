@@ -18,8 +18,8 @@ function NewListing() {
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [image_url, setImage_url] = useState("")
-    const [tickets_available, setTickets_available] = useState("")
-    const [ticket_price, setTicket_price] = useState("")
+    // const [tickets_available, setTickets_available] = useState("")
+    // const [ticket_price, setTicket_price] = useState("")
     const [organizer_name, setOrganizer_name] = useState("")
     const [organizer_contact, setOrganizer_contact] = useState("")
     const [category, setCategory] = useState("")
@@ -52,8 +52,8 @@ function NewListing() {
         if (new Date(date).getTime() <= Date.now()) { errors.date = 'Please choose a date that is yet to occur' }
         if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "The event's start time must be before it's end time" }
         if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "The event's end time must be after it's start time" }
-        if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
-        if (ticket_price <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
+        // if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
+        // if (ticket_price <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
         if (organizer_contact.length !== 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
 
         console.log("====contact===========", +organizer_contact)
@@ -75,8 +75,8 @@ function NewListing() {
         formData.append("city", city);
         formData.append("state", state);
         formData.append("image_url", image_url);
-        formData.append("tickets_available", tickets_available);
-        formData.append("ticket_price", ticket_price);
+        // formData.append("tickets_available", tickets_available);
+        // formData.append("ticket_price", ticket_price);
         formData.append("organizer_name", organizer_name);
         formData.append("event_website", event_website);
         formData.append("organizer_contact", organizer_contact);
@@ -224,7 +224,7 @@ function NewListing() {
                     />
                     {/* {(imageLoading) && <p>Loading...</p>} */}
                 </div>
-                <div>
+                {/* <div>
                     <p className="error">{validationErrors.tickets_available && validationErrors.tickets_available}</p>
                     <label htmlFor="number of tickets">Number of Tickets</label>
                     <input
@@ -249,7 +249,7 @@ function NewListing() {
                         placeholder="price of ticket"
                         required
                     />
-                </div>
+                </div> */}
                 <div>
                     <p className="error"></p>
                     <label htmlFor="organizer's name">Name of Organizer</label>
