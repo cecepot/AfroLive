@@ -121,7 +121,7 @@ function NewListing() {
                 onSubmit={handleSubmit}
                 encType="multipart/form-data">
                 <div>
-                <p className="error">{validationErrors.title && validationErrors.title}</p>
+                <p className="error">{validationErrors.title && validationErrors.title || errors.title && errors.title}</p>
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
@@ -133,7 +133,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.description && validationErrors.description}</p>
+                    <p className="error">{validationErrors.description && validationErrors.description || errors.description && errors.description}</p>
                     <label htmlFor="description">Description</label>
                     <input
                         type="text"
@@ -145,7 +145,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.date && validationErrors.date}</p>
+                    <p className="error">{validationErrors.date && validationErrors.date || errors.date && errors.date}</p>
                     <label htmlFor="date">Date</label>
                     <input
                         type="date"
@@ -158,7 +158,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.start_time && validationErrors.start_time}</p>
+                    <p className="error">{validationErrors.start_time && validationErrors.start_time || errors.start_time && errors.start_time}</p>
                     <label htmlFor="start time">Start Time</label>
                     <input
                         type="time"
@@ -171,7 +171,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.end_time && validationErrors.end_time}</p>
+                    <p className="error">{validationErrors.end_time && validationErrors.end_time || errors.end_time && errors.end_time}</p>
                     <label htmlFor="end time">End Time</label>
                     <input
                         type="time"
@@ -184,7 +184,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                <p className="error">{validationErrors.venue && validationErrors.venue}</p>
+                <p className="error">{validationErrors.venue && validationErrors.venue || errors.venue && errors.venue}</p>
                     <label htmlFor="venue">Venue</label>
                     <input
                         type="text"
@@ -196,7 +196,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                <p className="error">{validationErrors.city && validationErrors.city}</p>
+                <p className="error">{validationErrors.city && validationErrors.city || errors.city && errors.city}</p>
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -256,7 +256,7 @@ function NewListing() {
                     />
                 </div> */}
                 <div>
-                <p className="error">{validationErrors.organizer_name && validationErrors.organizer_name}</p>
+                <p className="error">{validationErrors.organizer_name && validationErrors.organizer_name || errors.organizer_name && errors.organizer_name}</p>
                     <label htmlFor="organizer's name">Name of Organizer</label>
                     <input
                         type="text"
@@ -268,7 +268,7 @@ function NewListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact}</p>
+                    <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact || errors.organizer_contact && errors.organizer_contact}</p>
                     <label htmlFor="organizer's contact">Phone number of Organizer</label>
                     <input
                         type="text"
@@ -301,7 +301,7 @@ function NewListing() {
                         placeholder='https://example.com'                   />
                 </div>
                 <div>
-                <p className="error">{validationErrors.additional_notes && validationErrors.additional_notes}</p>
+                <p className="error">{validationErrors.additional_notes && validationErrors.additional_notes || errors.additional_notes && errors.additional_notes}</p>
                     <label htmlFor="additional notes">Additional notes</label>
                     <input
                         type="text"
