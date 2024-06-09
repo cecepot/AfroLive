@@ -293,3 +293,40 @@ input::file-selector-button {
     font-size: 16em;
     color: rgb(201, 201, 201);
 }
+
+/* payment options */
+.payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-top: 4em;
+    margin: auto;
+}
+
+.cards-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.centre{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.payment-icon{
+    font-size: 10em;
+    display: flex;
+    align-items: center;
+}
+
+.side{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

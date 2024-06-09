@@ -71,7 +71,7 @@ function AddCardForm() {
 
 
     return (
-        <section className="payment-form-background">
+        <section className="form-background">
             <div className="form-container">
                 <h1 className="form-title">Add a Card</h1>
                 <form onSubmit={handleSubmit} className="form">
