@@ -2,6 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom"
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -47,7 +48,7 @@ function LoginFormPage() {
       <h1>Log In</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <div>
           <p className="error">{errors.email && errors.email}</p>
           <label>
@@ -73,7 +74,8 @@ function LoginFormPage() {
           </label>
         </div>
         <button type="submit" className="form-button">Log In</button>
-        <button onClick={(e) => handleLogin(e)} className="form-button">Login as demo user</button>
+        <button onClick={(e) => handleLogin(e)} className="form-button margin-left">Login as demo user</button>
+        <NavLink to={"/signup"}><button className="form-button margin-left">signup</button></NavLink>
       </form>
 
     </>

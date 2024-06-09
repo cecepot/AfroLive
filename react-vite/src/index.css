@@ -54,8 +54,20 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    border-bottom: 1px solid black;
+    height: 80px;
+    background-color: aliceblue;
+    position: relative;
+}
+.margin-left{
+    margin-left: 60px;
+}
+
+.margin-right{
+    margin-right: 60px;
+}
+
+.nav-bar:hover .profile-dropdown{
+    display: block;
 }
 
 .ticket-icon {
@@ -148,7 +160,7 @@ a {
     height: 150vh;
 }
 
-.payment-form-background{
+.payment-form-background {
     background: linear-gradient(-45deg, #ff9c56, #ffd27e, #ffda6c, #ff4171);
     background-size: 600% 600%;
     animation: gradient 15s ease infinite;
@@ -195,7 +207,7 @@ a {
     text-align: center;
 }
 
-input{
+input {
     width: 100%;
     border: none;
     height: 46px;
@@ -203,7 +215,8 @@ input{
     background-color: #74ffff37;
     border-radius: 8px;
 }
-select{
+
+select {
     width: 100%;
     border: none;
     height: 40px;
@@ -212,12 +225,12 @@ select{
     border-radius: 8px;
 }
 
-label{
-    color:#2a2a2a;
+label {
+    color: #2a2a2a;
     letter-spacing: 1.5px;
 }
 
-.form-button{
+.form-button {
     background-color: #74ffff;
     width: 20%;
     height: 30px;

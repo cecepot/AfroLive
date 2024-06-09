@@ -14,10 +14,12 @@ function ProfileButton() {
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
-  const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-    setShowMenu(!showMenu);
-  };
+
+
+  // const toggleMenu = (e) => {
+  //   e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+  //   setShowMenu(!showMenu);
+  // };
 
 
   useEffect(() => {
@@ -44,21 +46,22 @@ function ProfileButton() {
 
 return (
    <>
-     <div className="profile-button" onClick={toggleMenu}>
+    {/* <div className="profile-button" onClick={toggleMenu}> */}
+     <div className="profile-button">
        <FaUserCircle />
 
        Account
      </div>
-     {showMenu && (
-       <ul className={"profile-dropdown"} ref={ulRef}>
+     {/* {showMenu && ( */}
+       <div className={"profile-dropdown"} ref={ulRef}>
          {user ? (
            <>
-             <li>{user.username}</li>
-             <li>{user.email}</li>
+             <p>{user.username}</p>
+             <p>{user.email}</p>
              <NavLink to={`/users/${user.id}`}>Profile Page</NavLink>
-             <li>
+             <p>
                <button onClick={logout}>Log Out</button>
-             </li>
+             </p>
            </>
          ) : (
            <>
@@ -74,8 +77,8 @@ return (
              />
            </>
          )}
-       </ul>
-     )}
+       </div>
+     {/* )} */}
    </>
  );
 
