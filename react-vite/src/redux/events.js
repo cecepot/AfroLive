@@ -94,13 +94,14 @@ export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
         console.log("There was an error making your post!")
     }
 }
-export const thunkDeleteEvent = (id) => async () => {
+export const thunkDeleteEvent = (id) => async dispatch => {
     const res = await fetch(`/api/events/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
     });
     const deleted = await res.json();
-    return deleted;
+    dispatch(deleteEvent(deleted))
+    return deleted
 };
 
 const initialState = { events: [], singleEvent: [], userEvents: [], newEvent: [] }
@@ -117,6 +118,8 @@ function eventsReducer(state = initialState, action) {
             return { ...state, newEvent: action.payload }
         case UPDATE_EVENT:
             return { ...state, newEvent: action.payload }
+        case DELETE_EVENT:
+            return { ...state, userEvents: action.payload }
         default:
             return state
     }

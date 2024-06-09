@@ -9,7 +9,11 @@ function Listings() {
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        dispatch(thunkUserEvents(user.id))
+    }, [dispatch, user.id])
 
+    const listings = useSelector(state => state.event.userEvents)
 
     const handleDelete = (listingId) => {
         // e.preventDefault()
@@ -17,14 +21,10 @@ function Listings() {
 
         if (window.confirm("You are about to delete this event")) {
             dispatch(thunkDeleteEvent(listingId))
-            dispatch(thunkUserEvents(user.id))
+            // dispatch(thunkUserEvents(user.id))
         }
     }
 
-    useEffect(() => {
-        dispatch(thunkUserEvents(user.id))
-    }, [dispatch, user.id])
-    const listings = useSelector(state => state.event.userEvents)
 
     const handleNav = (e, userId, listingId, listing) => {
         e.preventDefault()

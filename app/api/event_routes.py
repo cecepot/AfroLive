@@ -132,7 +132,10 @@ def delete_event(id):
         remove_file_from_s3(event.image_url)
         db.session.delete(event)
         db.session.commit()
-        return {"message" : "Your event was sucessfully deleted"}
+        events = Event.query.filter(Event.user_id == current_user.id).all()
+        all_events = [event.to_dict() for event in events]
+        sorted_events = sorted(all_events, key=lambda x : x['date'])
+        return sorted_events
     return {"message" : "You are not authorized to perform this action"}, 401
 
 # ======================= TICKETS 🎫====================================================
