@@ -77,26 +77,26 @@ function EditCardForm() {
                 <div>
                     <p className="error">{errors.name && errors.name}</p>
                     <label htmlFor="name">Name</label>
-                    <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p>
+                    {/* <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p> */}
                     <input
                         type="text"
                         name="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="name of card"
+                        placeholder="choose a unique name to identify your card by. This card's number will not be viewable after it is added"
                         required
                     />
                 </div>
                 <div>
                     <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.owner_name && errors.owner_name}</p>
-                    <p>What is the name on your card ?</p>
+                    {/* <p>What is the name on your card ?</p> */}
                     <label htmlFor="owner_name">Name on card</label>
                     <input
                         type="text"
                         name="owner_name"
                         value={owner_name}
                         onChange={(e) => setOwner_name(e.target.value)}
-                        placeholder="name on card"
+                        placeholder="name on card ( What is the name on your card? )"
                         required
                     />
                 </div>
