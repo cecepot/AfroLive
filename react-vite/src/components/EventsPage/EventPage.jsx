@@ -17,8 +17,7 @@ function EventPage() {
     const currentEvent = location.state.data
     // console.log(currentEvent)
     return (
-        <>
-
+        <section className="event-background">
             <div className="event-display">
                 <div className="image-flyer">
                     <img className='image' src={currentEvent.image_url} alt="" />
@@ -30,15 +29,15 @@ function EventPage() {
                         <p> - </p>
                         <p>{currentEvent.end_time}</p>
                     </div>
-                    <p>{currentEvent.venue}</p>
+                    <h2>{currentEvent.venue}</h2>
                     <p>{currentEvent.description}</p>
-                    <p>{currentEvent.organizer_name}</p>
+                    <p>Organized by <em>{currentEvent.organizer_name}</em></p>
 
                     {/* <NavLink to={`/events/${currentEvent.id}/tickets`}><button>buy ticket</button></NavLink>  */}
                     {/* ticket feature commented out for initial grading */}
                 </div>
             </div>
-        </>
+        </section>
     )
 }
 

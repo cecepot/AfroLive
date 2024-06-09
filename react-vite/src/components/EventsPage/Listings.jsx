@@ -32,9 +32,10 @@ function Listings() {
     }
 
     return (
-        <>
-            <h1 className="margin-top">listings for current user</h1>
+        <section className="event-background">
+            <h1 className="margin-top">Your listed events</h1>
             {listings && listings.map(listing => {
+                let newDate = listing.date.split(" ")
                 return (
                     <div key={listing.id}>
                         <div className="events-container" >
@@ -42,12 +43,12 @@ function Listings() {
                                 <img className="image" src={listing.image_url} alt="" />
                             </div>
                             <div>
-                            <p>{listing.title}</p>
-                                <p>{listing.date}</p>
+                            <h2>{listing.title}</h2>
+                                <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                             </div>
                         </div>
-                        <button onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
-                        <button onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
+                        <button className="event-button" onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
+                        <button className="event-button margin-left" onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
                         {/* <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink> */}
                         {/* functionality commented out for grading */}
                     </div>
@@ -55,7 +56,7 @@ function Listings() {
             })}
             <NavLink to={`/users/${user.id}/listings/new`}><button>Add a new Listing</button></NavLink>
 
-        </>
+        </section>
     )
 
 }
