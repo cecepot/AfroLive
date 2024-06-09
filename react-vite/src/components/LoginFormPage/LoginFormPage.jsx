@@ -31,8 +31,19 @@ function LoginFormPage() {
     }
   };
 
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    let email = 'demo@aa.io'
+    let password = 'password'
+    dispatch(thunkLogin({ email, password }))
+      .then(navigate('/'))
+  }
+
+
   return (
     <>
+
       <h1>Log In</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
@@ -61,8 +72,10 @@ function LoginFormPage() {
             />
           </label>
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" className="form-button">Log In</button>
+        <button onClick={(e) => handleLogin(e)} className="form-button">Login as demo user</button>
       </form>
+
     </>
   );
 }

@@ -58,8 +58,9 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <section className="form-background">
+      <div className="form-container">
+      <h1 className="form-title">Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -112,9 +113,10 @@ function SignupFormPage() {
             />
           </label>
         </div>
-        <button type="submit">Sign Up</button>
+        <button className="form-button" type="submit">Sign Up</button>
       </form>
-    </>
+      </div>
+    </section>
   );
 }
 

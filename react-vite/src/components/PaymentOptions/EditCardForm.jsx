@@ -70,8 +70,9 @@ function EditCardForm() {
 
 
     return (
-        <>
-            <h1>Edit Card Form</h1>
+        <section className="form-background">
+            <div className="form-container">
+            <h1 className="form-title">Edit a Card</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <p className="error">{errors.name && errors.name}</p>
@@ -136,9 +137,10 @@ function EditCardForm() {
                         required
                     />
                 </div>
-                <button type="submit">Update Card</button>
+                <button className="form-button" type="submit">Update Card</button>
             </form>
-        </>
+            </div>
+        </section>
     )
 }
 

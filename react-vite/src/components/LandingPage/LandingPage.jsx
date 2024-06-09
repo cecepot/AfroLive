@@ -1,28 +1,17 @@
 import LoginFormPage from "../LoginFormPage"
-import { NavLink, useNavigate } from "react-router-dom"
-import { thunkLogin } from "../../redux/session"
-import { useDispatch } from "react-redux"
+import { NavLink} from "react-router-dom"
 
 
-function LandingPage(){
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const handleLogin = (e) => {
-        e.preventDefault()
-        let email = 'demo@aa.io'
-        let password = 'password'
-        dispatch(thunkLogin({email, password}))
-        .then(navigate('/'))
-      }
 
-
+function LandingPage() {
     return (
-        <>
-        <h1>Landing page</h1>
-        <LoginFormPage/>
-        <button onClick={(e) => handleLogin(e)}>Login as demo user</button>
-        <NavLink to = {"/signup"}><button>signup</button></NavLink>
-        </>
+        <section className="form-background">
+            <div className="form-container">
+                <h1 className="form-title">Welcome to Afrolive</h1>
+                <LoginFormPage />
+                <NavLink to={"/signup"}><button>signup</button></NavLink>
+            </div>
+        </section>
     )
 }
 
