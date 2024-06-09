@@ -74,7 +74,7 @@ function EditListing() {
         setEvent_website(currentEvent.event_website)
         setAdditional_notes(currentEvent.additional_notes)
 
-    }, [currentEvent, date])
+    }, [currentEvent])
 
     const fileWrap = (e) => {
         e.stopPropagation();
@@ -102,15 +102,20 @@ function EditListing() {
         e.preventDefault();
 
         let errors = {}
-        if (title.length > 100) { errors.title = 'You have reached the maximum limit of 100 characters for a title ' }
-        if (description.length < 50) { errors.description = 'Please describe your event in at least fifty characters' }
-        if (description.length > 1000) { errors.description = 'You have reached the maximum limit. Please describe your event in at less than a  thousand characters' }
-        if (new Date(date).getTime() <= Date.now()) { errors.date = 'Please choose a date that is yet to occur' }
-        if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "The event's start time must be before it's end time" }
-        if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "The event's end time must be after it's start time" }
+        if (title.length > 200){ errors.title = "Your title should be between 3 and 200 characters long. It seems you've exceeded the limit—please shorten it a bit!" }
+        if (title.length < 3){ errors.title = "Your title needs to be between 3 and 200 characters long. Just add a few more characters, and you're all set!" }
+        if (description.length < 50) { errors.description = "Please share more about your event with at least 50 characters. We'd love to hear all the exciting details!"}
+        if (description.length > 1000) { errors.description = "You've reached the maximum limit. Could you please describe your event in fewer than a 1000 characters?" }
+        if (new Date(date).getTime() <= Date.now()) { errors.date = "It appears you've entered a date that is either in the past or today. To proceed, please select a date that is at least one day in the future." }
+        if (compareTimes(date, start_time, end_time) === false) { errors.start_time = "To ensure everything goes smoothly, please make sure the event's start time is before its end time." }
+        if (compareTimes(date, end_time, start_time) === true) { errors.end_time = "To ensure everything goes smoothly, please make sure the event's end time is after its start time." }
         // if (tickets_available < 20) { errors.tickets_available = "To organize an event, you must have a minimum of twenty tickets available." }
-        // if (ticket_price.length <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
-        if (organizer_contact.length !== 10 || !(+organizer_contact)) { errors.organizer_contact = 'Please provide a valid phone number' }
+        // if (ticket_price <= 0) { errors.ticket_price = 'Events should cost at least $ 1.00' }
+        if (organizer_contact.length !== 10 || !(+organizer_contact) ){errors.organizer_contact = 'Please provide a valid phone number'}
+        if (venue.length < 3|| venue.length > 100 ){errors.venue = "Are you sure this venue exists? Please enter a venue name between 3 and 100 characters."}
+        if (city.length < 4 || city.length > 16 ){errors.city = "Are you sure this city exists? All cities in the DMV and New York are at least four letters long and at most 16 letters. Please enter a valid city."}
+        if (organizer_name.length > 200 || organizer_name.length < 3){ errors.organizer_name = "Uh-oh! The organizer's name cannot exceed 100 or be less than 3 characters.Please provide a valid name" }
+        if (additional_notes && (additional_notes.length > 1000 || additional_notes.length < 50)){ errors.additional_notes = "Looks like you provided either more or less than the limit. Please ensure your additional notes are between 50 and 1000 characters long." }
 
 
         if (Object.keys(errors).length > 0) {
@@ -131,8 +136,8 @@ function EditListing() {
         formData.append("city", city);
         formData.append("state", state);
         formData.append("image_url", image_url);
-        formData.append("tickets_available", tickets_available);
-        formData.append("ticket_price", ticket_price);
+        // formData.append("tickets_available", tickets_available);
+        // formData.append("ticket_price", ticket_price);
         formData.append("organizer_name", organizer_name);
         formData.append("event_website", event_website);
         formData.append("organizer_contact", organizer_contact);
@@ -146,6 +151,9 @@ function EditListing() {
         }
         const updatedEvent = await dispatch(thunkUpdateEvent(formData, listingId))
         if (updatedEvent) {
+            setImageLoading(false)
+            return setErrors(updatedEvent)
+        } else {
             dispatch(thunkUserEvents(user.id))
             navigate(`/users/${user.id}/listings`)
 
@@ -165,7 +173,7 @@ function EditListing() {
                 encType="multipart/form-data"
             >
                 <div>
-                    <p className="error">{validationErrors.title && validationErrors.title}</p>
+                <p className="error">{validationErrors.title && validationErrors.title || errors.title && errors.title}</p>
                     <label htmlFor="title">Title</label>
                     <input
                         type="text"
@@ -177,7 +185,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.description && validationErrors.description}</p>
+                <p className="error">{validationErrors.description && validationErrors.description || errors.description && errors.description}</p>
                     <label htmlFor="description">Description</label>
                     <input
                         type="text"
@@ -189,7 +197,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.date && validationErrors.date}</p>
+                <p className="error">{validationErrors.date && validationErrors.date || errors.date && errors.date}</p>
                     <label htmlFor="date">Date</label>
                     <input
                         type="date"
@@ -202,7 +210,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.start_time && validationErrors.start_time}</p>
+                <p className="error">{validationErrors.start_time && validationErrors.start_time || errors.start_time && errors.start_time}</p>
                     <label htmlFor="start time">Start Time</label>
                     <input
                         type="time"
@@ -215,7 +223,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.end_time && validationErrors.end_time}</p>
+                <p className="error">{validationErrors.end_time && validationErrors.end_time || errors.end_time && errors.end_time}</p>
                     <label htmlFor="end time">End Time</label>
                     <input
                         type="time"
@@ -228,7 +236,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.venue && validationErrors.venue || errors.venue && errors.venue}</p>
                     <label htmlFor="venue">Venue</label>
                     <input
                         type="text"
@@ -240,7 +248,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.city && validationErrors.city || errors.city && errors.city}</p>
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -301,7 +309,7 @@ function EditListing() {
                     />
                 </div> */}
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.organizer_name && validationErrors.organizer_name || errors.organizer_name && errors.organizer_name}</p>
                     <label htmlFor="organizer's name">Name of Organizer</label>
                     <input
                         type="text"
@@ -313,14 +321,14 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact}</p>
+                <p className="error">{validationErrors.organizer_contact && validationErrors.organizer_contact || errors.organizer_contact && errors.organizer_contact}</p>
                     <label htmlFor="organizer's contact">Phone number of Organizer</label>
                     <input
                         type="text"
                         name="organizer's contact"
                         value={organizer_contact}
                         onChange={(e) => setOrganizer_contact(e.target.value)}
-                        placeholder="organizer's name"
+                        placeholder="eg. 1236752348"
                         required
                     />
                 </div>
@@ -347,7 +355,7 @@ function EditListing() {
                     />
                 </div>
                 <div>
-                    <p className="error"></p>
+                <p className="error">{validationErrors.additional_notes && validationErrors.additional_notes || errors.additional_notes && errors.additional_notes}</p>
                     <label htmlFor="additional notes">Additional notes</label>
                     <input
                         type="text"

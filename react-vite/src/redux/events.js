@@ -85,7 +85,7 @@ export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
         const event = await response.json();
         console.log(event)
         dispatch(updateEvent(event));
-        return event
+        // return event
     } else if (response.status < 500) {
         const errorMessages = await response.json();
         console.log(errorMessages)
