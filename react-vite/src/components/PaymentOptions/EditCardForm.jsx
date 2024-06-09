@@ -70,75 +70,75 @@ function EditCardForm() {
 
 
     return (
-        <section className="form-background">
+        <section className="payment-form-background">
             <div className="form-container">
-            <h1 className="form-title">Edit a Card</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <p className="error">{errors.name && errors.name}</p>
-                    <label htmlFor="name">Name</label>
-                    {/* <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p> */}
-                    <input
-                        type="text"
-                        name="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="choose a unique name to identify your card by. This card's number will not be viewable after it is added"
-                        required
-                    />
-                </div>
-                <div>
-                    <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.owner_name && errors.owner_name}</p>
-                    {/* <p>What is the name on your card ?</p> */}
-                    <label htmlFor="owner_name">Name on card</label>
-                    <input
-                        type="text"
-                        name="owner_name"
-                        value={owner_name}
-                        onChange={(e) => setOwner_name(e.target.value)}
-                        placeholder="name on card ( What is the name on your card? )"
-                        required
-                    />
-                </div>
-                <div>
-                    <p className="error">{validationErrors.expiration_date && validationErrors.expiration_date || errors.expiration_date && errors.expiration_date}</p>
-                    <label htmlFor="expiration_date">expiration date</label>
-                    <input
-                        type="date"
-                        name="expiration_date"
-                        value={expiration_date}
-                        onChange={(e) => setExpiration_date(e.target.value)}
-                        onFocus={(e) => e.target.showPicker()}
-                        placeholder="expiration date"
-                        required
-                    />
-                </div>
-                <div>
-                    <p className="error">{validationErrors.billing_address && validationErrors.billing_address || errors.billing_address && errors.billing_address}</p>
-                    <label htmlFor="billing_address">Billing Address</label>
-                    <input
-                        type="text"
-                        name="billing_address"
-                        value={billing_address}
-                        onChange={(e) => setBilling_address(e.target.value)}
-                        placeholder="Billing Address"
-                        required
-                    />
-                </div>
-                <div>
-                <p className="error">{validationErrors.cvv && validationErrors.cvv || errors.cvv && errors.cvv}</p>
-                    <label htmlFor="cvv">cvv</label>
-                    <input
-                        type="number"
-                        name="cvv"
-                        value={cvv}
-                        onChange={(e) => setCvv(e.target.value)}
-                        placeholder="cvv"
-                        required
-                    />
-                </div>
-                <button className="form-button" type="submit">Update Card</button>
-            </form>
+                <h1 className="form-title">Edit a Card</h1>
+                <form className="form" onSubmit={handleSubmit}>
+                    <div>
+                        <p className="error">{errors.name && errors.name}</p>
+                        <label htmlFor="name">Name</label>
+                        {/* <p>update the unique name which identifies your card. This card's number will not be viewable after it is added</p> */}
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="choose a unique name to identify your card by. This card's number will not be viewable after it is added"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p className="error">{validationErrors.owner_name && validationErrors.owner_name || errors.owner_name && errors.owner_name}</p>
+                        {/* <p>What is the name on your card ?</p> */}
+                        <label htmlFor="owner_name">Name on card</label>
+                        <input
+                            type="text"
+                            name="owner_name"
+                            value={owner_name}
+                            onChange={(e) => setOwner_name(e.target.value)}
+                            placeholder="name on card ( What is the name on your card? )"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p className="error">{validationErrors.expiration_date && validationErrors.expiration_date || errors.expiration_date && errors.expiration_date}</p>
+                        <label htmlFor="expiration_date">expiration date</label>
+                        <input
+                            type="date"
+                            name="expiration_date"
+                            value={expiration_date}
+                            onChange={(e) => setExpiration_date(e.target.value)}
+                            onFocus={(e) => e.target.showPicker()}
+                            placeholder="expiration date"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p className="error">{validationErrors.billing_address && validationErrors.billing_address || errors.billing_address && errors.billing_address}</p>
+                        <label htmlFor="billing_address">Billing Address</label>
+                        <input
+                            type="text"
+                            name="billing_address"
+                            value={billing_address}
+                            onChange={(e) => setBilling_address(e.target.value)}
+                            placeholder="Billing Address"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p className="error">{validationErrors.cvv && validationErrors.cvv || errors.cvv && errors.cvv}</p>
+                        <label htmlFor="cvv">cvv</label>
+                        <input
+                            type="number"
+                            name="cvv"
+                            value={cvv}
+                            onChange={(e) => setCvv(e.target.value)}
+                            placeholder="cvv"
+                            required
+                        />
+                    </div>
+                    <button className="form-button" type="submit">Update Card</button>
+                </form>
             </div>
         </section>
     )

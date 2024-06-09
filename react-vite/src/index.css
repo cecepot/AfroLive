@@ -145,8 +145,16 @@ a {
     background: linear-gradient(-45deg, #ff9c56, #ffd27e, #ffda6c, #ff4171);
     background-size: 600% 600%;
     animation: gradient 15s ease infinite;
-    height: 120vh;
+    height: 150vh;
 }
+
+.payment-form-background{
+    background: linear-gradient(-45deg, #ff9c56, #ffd27e, #ffda6c, #ff4171);
+    background-size: 600% 600%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+}
+
 
 @keyframes gradient {
     0% {
