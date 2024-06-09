@@ -24,6 +24,7 @@ function HomePage() {
             <div className="upcoming-events">
                 <h1>Upcoming Events</h1>
             </div>
+            <section >
             {events && events.map((event) => {
                 const day = event.date.split(' ')[1]
                 const month = event.date.split(' ')[2]
@@ -45,6 +46,7 @@ function HomePage() {
                     </NavLink>
                 )
             })}
+            </section>
         </>
     )
 }

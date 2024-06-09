@@ -58,16 +58,19 @@ a {
     background-color: aliceblue;
     position: relative;
 }
-.margin-left{
+
+.margin-left {
     margin-left: 60px;
 }
 
-.margin-right{
+.margin-right {
     margin-right: 60px;
 }
 
-.nav-bar:hover .profile-dropdown{
+.nav-bar:hover .profile-dropdown {
     display: block;
+    height: 80px;
+    transition: height 1s ease-in-out;
 }
 
 .ticket-icon {
@@ -250,4 +253,43 @@ input::file-selector-button {
     letter-spacing: 1.5px;
     margin-top: 1em;
     color: #2a2a2a;
+}
+
+
+/* profile page */
+.profile-page-icons {
+    font-size: 16em;
+}
+
+.profile-icons-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+.profile-page-icons:hover {
+    color: #00d3d3;
+    transition: color 0.6s ease-in-out;
+}
+
+.icon-tooltip {
+    font-size: larger;
+    visibility: hidden;
+}
+
+.real-container {
+    display: flex;
+}
+
+.real-container:hover .icon-tooltip {
+    visibility: visible;
+    transition: color 0.6s ease-in-out;
+    color: #00d3d3;
+    transition: color 0.6s ease-in-out;
+}
+
+.icon-coming-soon {
+    font-size: 16em;
+    color: rgb(201, 201, 201);
 }
