@@ -31,7 +31,7 @@ a {
     gap: 10px;
     width: 80%;
     height: 20em;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 
@@ -137,7 +137,7 @@ a {
 
 
 .upcoming-events {
-    height: 16em;
+    height: 14em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,6 +153,8 @@ a {
     background-color: aliceblue;
     height: 4em;
     width: 4em;
+    min-width: 64px;
+    min-height: 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,7 +200,7 @@ a {
 
 .event-display {
     display: flex;
-    margin: 4em 0;
+    margin: 6em 0 2em 0;
     height: 40em;
     max-height: 40em;
 }
