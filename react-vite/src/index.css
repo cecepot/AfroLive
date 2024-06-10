@@ -362,11 +362,18 @@ input::file-selector-button {
 /* profile page */
 .profile-page-icons {
     font-size: 16em;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }
 }
 
 .profile-icons-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     position: relative;
 }
