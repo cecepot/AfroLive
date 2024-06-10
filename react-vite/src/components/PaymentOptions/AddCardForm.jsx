@@ -159,7 +159,7 @@ function AddCardForm() {
                             required
                         />
                     </div>
-                    <button className="form-button" type="submit">Add Card</button>
+                    <button className="form-button mouse" type="submit">Add Card</button>
                 </form>
             </div>
         </section>

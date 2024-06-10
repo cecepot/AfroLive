@@ -137,7 +137,7 @@ function EditCardForm() {
                             required
                         />
                     </div>
-                    <button className="form-button" type="submit">Update Card</button>
+                    <button className="form-button mouse" type="submit">Update Card</button>
                 </form>
             </div>
         </section>

@@ -35,11 +35,13 @@ function PaymentOptions() {
 
     if (!cards.length) {
         return (
-            <>
-                <h1>Payment Options</h1>
-                <p>Looks like you have no cards on your account</p>
-                <NavLink to={`/users/${id}/cards/add`}><button>Add new Card</button></NavLink>
-            </>
+            <section className="payment-form-background ">
+                <div className="payment-container">
+                    <h1 className="form-title">Payment Options</h1>
+                    <p>Looks like you have no cards on your account</p>
+                    <NavLink  to={`/users/${id}/cards/add`}><button className="pay-button mouse">Add new Card</button></NavLink>
+                </div>
+            </section>
         )
     }
 
@@ -52,7 +54,7 @@ function PaymentOptions() {
                         return (
                             <div className="side">
                                 <div className="payment-icon">
-                                <IoIosCard />
+                                    <IoIosCard />
                                 </div>
                                 <div className="form centre" key={card.id}>
                                     <p>{card.card_company}({card.card_type})</p>

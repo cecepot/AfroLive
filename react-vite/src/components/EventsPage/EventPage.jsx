@@ -20,7 +20,7 @@ function EventPage() {
         <section className="event-background">
             <div className="event-display">
                 <div className="image-flyer">
-                    <img className='image' src={currentEvent.image_url} alt="" />
+                    <img className='event-image' src={currentEvent.image_url} alt="" />
                 </div>
                 <div className="event-display-left">
                     <h1>{currentEvent.title}</h1>

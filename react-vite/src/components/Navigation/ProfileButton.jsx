@@ -60,7 +60,7 @@ return (
              <p>{user.email}</p>
              <NavLink to={`/users/${user.id}`}>Profile Page</NavLink>
              <p>
-               <button onClick={logout}>Log Out</button>
+               <div className="mouse" onClick={logout}>Log Out</div>
              </p>
            </>
          ) : (

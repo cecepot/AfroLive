@@ -32,8 +32,8 @@ function Listings() {
     }
 
     return (
-        <section className="event-background">
-            <h1 className="margin-top">Your listed events</h1>
+        <section className="event-top event-background">
+            <h1 className="form-title">Your listed events</h1>
             {listings && listings.map(listing => {
                 let newDate = listing.date.split(" ")
                 return (
@@ -47,14 +47,14 @@ function Listings() {
                                 <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                             </div>
                         </div>
-                        <button className="event-button" onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
-                        <button className="event-button margin-left" onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
+                        <button className="event-button mouse" onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
+                        <button className="event-button margin-left mouse" onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
                         {/* <NavLink to={`/users/${user.id}/listings/${listing.id}/tickets`}><button>View Tickets for this listing</button></NavLink> */}
                         {/* functionality commented out for grading */}
                     </div>
                 )
             })}
-            <NavLink to={`/users/${user.id}/listings/new`}><button>Add a new Listing</button></NavLink>
+            <NavLink to={`/users/${user.id}/listings/new`}><button className="mouse event-button">Add a new Listing</button></NavLink>
 
         </section>
     )

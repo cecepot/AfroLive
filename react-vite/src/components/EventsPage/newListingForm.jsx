@@ -315,7 +315,7 @@ function NewListing() {
                     <div>
                         <label htmlFor=""></label>
                     </div>
-                    <button className="form-button" type="submit">Add Event</button>
+                    <button className="form-button mouse" type="submit">Add Event</button>
                 </form>
             </div>
         </section>

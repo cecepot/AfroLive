@@ -24,10 +24,11 @@ function HomePage() {
             <div className="upcoming-events">
                 <h1>Upcoming Events</h1>
             </div>
-            <section >
+            <section className="home-page">
             {events && events.map((event) => {
                 const day = event.date.split(' ')[1]
                 const month = event.date.split(' ')[2]
+                let newDate = event.date.split(" ")
                 return (
                     <NavLink  key={event.id} to={`/events/${event.id}`}>
                         <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
@@ -40,7 +41,7 @@ function HomePage() {
                             </div>
                             <div className="title-date">
                                 <p className="event-title">{event.title}</p>
-                                <p>{event.date}</p>
+                                <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                             </div>
                         </div>
                     </NavLink>

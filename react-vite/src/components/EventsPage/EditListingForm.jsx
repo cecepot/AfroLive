@@ -369,7 +369,7 @@ function EditListing() {
                     <div>
                         <label htmlFor=""></label>
                     </div>
-                    <button className="form-button" type="submit">Update Event</button>
+                    <button className="form-button mouse" type="submit">Update Event</button>
                 </form>
             </div>
         </section>

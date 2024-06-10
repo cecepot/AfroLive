@@ -113,7 +113,7 @@ function SignupFormPage() {
             />
           </label>
         </div>
-        <button className="form-button" type="submit">Sign Up</button>
+        <button className="form-button mouse" type="submit">Sign Up</button>
       </form>
       </div>
     </section>
