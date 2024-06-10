@@ -66,7 +66,7 @@ function PaymentOptions() {
                         )
                     })}
                 </div>
-                <NavLink to={`/users/${id}/cards/add`}><button>Add new Card</button></NavLink>
+                <NavLink to={`/users/${id}/cards/add`}><button className="mouse pay-button">Add new Card</button></NavLink>
             </div>
         </section>
     )

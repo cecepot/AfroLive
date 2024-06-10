@@ -285,6 +285,21 @@ label {
     color: #2a2a2a;
 }
 
+.log-button-container{
+    display: flex;
+    justify-content: space-between;
+}
+.log-button{
+    background-color: #74ffff;
+    width: 30%;
+    height: 30px;
+    border: none;
+    border-radius: 14px;
+    letter-spacing: 1.5px;
+    margin-top: 1em;
+    color: #2a2a2a;
+}
+
 input::file-selector-button {
     background-color: #74ffff;
     width: 20%;
