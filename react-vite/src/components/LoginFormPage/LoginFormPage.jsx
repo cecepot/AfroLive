@@ -75,7 +75,7 @@ function LoginFormPage() {
         <button type="submit" className="log-button mouse">Log In</button>
         <button onClick={(e) => handleLogin(e)} className="log-button mouse">Login demo user</button>
         </div>
-        <NavLink to={"/signup"}><button className="log-button mouse">signup</button></NavLink>
+        <NavLink to={"/signup"}><button className="log-button-diff mouse">signup</button></NavLink>
       </form>
 
     </>

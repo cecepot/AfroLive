@@ -347,6 +347,18 @@ label {
     color: #2a2a2a;
 }
 
+.log-button-diff {
+    background-color: aliceblue;
+    width: 30%;
+    height: 30px;
+    border: #74ffff 1px solid;
+    border-radius: 14px;
+    letter-spacing: 1.5px;
+    margin-top: 1em;
+    color: #47a0a0;
+}
+
+
 input::file-selector-button {
     background-color: #74ffff;
     width: 20%;
