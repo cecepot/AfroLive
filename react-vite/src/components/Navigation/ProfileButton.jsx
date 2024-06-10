@@ -58,9 +58,9 @@ return (
            <>
              <p>{user.username}</p>
              <p>{user.email}</p>
-             <NavLink to={`/users/${user.id}`}>Profile Page</NavLink>
+             <NavLink className={"click"} to={`/users/${user.id}`}>Profile Page</NavLink>
              <p>
-               <div className="mouse" onClick={logout}>Log Out</div>
+               <div className="mouse click" onClick={logout}>Log Out</div>
              </p>
            </>
          ) : (

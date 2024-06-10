@@ -10,7 +10,7 @@ body {
     background-color: antiquewhite;
 }
 
-.mouse{
+.mouse {
     cursor: pointer;
 }
 
@@ -92,6 +92,44 @@ a {
 
 
 /* homepage */
+.home-title {
+    font-size: 6em;
+    background: linear-gradient(to right, yellow, orange, red);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: move 5s linear infinite;
+}
+
+.click {
+    background: linear-gradient(to right, yellow, orange, red);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: move 5s linear infinite;
+}
+
+@keyframes move {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+
+
 .upcoming-events {
     height: 16em;
     display: flex;
@@ -100,11 +138,10 @@ a {
     background-color: aliceblue;
 }
 
-.upcoming-events h1 {
-    font-size: 3em;
+/* .upcoming-events h1 {
+    font-size: 4em;
     letter-spacing: 10px;
-
-}
+} */
 
 .day-month {
     background-color: aliceblue;
@@ -191,7 +228,8 @@ a {
     margin-top: 1em;
     color: #2a2a2a;
 }
-.event-top{
+
+.event-top {
     margin-top: 3em;
 }
 
@@ -285,11 +323,12 @@ label {
     color: #2a2a2a;
 }
 
-.log-button-container{
+.log-button-container {
     display: flex;
     justify-content: space-between;
 }
-.log-button{
+
+.log-button {
     background-color: #74ffff;
     width: 30%;
     height: 30px;
@@ -388,7 +427,7 @@ input::file-selector-button {
     width: 100%;
 }
 
-.pay-button{
+.pay-button {
     background-color: #74ffff;
     width: 100%;
     height: 30px;
