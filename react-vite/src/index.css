@@ -18,7 +18,7 @@ a {
 
 .error {
     color: brown;
-    min-height: 20px;
+    min-height: 30px;
     font-style: italic;
     font-size: 14px;
 }
