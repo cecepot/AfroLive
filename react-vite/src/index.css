@@ -373,7 +373,8 @@ input::file-selector-button {
 
 .profile-icons-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 4em;
     align-items: center;
     position: relative;
 }
@@ -384,12 +385,14 @@ input::file-selector-button {
 }
 
 .icon-tooltip {
+    text-align: center;
     font-size: larger;
     visibility: hidden;
 }
 
 .real-container {
     display: flex;
+    flex-direction: column;
 }
 
 .real-container:hover .icon-tooltip {
