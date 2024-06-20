@@ -227,15 +227,21 @@ a {
 }
 
 .event-button {
-    background-color: #74ffff;
+    background-color:#0071e3;
     width: 10%;
     height: 30px;
     border: none;
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #2a2a2a;
+    color: aliceblue;
 }
+.event-button:hover{
+    background-color: #208dfa;
+    color: whitesmoke;
+}
+
+
 
 .event-top {
     margin-top: 3em;
@@ -321,15 +327,21 @@ label {
 }
 
 .form-button {
-    background-color: #74ffff;
+    background-color: #0071e3;
     width: 20%;
     height: 30px;
     border: none;
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #2a2a2a;
+    color: aliceblue;
 }
+.form-button:hover{
+    background-color: #208dfa;
+    color: whitesmoke;
+}
+
+
 
 .log-button-container {
     display: flex;
@@ -337,14 +349,19 @@ label {
 }
 
 .log-button {
-    background-color: #74ffff;
+    background-color: #0071e3;
     width: 30%;
     height: 30px;
     border: none;
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #2a2a2a;
+    color: aliceblue;
+}
+
+.log-button:hover{
+    background-color: #208dfa;
+    color: whitesmoke;
 }
 
 .log-button-diff {
@@ -355,19 +372,23 @@ label {
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #47a0a0;
+    color: #0071e3;
+}
+.log-button-diff:hover{
+    background-color: #208dfa;
+    color: whitesmoke;
 }
 
 
 input::file-selector-button {
-    background-color: #74ffff;
+    background-color: #0071e3;
     width: 20%;
     height: 30px;
     border: none;
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #2a2a2a;
+    color: aliceblue;
 }
 
 
@@ -458,13 +479,20 @@ input::file-selector-button {
 }
 
 .pay-button {
-    background-color: #74ffff;
+    background-color: #0071e3;
     width: 100%;
     height: 30px;
     border: none;
     border-radius: 14px;
     letter-spacing: 1.5px;
     margin-top: 1em;
-    color: #2a2a2a;
+    color: aliceblue;
     padding: 0 1em;
 }
+.pay-button:hover{
+    background-color: #208dfa;
+    color: whitesmoke;
+}
+
+
+/* landing page */
