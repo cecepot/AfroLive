@@ -103,7 +103,8 @@ function NewListing() {
             {
                 console.log('=====hurray=========>', newEvent)
                 dispatch(thunkUserEvents(user.id))
-                navigate(`/users/${user.id}/listings`)
+                    navigate(`/users/${user.id}/listings/:listingId/tickets/new`)
+
             }
 
         }

@@ -40,7 +40,7 @@ function EditListing() {
     // const currentEvent = useSelector((state) => state.event.singleEvent)
     const currentEvent = location.state.data
 
-    // console.log(currentEvent.start_time) //14:44:00
+
     const formatTime = (time) => {
         let timeArray = time.split(':')
         let hours = +timeArray[0]
@@ -48,10 +48,7 @@ function EditListing() {
         let seconds = +timeArray[2]
         let date = new Date()
         date.setHours(hours, minutes, seconds)
-        // let newTime = date.toISOString().split("T")[1].split('.')[0]
-        // let options = {timeStyle: 'short', hour12: true}
         let newTime = date.toLocaleTimeString('en-GB', { hour: "2-digit", minute: "2-digit" }).split(' ')[0]
-        // console.log(newTime)
         return newTime
     }
 
