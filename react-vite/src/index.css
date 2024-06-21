@@ -65,6 +65,7 @@ a {
     height: 80px;
     background-color: aliceblue;
     position: relative;
+
 }
 
 .margin-left {
@@ -75,11 +76,15 @@ a {
     margin-right: 60px;
 }
 
-.nav-bar:hover .profile-dropdown {
-    display: block;
+
+/* .nav-bar:hover .profile-dropdown{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+    padding-left: 3.8em;
+    align-items: center;
     height: 80px;
-    transition: height 1s ease-in-out;
-}
+} */
 
 .ticket-icon {
     font-size: larger
