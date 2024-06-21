@@ -1,9 +1,18 @@
 .profile-dropdown {
   margin-top: 10px;
   position: absolute;
-  display: none;
+  /* display: none; */
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+  padding-left: 3.8em;
+  align-items: center;
+  height: 80px;
   background-color: aliceblue;
   width: 100%;
   z-index: 1;
-  height: 10px;
+  top: 100;
+  left: 0;
 }
+
+
