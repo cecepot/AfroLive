@@ -3,6 +3,29 @@ import { useEffect } from "react";
 import { thunkGetEvents } from "../../redux/events";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+    superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+    }
+};
+
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -21,32 +44,70 @@ function HomePage() {
 
     return (
         <>
-            <div className="upcoming-events">
+            <section className="upcoming-events">
+
+            <div className="upcoming-events-h1">
                 <h1 className="home-title">Upcoming Events</h1>
             </div>
+            <Carousel
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows
+                autoPlay
+                autoPlaySpeed={1000}
+                centerMode={false}
+                className="slider-background"
+                containerClass="container-with-dots"
+                dotListClass=""
+                draggable
+                focusOnSelect={false}
+                infinite
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={false}
+                sliderClass=""
+                slidesToSlide={2}
+                swipeable
+            >
+                {events && events.map((event) => {
+                    return (
+                        <img key={event.id} className="slider-image" src={event.image_url} alt="" />
+                    )
+                })}
+            </Carousel>
+            </section>
             <section className="home-page">
-            {events && events.map((event) => {
-                const day = event.date.split(' ')[1]
-                const month = event.date.split(' ')[2]
-                let newDate = event.date.split(" ")
-                return (
-                    <NavLink  key={event.id} to={`/events/${event.id}`}>
-                        <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
-                            <div className="day-month">
-                                <p>{day}</p>
-                                <p>{month}</p>
+                {events && events.map((event) => {
+                    const day = event.date.split(' ')[1]
+                    const month = event.date.split(' ')[2]
+                    let newDate = event.date.split(" ")
+                    return (
+                        <NavLink key={event.id} to={`/events/${event.id}`}>
+                            <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
+                                <div className="day-month">
+                                    <p>{day}</p>
+                                    <p>{month}</p>
+                                </div>
+                                <div className="event-flyer"  >
+                                    <img className="image" src={event.image_url} alt="" />
+                                </div>
+                                <div className="title-date">
+                                    <p className="event-title">{event.title}</p>
+                                    <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
+                                </div>
                             </div>
-                            <div className="event-flyer"  >
-                                <img className="image" src={event.image_url} alt="" />
-                            </div>
-                            <div className="title-date">
-                                <p className="event-title">{event.title}</p>
-                                <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
-                            </div>
-                        </div>
-                    </NavLink>
-                )
-            })}
+                        </NavLink>
+                    )
+                })}
             </section>
         </>
     )
