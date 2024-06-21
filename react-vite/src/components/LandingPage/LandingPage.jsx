@@ -2,7 +2,6 @@ import LoginFormPage from "../LoginFormPage"
 
 
 
-
 function LandingPage() {
     return (
         <section className="payment-form-background">
