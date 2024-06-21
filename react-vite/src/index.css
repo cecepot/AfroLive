@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: antiquewhite;
+    background-color: wheat;
 }
 
 .mouse {
@@ -142,17 +142,23 @@ a {
 
 
 .upcoming-events {
-    height: 14em;
+    /* height: 14em;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aliceblue;
+    background-color: aliceblue; */
+    position: relative;
 }
-
-/* .upcoming-events h1 {
-    font-size: 4em;
-    letter-spacing: 10px;
-} */
+.slider-background{
+    background-color: black;
+}
+.upcoming-events-h1 h1{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .day-month {
     background-color: aliceblue;
@@ -187,6 +193,9 @@ a {
 
 .home-page {
     margin: 4em 4em 0 4em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
 }
 
 /* event page */
@@ -205,9 +214,9 @@ a {
 
 .event-display {
     display: flex;
-    margin: 6em 0 2em 0;
-    height: 40em;
-    max-height: 40em;
+    margin: 6em auto;
+    height: 50em;
+    max-height: 50em;
 }
 
 .event-display h1 {
@@ -501,3 +510,22 @@ input::file-selector-button {
 
 
 /* landing page */
+.slider-image{
+    width:75%;
+    height:100%;
+    max-height: 400px;
+    opacity: 40%;
+}
+
+.listed-page{
+    display: flex;
+}
+
+.manage{
+    display: flex;
+    flex-direction: column;
+}
+
+.eigthy{
+    width: 200px;
+}
