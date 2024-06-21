@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@splinetool/react-spline": "^4.0.0"
+    "@splinetool/react-spline": "^4.0.0",
+    "react-multi-carousel": "^2.8.5"
   }
 }
