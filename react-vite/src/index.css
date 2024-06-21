@@ -530,3 +530,17 @@ input::file-selector-button {
 .eigthy{
     width: 200px;
 }
+
+.loading{
+    margin: auto;
+  border: 20px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 20px solid #208dfa;
+  width: 400px;
+  height: 400px;
+  animation: spinner 4s linear infinite;
+}
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
