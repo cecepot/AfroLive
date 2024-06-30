@@ -4,6 +4,43 @@ import { useEffect, useState } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import Loader from "../LoadingComponent/Loader"
 import { IoIosCard } from "react-icons/io";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { useModal } from "../../context/Modal"
+
+
+const DeleteCardModal = ({ id, cardId }) => {
+    const { closeModal } = useModal();
+    const dispatch = useDispatch();
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        await dispatch(thunkDeleteCard(id, cardId)).then(closeModal);
+        dispatch(thunkGetCards(id));
+    };
+
+    const close = (e) => {
+        e.preventDefault();
+        return closeModal();
+    };
+
+    return (
+        <div className="">
+            <h1>Confirm Delete</h1>
+            <p>Are you sure you want to delete this card?</p>
+            <div className="">
+                <button className="" onClick={handleClick}>
+                    Delete
+                </button>
+                <button className="" onClick={close}>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    );
+};
+
+
 
 
 function PaymentOptions() {
@@ -15,12 +52,6 @@ function PaymentOptions() {
     // if (isLoading) {
     //     return <Loader />;
     //   }
-    const handleDelete = (id, cardId) => {
-        if (window.confirm("You are about to delete this card")) {
-            dispatch(thunkDeleteCard(id, cardId))
-            dispatch(thunkGetCards(id))
-        }
-    }
 
     useEffect(() => {
         dispatch(thunkGetCards(id))
@@ -52,15 +83,26 @@ function PaymentOptions() {
                 <div className="cards-container">
                     {cards.length && cards.map((card) => {
                         return (
-                            <div className="side">
+                            <div className="side" key = {card.id}>
                                 <div className="payment-icon">
                                     <IoIosCard />
                                 </div>
                                 <div className="form centre" key={card.id}>
                                     <p>{card.card_company}({card.card_type})</p>
                                     <p>{card.name}</p>
+                                    <button className="form-button" onClick={e => { e.preventDefault() }}>
+                                        <OpenModalMenuItem
+
+                                            itemText={"Delete Card"}
+                                            modalComponent={
+                                                <DeleteCardModal
+                                                    id={id}
+                                                    cardId ={card.id}
+                                                />
+                                            }
+                                        />
+                                    </button>
                                     <button className="form-button" onClick={(e) => handleCurrent(e, id, card.id, card)}>Update Card</button>
-                                    <button className="form-button" onClick={e => { e.preventDefault(); handleDelete(id, card.id) }}>Delete card</button>
                                 </div>
                             </div>
                         )

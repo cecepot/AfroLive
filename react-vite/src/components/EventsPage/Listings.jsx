@@ -2,6 +2,43 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { thunkDeleteEvent, thunkUserEvents } from "../../redux/events"
 import { NavLink, useNavigate } from "react-router-dom"
+// import OpenModalButton from "../OpenModalButton/OpenModalButton"
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { useModal } from "../../context/Modal"
+
+const DeleteListingModal = ({ id }) => {
+    const { closeModal } = useModal();
+    const user = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        await dispatch(thunkDeleteEvent(id)).then(closeModal);
+        dispatch(thunkUserEvents(user.id));
+    };
+
+    const close = (e) => {
+        e.preventDefault();
+        return closeModal();
+    };
+
+    return (
+        <div className="">
+            <h1>Confirm Delete</h1>
+            <p>Are you sure you want to delete this listing?</p>
+            <div className="">
+                <button className="" onClick={handleClick}>
+                    Delete
+                </button>
+                <button className="" onClick={close}>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    );
+};
+
 
 
 function Listings() {
@@ -15,15 +52,15 @@ function Listings() {
 
     const listings = useSelector(state => state.event.userEvents)
 
-    const handleDelete = (listingId) => {
-        // e.preventDefault()
-        // console.log(e)
-
-        if (window.confirm("You are about to delete this event")) {
-            dispatch(thunkDeleteEvent(listingId))
-            // dispatch(thunkUserEvents(user.id))
-        }
-    }
+    // const handleDelete = (listingId) => {
+    //     // e.preventDefault()
+    //     // console.log(e)
+    //     return (<DeleteListingModal id = {listingId}/>)
+    //     // if (window.confirm("You are about to delete this event")) {
+    //     //     dispatch(thunkDeleteEvent(listingId))
+    //     //     // dispatch(thunkUserEvents(user.id))
+    //     // }
+    // }
 
 
     const handleNav = (e, userId, listingId, listing) => {
@@ -47,8 +84,20 @@ function Listings() {
                                 <h2>{listing.title}</h2>
                                 <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                                 <div className="manage">
-                                <button className="event-button eigthy mouse" onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button>
-                                <button className="event-button eigthy mouse" onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
+                                    <button className="event-button eigthy mouse" onClick={e => { e.preventDefault()}}>
+                                        <OpenModalMenuItem
+
+                                            itemText={"Delete Listing"}
+                                            modalComponent={
+                                                <DeleteListingModal
+                                                    id={listing.id}
+                                                />
+                                            }
+                                        />
+                                    </button>
+
+                                    {/* <button className="event-button eigthy mouse" onClick={e => { e.preventDefault(); handleDelete(listing.id) }}>Delete Listing</button> */}
+                                    <button className="event-button eigthy mouse" onClick={(e) => handleNav(e, user.id, listing.id, listing)}>Update Listing</button>
                                 </div>
                             </div>
                         </div>
