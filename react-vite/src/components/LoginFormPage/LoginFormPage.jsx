@@ -39,10 +39,6 @@ function LoginFormPage() {
   const handleLogin = (e) => {
     e.preventDefault()
     setLoading(true)
-    if (loading) {
-      console.log('heehaw!')
-      return <Loader />
-    }
     let email = 'demo@aa.io'
     let password = 'password'
     dispatch(thunkLogin({ email, password }))
@@ -54,6 +50,7 @@ function LoginFormPage() {
 
   return (
     <>
+    {loading &&  <Loader /> }
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit} className="form">
