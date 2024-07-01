@@ -24,14 +24,14 @@ const DeleteListingModal = ({ id }) => {
     };
 
     return (
-        <div className="">
+        <div className="modal-container">
             <h1>Confirm Delete</h1>
             <p>Are you sure you want to delete this listing?</p>
             <div className="">
-                <button className="" onClick={handleClick}>
+                <button className="pay-button mouse" onClick={handleClick}>
                     Delete
                 </button>
-                <button className="" onClick={close}>
+                <button className="pay-button mouse" onClick={close}>
                     Cancel
                 </button>
             </div>
@@ -84,9 +84,8 @@ function Listings() {
                                 <h2>{listing.title}</h2>
                                 <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                                 <div className="manage">
-                                    <button className="event-button eigthy mouse" onClick={e => { e.preventDefault()}}>
+                                    <button className="event-button eigthy mouse list-item" onClick={e => { e.preventDefault()}}>
                                         <OpenModalMenuItem
-
                                             itemText={"Delete Listing"}
                                             modalComponent={
                                                 <DeleteListingModal

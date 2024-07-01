@@ -25,14 +25,14 @@ const DeleteCardModal = ({ id, cardId }) => {
     };
 
     return (
-        <div className="">
+        <div className="modal-container">
             <h1>Confirm Delete</h1>
             <p>Are you sure you want to delete this card?</p>
             <div className="">
-                <button className="" onClick={handleClick}>
+                <button className="pay-button mouse" onClick={handleClick}>
                     Delete
                 </button>
-                <button className="" onClick={close}>
+                <button className="pay-button mouse" onClick={close}>
                     Cancel
                 </button>
             </div>
@@ -90,7 +90,7 @@ function PaymentOptions() {
                                 <div className="form centre" key={card.id}>
                                     <p>{card.card_company}({card.card_type})</p>
                                     <p>{card.name}</p>
-                                    <button className="form-button" onClick={e => { e.preventDefault() }}>
+                                    <button className="form-button list-item" onClick={e => { e.preventDefault() }}>
                                         <OpenModalMenuItem
 
                                             itemText={"Delete Card"}
