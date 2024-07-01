@@ -39,16 +39,18 @@ function LoginFormPage() {
   const handleLogin = (e) => {
     e.preventDefault()
     setLoading(true)
+    if (loading) {
+      console.log('heehaw!')
+      return <Loader />
+    }
     let email = 'demo@aa.io'
     let password = 'password'
     dispatch(thunkLogin({ email, password }))
-      navigate('/')
+    navigate('/')
+    // setLoading(false)
 
   }
 
-  if (loading) {
-    return <Loader />
-  }
 
   return (
     <>
