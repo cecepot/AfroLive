@@ -16,6 +16,7 @@ import AddCardForm from '../components/PaymentOptions/AddCardForm';
 import EditCardForm from '../components/PaymentOptions/EditCardForm';
 import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 import LandingPage from '../components/LandingPage/LandingPage';
+import AboutPage from '../components/HomePage/About';
 
 export const router = createBrowserRouter([
   {
@@ -126,6 +127,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <EditCardForm />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <ProtectedRoute>
+            <AboutPage />
           </ProtectedRoute>
         ),
       },

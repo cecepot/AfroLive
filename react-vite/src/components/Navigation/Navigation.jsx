@@ -20,7 +20,7 @@ function Navigation() {
         {/* <p className={"profile-dropdown"}></p> */}
       </div>
       <div>
-        <p>About</p>
+        <NavLink to ={'/about'}>About</NavLink>
         {/* <p className={"profile-dropdown"}>coming soon !</p> */}
       </div>
       <div>
