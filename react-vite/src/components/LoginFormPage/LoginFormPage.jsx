@@ -2,7 +2,8 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { NavLink} from "react-router-dom"
+import { NavLink} from "react-router-dom";
+import Loader from "../LoadingComponent/Loader";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -12,6 +13,8 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
@@ -35,12 +38,17 @@ function LoginFormPage() {
 
   const handleLogin = (e) => {
     e.preventDefault()
+    setLoading(true)
     let email = 'demo@aa.io'
     let password = 'password'
     dispatch(thunkLogin({ email, password }))
       .then(navigate('/'))
+      setLoading(false)
   }
 
+  if (loading) {
+    return <Loader />
+}
 
   return (
     <>
