@@ -2,7 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Loader from "../LoadingComponent/Loader";
 import "./LoginForm.css";
 
@@ -42,13 +42,13 @@ function LoginFormPage() {
     let email = 'demo@aa.io'
     let password = 'password'
     dispatch(thunkLogin({ email, password }))
-      .then(navigate('/'))
-     
+      navigate('/')
+
   }
 
   if (loading) {
     return <Loader />
-}
+  }
 
   return (
     <>
@@ -80,8 +80,8 @@ function LoginFormPage() {
           </label>
         </div>
         <div className="log-button-container">
-        <button type="submit" className="log-button mouse">Log In</button>
-        <button onClick={(e) => handleLogin(e)} className="log-button mouse">Login demo user</button>
+          <button type="submit" className="log-button mouse">Log In</button>
+          <button onClick={(e) => handleLogin(e)} className="log-button mouse">Login demo user</button>
         </div>
         <NavLink to={"/signup"}><button className="log-button-diff mouse">signup</button></NavLink>
       </form>
