@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { FaGithub } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io5";
-import { BsBriefcaseFill } from "react-icons/bs";
+import { BsBriefcaseFill } from "react-icons/bs"
 
 function AboutPage(){
     return (
