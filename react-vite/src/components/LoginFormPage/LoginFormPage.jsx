@@ -43,7 +43,7 @@ function LoginFormPage() {
     let password = 'password'
     dispatch(thunkLogin({ email, password }))
       .then(navigate('/'))
-      setLoading(false)
+     
   }
 
   if (loading) {
