@@ -29,7 +29,7 @@ function AddCardForm() {
         // console.log(Object.values(errors).length > 0)
 
         if (Object.values(errors).length > 0) {
-            console.log(card_number.length)
+            // console.log(card_number.length)
             setValidationErrors(errors)
             return
         }

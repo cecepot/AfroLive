@@ -62,14 +62,14 @@ export const thunkUserEvents = (id) => async dispatch => {
     }
 }
 export const thunkCreateEvent = (reqBody) => async dispatch => {
-    console.log('=========================>', reqBody)
+    // console.log('=========================>', reqBody)
     const response = await fetch(`/api/events/`, {
         method: "POST",
         body: reqBody
     });
     if (response.ok) {
         const event = await response.json();
-        console.log(event)
+        // console.log(event)
         dispatch(createEvent(event));
     } else if (response.status < 500) {
         const errorMessages = await response.json();
@@ -83,12 +83,12 @@ export const thunkUpdateEvent = (reqBody, id) => async dispatch => {
     });
     if (response.ok) {
         const event = await response.json();
-        console.log(event)
+        // console.log(event)
         dispatch(updateEvent(event));
         // return event
     } else if (response.status < 500) {
         const errorMessages = await response.json();
-        console.log(errorMessages)
+        // console.log(errorMessages)
         return errorMessages
     } else {
         console.log("There was an error making your post!")

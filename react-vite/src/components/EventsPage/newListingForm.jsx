@@ -61,7 +61,7 @@ function NewListing() {
         if (organizer_name.length > 200 || organizer_name.length < 3) { errors.organizer_name = "Uh-oh! The organizer's name cannot exceed 100 or be less than 3 characters.Please provide a valid name" }
         if (additional_notes && (additional_notes.length > 1000 || additional_notes.length < 50)) { errors.additional_notes = "Looks like you provided either more or less than the limit. Please ensure your additional notes are between 50 and 1000 characters long." }
 
-        console.log("====contact===========", +organizer_contact)
+        // console.log("====contact===========", +organizer_contact)
 
 
         if (Object.keys(errors).length > 0) {
@@ -90,7 +90,7 @@ function NewListing() {
 
         setImageLoading(true);
         for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+            // console.log(`${key}: ${value}`);
         }
 
 
@@ -101,7 +101,7 @@ function NewListing() {
             return setErrors(newEvent)
         } else {
             {
-                console.log('=====hurray=========>', newEvent)
+                // console.log('=====hurray=========>', newEvent)
                 dispatch(thunkUserEvents(user.id))
                 navigate(`/users/${user.id}/listings`)
             }

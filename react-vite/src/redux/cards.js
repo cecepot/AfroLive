@@ -34,7 +34,7 @@ export const thunkGetCards = (id) => async dispatch => {
     }
 }
 export const thunkCreateCard = (id, reqBody) => async dispatch => {
-    console.log(reqBody)
+    // console.log(reqBody)
     const response = await fetch(`/api/users/${id}/cards`, {
         method: 'POST',
         headers: {

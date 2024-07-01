@@ -41,7 +41,7 @@ function EditCardForm() {
         // console.log(card.id)
 
         if (Object.values(errors).length > 0) {
-            console.log(Object.values(errors))
+            // console.log(Object.values(errors))
             setValidationErrors(errors)
             return
         }
@@ -59,7 +59,7 @@ function EditCardForm() {
 
 
         const newCard = await dispatch(thunkUpdateCards(id, formData, cardId))
-        console.log(newCard)
+        // console.log(newCard)
         if (newCard) {
             return setErrors(newCard)
         } else {

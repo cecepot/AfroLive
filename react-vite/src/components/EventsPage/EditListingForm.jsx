@@ -85,8 +85,8 @@ function EditListing() {
         setImageURL(newImageURL);
 
     }
-    console.log('current========', currentEvent)
-    console.log('===========url=>', image_url)
+    // console.log('current========', currentEvent)
+    // console.log('===========url=>', image_url)
 
     const compareTimes = (date, start, end) => {
         const startHours = +start.split(':')[0]
@@ -147,7 +147,7 @@ function EditListing() {
         setImageLoading(true);
 
         for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+            // console.log(`${key}: ${value}`);
         }
         const updatedEvent = await dispatch(thunkUpdateEvent(formData, listingId))
         if (updatedEvent) {

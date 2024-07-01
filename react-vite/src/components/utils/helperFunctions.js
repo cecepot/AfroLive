@@ -36,7 +36,7 @@ const fullLastDayFunc = (yearsArray, monthsArray) => {
 
 const fullDateCalendar = (dateArr) => {
    for (let i = 0; i < dateArr.length; i++){
-    console.log(dateArr[i])
+    // console.log(dateArr[i])
     // let key = Object.keys(dateArr[i])
 
    }
@@ -46,4 +46,4 @@ const fullDateCalendar = (dateArr) => {
 
 
 const dateInput = (fullLastDayFunc(yearsArray, monthsArray))
-console.log(fullDateCalendar(dateInput))
+// console.log(fullDateCalendar(dateInput))
