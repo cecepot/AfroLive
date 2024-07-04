@@ -22,7 +22,9 @@
   position: absolute;
   background-color:white;
   width: 20%;
+  min-width: 500px;
   height: 20%;
+  min-height:250px ;
   display: flex;
   flex-direction: column;
   justify-content: center;
