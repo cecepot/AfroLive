@@ -23,20 +23,20 @@ function Navigation() {
         <NavLink to ={'/about'}>About</NavLink>
         {/* <p className={"profile-dropdown"}>coming soon !</p> */}
       </div>
-      <div>
-        <p>Location</p>
+      {/* <div> */}
+        {/* <p>Location</p> */}
         {/* <p className={"profile-dropdown"}>coming soon !</p> */}
-      </div>
-      <div>
+      {/* </div> */}
+      <div className="margin-right">
         <ProfileButton />
       </div>
-      <div>
-      <div className="profile-button margin-right">
-        <HiTicket className="ticket-icon"/>
-        Cart
-      </div>
+      {/* <div> */}
+      {/* <div className="profile-button margin-right"> */}
+        {/* <HiTicket className="ticket-icon"/> */}
+        {/* Cart */}
+      {/* </div> */}
       {/* <p className={"profile-dropdown"}>coming soon !</p> */}
-      </div>
+      {/* </div> */}
     </div>
     </>
   );

@@ -579,3 +579,12 @@ justify-content: center;
 gap: 1em;
 align-items: center;
 }
+
+/* calendar */
+
+.weeks{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
