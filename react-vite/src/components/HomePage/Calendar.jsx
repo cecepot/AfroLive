@@ -6,7 +6,7 @@ import { useState } from "react"
 function Calendar() {
 
     const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const daysArray = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    const daysArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     const [chosenDate, setChosenDate] = useState(new Date())
     const [chosenDay, setChosenDay] = useState(new Date())
 
@@ -49,8 +49,32 @@ function Calendar() {
         }
         return dayArr
     }
-    const daysArr= displayDays(chosenDate)
-    console.log(displayDays(chosenDate))
+
+    const inputArray = displayDays(chosenDate)
+
+    const daysArr = (array) => {
+        // console.log(array)
+
+        let res = []
+        let first = array[0].getDay()
+        if (first !== 0){
+            console.log(true)
+            for (let i = 0; i < first; i ++){
+                res.push(<p></p>)
+            }
+        }
+        // console.log(res)
+
+        // console.log(array[0].getDay())
+
+        for (let i = 0; i < array.length; i++){
+            res.push(<p>{array[i].getDate()}</p>)
+        }
+        return res
+    }
+
+    const finalDaysArr = daysArr(inputArray)
+    // console.log(daysArr(inputArray))
 
 
     return (
@@ -66,15 +90,8 @@ function Calendar() {
                         <p>{days}</p>
                     )
                 })}
+                {finalDaysArr.map((days) => days)}
                 </div>
-                {daysArr.map((days) => {
-                    let day = days.getDate()
-                    return (
-                        <>
-                        <p>{day}</p>
-                        </>
-                    )
-                })}
                 <p></p>
             </div>
         </>

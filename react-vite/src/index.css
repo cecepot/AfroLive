@@ -584,7 +584,9 @@ align-items: center;
 
 .weeks{
     width: 80%;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: space-around;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
 }
