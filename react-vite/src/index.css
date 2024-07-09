@@ -128,16 +128,16 @@ a {
     animation: move 5s linear infinite;
 }
 
-.click {
+/* .click {
     background: linear-gradient(to right, yellow, orange, red);
     background-size: 200%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: move 5s linear infinite;
-}
+} */
 
-@keyframes move {
+/* @keyframes move {
     0% {
         background-position: 0% 50%;
     }
@@ -149,15 +149,16 @@ a {
     100% {
         background-position: 0% 50%;
     }
+} */
+
+.click {
+color: #4B4B4B;
+font-size: 2em;
+font-weight: bold;
 }
 
 .click:hover {
-    font-weight: bold;
-    background: linear-gradient(gray, black);
-    ;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  color: #1D1D1F;
 }
 
 

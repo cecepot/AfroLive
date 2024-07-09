@@ -6,7 +6,7 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom";
-
+import { MdEmail } from "react-icons/md";
 
 
 function ProfileButton() {
@@ -54,8 +54,11 @@ function ProfileButton() {
         <div className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <p>{user.username}</p>
+              <p>Welcome to AfroLive, {user.username}</p>
+              <div className="mail-side">
+              <MdEmail/>
               <p>{user.email}</p>
+              </div>
               <NavLink onClick={toggleMenu} className={"click"} to={`/users/${user.id}`}>Profile Page</NavLink>
               <p>
                 <div className="mouse click" onClick={logout}>Log Out</div>

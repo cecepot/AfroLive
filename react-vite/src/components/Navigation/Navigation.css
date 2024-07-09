@@ -3,17 +3,26 @@
   position: absolute;
   /* display: none; */
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   gap: 1em;
   padding-left: 3.8em;
   align-items: center;
-  height: 80px;
+  height: 40vh;
   width: 100%;
   z-index: 1;
   top: 100;
   left: 0;
+  background-color: white;
 }
 
-.profile-dropdown > p{
+
+.mail-side{
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.profile-dropdown > p, div > p{
   color: #4B4B4B;
 }

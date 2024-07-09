@@ -11,7 +11,7 @@ const currentUser = useSelector((state) => state.session.user)
         <section className="payment-form-background profile-icons-container">
         {/* <h1 className="margin-top">User Profile Page</h1> */}
         <NavLink className="real-container" to={`/users/${currentUser.id}/listings`}><div className="profile-page-icons">< IoNewspaperOutline /></div><span className="icon-tooltip">My Listings</span></NavLink>
-        <div className="real-container" ><div className="icon-coming-soon"><HiTicket/></div><span className="icon-tooltip">coming soon!</span></div>
+        {/* <div className="real-container" ><div className="icon-coming-soon"><HiTicket/></div><span className="icon-tooltip">coming soon!</span></div> */}
         <NavLink className="real-container" to={`/users/${currentUser.id}/cards`}><div className="profile-page-icons"><IoIosCard /></div><span className="icon-tooltip">Payment Options</span></NavLink>
         </section>
     )
