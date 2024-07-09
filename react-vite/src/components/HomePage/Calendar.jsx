@@ -4,6 +4,7 @@ import { GrNext } from "react-icons/gr";
 import { useSelector } from "react-redux";
 import { FaLocationDot } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { FaClock } from "react-icons/fa";
 
 function Calendar() {
 
@@ -12,7 +13,7 @@ function Calendar() {
     const [chosenDate, setChosenDate] = useState(new Date())
     const events = useSelector(state => state.event.events)
     const navigate = useNavigate()
-    
+
     const handleNav = (e, eventId, event) => {
         e.preventDefault()
         navigate(`/events/${eventId}`, { state: { data: event } })
@@ -116,12 +117,14 @@ function Calendar() {
                                     const currDay = array[i].getDate()
                                     console.log(event)
                                     if (month == currMonth && currentYear == year && currDay == day) {
+                                        const start = event.start_time.toLocaleString().slice(0, 5)
                                         return (
                                             <div className="mouse cal-event-sub" onClick={(e) => handleNav(e, event.id, event)}>
                                                 <img className="cal-image" src={event.image_url} alt="" />
-                                                <div>
-                                                <p className="cal-event-title">{event.title}</p>
-                                                <span className="cal-side"><FaLocationDot /> <p> {event.venue}</p></span>
+                                                <div className="cal-event-lower">
+                                                    <p className="cal-event-title">{event.title}</p>
+                                                    <span className="cal-side"><FaLocationDot /> <p> {event.venue}</p></span>
+                                                    <p className="cal-side"><FaClock />{start} GMT</p>
                                                 </div>
                                             </div>
                                         )

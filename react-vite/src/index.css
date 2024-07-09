@@ -707,11 +707,31 @@ input::file-selector-button {
 .cal-image{
     width: 60px;
     height: 70px;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
 }
 
 .cal-event-sub{
+    position: relative;
     margin: 1em 0;
     display: flex;
     gap: 1em;
+    width: 96%;
+    background-color: #eaf0f633;
+    border-top-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    border-bottom-left-radius: 2em;
+}
+
+.cal-side{
     width: 100%;
+    display: flex;
+    gap: 0.2em;
+}
+
+.cal-event-lower{
+align-self: center;
+display: flex;
+flex-direction: column;
+gap: 0.2em;
 }
