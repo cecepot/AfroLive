@@ -23,7 +23,7 @@ function HomePage() {
 
     return (
         <>
-           <div className="upcoming"></div>
+           <div className="upcoming"><p>Upcoming Events</p></div>
             <Calendar/>
             <section className="home-page">
                 {events && events.map((event) => {

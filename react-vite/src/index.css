@@ -105,6 +105,15 @@ a {
     height: 30em;
     margin-top: 2em;
     background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.upcoming > p {
+    color: white;
+    font-size: 8em;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
 }
 
 .home-title {
