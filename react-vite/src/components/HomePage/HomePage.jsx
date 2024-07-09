@@ -23,32 +23,8 @@ function HomePage() {
 
     return (
         <>
-           <div className="upcoming"><p>Upcoming Events</p></div>
-            <Calendar/>
-            {/* <section className="home-page">
-                {events && events.map((event) => {
-                    const day = event.date.split(' ')[1]
-                    const month = event.date.split(' ')[2]
-                    let newDate = event.date.split(" ")
-                    return (
-                        <NavLink key={event.id} to={`/events/${event.id}`}>
-                            <div className="events-container" onClick={(e) => handleNav(e, event.id, event)} key={event.id}>
-                                <div className="day-month">
-                                    <p>{day}</p>
-                                    <p>{month}</p>
-                                </div>
-                                <div className="event-flyer"  >
-                                    <img className="image" src={event.image_url} alt="" />
-                                </div>
-                                <div className="title-date">
-                                    <p className="event-title">{event.title}</p>
-                                    <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
-                                </div>
-                            </div>
-                        </NavLink>
-                    )
-                })}
-            </section> */}
+            <div className="upcoming"><p>Upcoming Events</p></div>
+            <Calendar />
         </>
     )
 }
