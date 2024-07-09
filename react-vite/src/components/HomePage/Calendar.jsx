@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { useSelector } from "react-redux";
 
 
 function Calendar() {
@@ -8,7 +9,9 @@ function Calendar() {
     const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const daysArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     const [chosenDate, setChosenDate] = useState(new Date())
-    const [chosenDay, setChosenDay] = useState(new Date())
+    const events = useSelector(state => state.event.events)
+
+
 
     const nextMonth = (date) => {
         const nextM = date.getMonth() + 1
@@ -66,21 +69,38 @@ function Calendar() {
 
 
         for (let i = 0; i < array.length; i++) {
-            res.push(<p className="cal-days">{array[i].getDate()}</p>)
+            res.push(
+                <div className="cal-days mouse">
+                    <p>{array[i].getDate()}</p>
+                    <div className="cal-events">
+                        {events.map((event) =>{
+                            const day = event.date.split(' ')[1]
+                            const month = event.date.split(' ')[2]
+                            const year = event.date.split(' ')[3]
+                            const monthIndx = array[i].getMonth()
+                            const currMonth = monthsArray[monthIndx].slice(0, 3)
+                            const currentYear = array[i].getFullYear()
+                            const currDay = array[i].getDate()
+                            if(month == currMonth && currentYear == year && currDay == day){
+                                return <p>~ {event.title}</p>
+                            }
+                        })}
+                    </div>
+                </div>
+            )
         }
 
         let resLength = res.length
 
-        if(resLength <= 35){
-            for(let i = resLength; i < 35; i ++){
+        if (resLength <= 35) {
+            for (let i = resLength; i < 35; i++) {
                 res.push(<p className="cal-days"></p>)
             }
-        } else{
-            for(let i = resLength; i < 42; i ++){
+        } else {
+            for (let i = resLength; i < 42; i++) {
                 res.push(<p className="cal-days"></p>)
             }
         }
-
         return res
     }
 
