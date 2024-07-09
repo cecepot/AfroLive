@@ -2,7 +2,8 @@ import { useState } from "react"
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { useSelector } from "react-redux";
-
+import { FaLocationDot } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 function Calendar() {
 
@@ -10,8 +11,12 @@ function Calendar() {
     const daysArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     const [chosenDate, setChosenDate] = useState(new Date())
     const events = useSelector(state => state.event.events)
-
-
+    const navigate = useNavigate()
+    
+    const handleNav = (e, eventId, event) => {
+        e.preventDefault()
+        navigate(`/events/${eventId}`, { state: { data: event } })
+    }
 
     const nextMonth = (date) => {
         const nextM = date.getMonth() + 1
@@ -66,7 +71,7 @@ function Calendar() {
                 res.push(
                     <section className="flip-container">
                         <div className="flip-sub-container">
-                            <div className="cal-days mouse">
+                            <div className="cal-days ">
                             </div>
                             <div className="cal-days-back">
 
@@ -82,7 +87,7 @@ function Calendar() {
             res.push(
                 <section className="flip-container">
                     <div className="flip-sub-container">
-                        <div className="cal-days mouse">
+                        <div className="cal-days">
                             <p>{array[i].getDate()}</p>
                             <div className="cal-events">
                                 {events.map((event) => {
@@ -100,7 +105,29 @@ function Calendar() {
                             </div>
                         </div>
                         <div className="cal-days-back">
-
+                            <div className="cal-events">
+                                {events.map((event) => {
+                                    const day = event.date.split(' ')[1]
+                                    const month = event.date.split(' ')[2]
+                                    const year = event.date.split(' ')[3]
+                                    const monthIndx = array[i].getMonth()
+                                    const currMonth = monthsArray[monthIndx].slice(0, 3)
+                                    const currentYear = array[i].getFullYear()
+                                    const currDay = array[i].getDate()
+                                    console.log(event)
+                                    if (month == currMonth && currentYear == year && currDay == day) {
+                                        return (
+                                            <div className="mouse cal-event-sub" onClick={(e) => handleNav(e, event.id, event)}>
+                                                <img className="cal-image" src={event.image_url} alt="" />
+                                                <div>
+                                                <p className="cal-event-title">{event.title}</p>
+                                                <span className="cal-side"><FaLocationDot /> <p> {event.venue}</p></span>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -114,7 +141,7 @@ function Calendar() {
                 res.push(
                     <section className="flip-container">
                         <div className="flip-sub-container">
-                            <div className="cal-days mouse">
+                            <div className="cal-days ">
                             </div>
                             <div className="cal-days-back">
 
@@ -128,7 +155,7 @@ function Calendar() {
                 res.push(
                     <section className="flip-container">
                         <div className="flip-sub-container">
-                            <div className="cal-days mouse">
+                            <div className="cal-days ">
                             </div>
                             <div className="cal-days-back">
 
