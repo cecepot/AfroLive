@@ -6,10 +6,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-    background-color: wheat;
-}
-
 .mouse {
     cursor: pointer;
 }
@@ -195,10 +191,11 @@ a {
 }
 
 .home-page {
-    margin: 4em 4em 0 4em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    width: 90%;
+    margin: 4em auto;
+    display: flex;
+    flex-direction: column;
+
 }
 
 /* event page */
@@ -583,10 +580,46 @@ align-items: center;
 /* calendar */
 
 .weeks{
-    width: 80%;
+    height: 70em;
+    width: 90%;
     display: grid;
     align-items: center;
-    justify-content: space-around;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: auto;
+}
+
+.weekNames {
+text-align: center;
+}
+
+.cal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}
+.cal-container{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1em;
+}
+.cal-title{
+    text-align: center;
+    font-size: 6em;
+    margin-bottom: 0.5em;
+}
+
+.cal-days{
+    border: 6px solid white;
+    height: 100%;
+    text-align: right;
+    padding: 0.4em;
+    border-bottom: none;
+    border-right: none;
+    background-color: rgba(128, 128, 128, 0.089);
+}
+
+.cal-component{
+    margin-top: 6em;
 }

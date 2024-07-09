@@ -1,6 +1,6 @@
 import { useState } from "react"
-
-
+import { GrPrevious } from "react-icons/gr";
+import { GrNext } from "react-icons/gr";
 
 
 function Calendar() {
@@ -53,48 +53,61 @@ function Calendar() {
     const inputArray = displayDays(chosenDate)
 
     const daysArr = (array) => {
-        // console.log(array)
+
 
         let res = []
         let first = array[0].getDay()
-        if (first !== 0){
-            console.log(true)
-            for (let i = 0; i < first; i ++){
-                res.push(<p></p>)
+        if (first !== 0) {
+
+            for (let i = 0; i < first; i++) {
+                res.push(<p className="cal-days"></p>)
             }
         }
-        // console.log(res)
 
-        // console.log(array[0].getDay())
 
-        for (let i = 0; i < array.length; i++){
-            res.push(<p>{array[i].getDate()}</p>)
+        for (let i = 0; i < array.length; i++) {
+            res.push(<p className="cal-days">{array[i].getDate()}</p>)
         }
+
+        let resLength = res.length
+
+        if(resLength <= 35){
+            for(let i = resLength; i < 35; i ++){
+                res.push(<p className="cal-days"></p>)
+            }
+        } else{
+            for(let i = resLength; i < 42; i ++){
+                res.push(<p className="cal-days"></p>)
+            }
+        }
+
         return res
     }
 
     const finalDaysArr = daysArr(inputArray)
-    // console.log(daysArr(inputArray))
+
 
 
     return (
-        <>
-            <h2>Hello, Calendar</h2>
-            <div>
-                <button onClick={() => prevMonth(chosenDate)}>prev</button>
-                <h2>{chosenDate.toLocaleString([], { month: 'long', year: 'numeric' })}</h2>
-                <button onClick={() => nextMonth(chosenDate)}>next</button>
+        <section className="cal-component">
+            <h2 className="cal-title">Calendar</h2>
+            <div className="cal-container">
+                <div className="cal-header">
+                    <div className="mouse" onClick={() => prevMonth(chosenDate)}><GrPrevious /></div>
+                    <h2>{chosenDate.toLocaleString([], { month: 'long', year: 'numeric' })}</h2>
+                    <div className="mouse" onClick={() => nextMonth(chosenDate)}><GrNext /></div>
+                </div>
                 <div className="weeks">
-                {daysArray.map((days) => {
-                    return (
-                        <p>{days}</p>
-                    )
-                })}
-                {finalDaysArr.map((days) => days)}
+                    {daysArray.map((days) => {
+                        return (
+                            <p className="weekNames">{days}</p>
+                        )
+                    })}
+                    {finalDaysArr.map((days) => days)}
                 </div>
                 <p></p>
             </div>
-        </>
+        </section>
     )
 }
 
