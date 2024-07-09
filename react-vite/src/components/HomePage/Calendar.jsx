@@ -63,30 +63,47 @@ function Calendar() {
         if (first !== 0) {
 
             for (let i = 0; i < first; i++) {
-                res.push(<p className="cal-days"></p>)
+                res.push(
+                    <section className="flip-container">
+                        <div className="flip-sub-container">
+                            <div className="cal-days mouse">
+                            </div>
+                            <div className="cal-days-back">
+
+                            </div>
+                        </div>
+                    </section>
+                )
             }
         }
 
 
         for (let i = 0; i < array.length; i++) {
             res.push(
-                <div className="cal-days mouse">
-                    <p>{array[i].getDate()}</p>
-                    <div className="cal-events">
-                        {events.map((event) =>{
-                            const day = event.date.split(' ')[1]
-                            const month = event.date.split(' ')[2]
-                            const year = event.date.split(' ')[3]
-                            const monthIndx = array[i].getMonth()
-                            const currMonth = monthsArray[monthIndx].slice(0, 3)
-                            const currentYear = array[i].getFullYear()
-                            const currDay = array[i].getDate()
-                            if(month == currMonth && currentYear == year && currDay == day){
-                                return <p>~ {event.title}</p>
-                            }
-                        })}
+                <section className="flip-container">
+                    <div className="flip-sub-container">
+                        <div className="cal-days mouse">
+                            <p>{array[i].getDate()}</p>
+                            <div className="cal-events">
+                                {events.map((event) => {
+                                    const day = event.date.split(' ')[1]
+                                    const month = event.date.split(' ')[2]
+                                    const year = event.date.split(' ')[3]
+                                    const monthIndx = array[i].getMonth()
+                                    const currMonth = monthsArray[monthIndx].slice(0, 3)
+                                    const currentYear = array[i].getFullYear()
+                                    const currDay = array[i].getDate()
+                                    if (month == currMonth && currentYear == year && currDay == day) {
+                                        return (<p className="cal-event-title">~ {event.title}</p>)
+                                    }
+                                })}
+                            </div>
+                        </div>
+                        <div className="cal-days-back">
+
+                        </div>
                     </div>
-                </div>
+                </section>
             )
         }
 
@@ -94,11 +111,31 @@ function Calendar() {
 
         if (resLength <= 35) {
             for (let i = resLength; i < 35; i++) {
-                res.push(<p className="cal-days"></p>)
+                res.push(
+                    <section className="flip-container">
+                        <div className="flip-sub-container">
+                            <div className="cal-days mouse">
+                            </div>
+                            <div className="cal-days-back">
+
+                            </div>
+                        </div>
+                    </section>
+                )
             }
         } else {
             for (let i = resLength; i < 42; i++) {
-                res.push(<p className="cal-days"></p>)
+                res.push(
+                    <section className="flip-container">
+                        <div className="flip-sub-container">
+                            <div className="cal-days mouse">
+                            </div>
+                            <div className="cal-days-back">
+
+                            </div>
+                        </div>
+                    </section>
+                )
             }
         }
         return res
