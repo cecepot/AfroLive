@@ -697,6 +697,10 @@ input::file-selector-button {
     border-bottom-left-radius: 2em;
 }
 
+.cal-event-sub:hover{
+    background-color: #eaf0f687;
+}
+
 .cal-side{
     width: 100%;
     display: flex;
