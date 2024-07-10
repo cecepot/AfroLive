@@ -70,8 +70,8 @@ function Listings() {
 
     return (
 
-        <section className="event-top event-background">
-            <h1 className="form-title">Your listed events</h1>
+        <section className="listing-container">
+            <h1 className="listing-title">Your listed events</h1>
             {listings && listings.map(listing => {
                 let newDate = listing.date.split(" ")
                 return (
