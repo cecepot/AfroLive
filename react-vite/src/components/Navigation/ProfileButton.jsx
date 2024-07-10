@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useReducer} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
@@ -9,15 +9,20 @@ import { NavLink } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 
 
+
+
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [blur, setBlur] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
+    setBlur(!blur)
+
   };
 
   useEffect(() => {
@@ -51,6 +56,7 @@ function ProfileButton() {
         Account
       </div>
       {showMenu && (
+        <>
         <div className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
@@ -78,7 +84,9 @@ function ProfileButton() {
               />
             </>
           )}
-        </div>)}
+        </div>
+        </>
+      )}
 
     </>
   );

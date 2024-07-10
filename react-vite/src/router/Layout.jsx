@@ -5,9 +5,13 @@ import { ModalProvider, Modal } from "../context/Modal";
 import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
 
+
+
 export default function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
+
   useEffect(() => {
     dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -15,8 +19,10 @@ export default function Layout() {
   return (
     <>
       <ModalProvider>
-        <Navigation />
-        {isLoaded && <Outlet />}
+          <Navigation/>
+        {isLoaded &&
+          <Outlet/>
+        }
         <Modal />
       </ModalProvider>
     </>

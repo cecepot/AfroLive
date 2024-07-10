@@ -5,11 +5,12 @@ import { HiTicket } from "react-icons/hi2";
 
 
 
+
 function Navigation() {
 
   const location = useLocation();
-  const showProfileButton = location.pathname !== "/landing" && location.pathname !== "/signup";
 
+  const showProfileButton = location.pathname !== "/landing" && location.pathname !== "/signup";
 
   return (
     showProfileButton &&
