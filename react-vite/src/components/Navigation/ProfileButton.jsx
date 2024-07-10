@@ -17,6 +17,7 @@ function ProfileButton() {
   const [blur, setBlur] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const [profileClass, setProfileClass] = useState('')
 
   // const toggleMenu = (e) => {
   //   e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
