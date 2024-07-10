@@ -17,11 +17,11 @@ function Navigation() {
     <>
     <div className="nav-bar">
       <div>
-        <NavLink to="/" className={"margin-left"}>Home</NavLink>
+        <NavLink to="/" className="margin-left nav-hover">Home</NavLink>
         {/* <p className={"profile-dropdown"}></p> */}
       </div>
       <div>
-        <NavLink to ={'/about'}>About</NavLink>
+        <NavLink to ={'/about'} className="nav-hover">About</NavLink>
         {/* <p className={"profile-dropdown"}>coming soon !</p> */}
       </div>
       {/* <div> */}

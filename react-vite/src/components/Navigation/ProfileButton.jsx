@@ -78,7 +78,7 @@ function ProfileButton() {
 
   return (
     <>
-      <div className="profile-button mouse" onMouseEnter={toggleMenu}>
+      <div className="profile-button mouse nav-hover" onMouseEnter={toggleMenu}>
         <FaUserCircle />
 
         Account
