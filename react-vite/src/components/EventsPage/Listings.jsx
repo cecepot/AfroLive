@@ -83,8 +83,8 @@ function Listings() {
                                     <img className="image" src={listing.image_url} alt="" />
                                 </div>
                                 <div className="listing-back">
-                                    <h2>{listing.title}</h2>
-                                    <p>{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
+                                    <h2 className="white">{listing.title}</h2>
+                                    <p className="white">{newDate[0]} {newDate[1]} {newDate[2]} {newDate[3]}</p>
                                     <div className="manage">
                                         <button className="event-button eigthy mouse list-item" onClick={e => { e.preventDefault() }}>
                                             <OpenModalMenuItem
