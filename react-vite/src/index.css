@@ -829,3 +829,93 @@ input::file-selector-button {
     flex-direction: column;
     gap: 0.2em;
 }
+
+/* payment-options */
+.card-title {
+    text-align: center;
+    font-size: 6em;
+    margin-bottom: 2%;
+}
+
+.card-main-container {
+    width: 40vw;
+    height: 40vh;
+    perspective: 3000px;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.card-grid{
+    white-space: nowrap;
+    width: 100%;
+    height: 50vh;
+    overflow-x: auto;
+}
+
+
+.card-sub-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    border-radius: 1.5em;
+    box-shadow: 2em 2em 4em rgba(65, 72, 84, 0.373);
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: absolute;
+    backface-visibility: hidden;
+
+}
+
+.card-front{
+    background: linear-gradient(-45deg, #ff9c56, #ffd27e, #ffda6c, #ff4171);
+}
+
+.card-back {
+    background-color: black;
+    transform: rotateY(180deg);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    gap: 2em;
+
+}
+
+.card-main-container:hover .card-sub-container {
+    transform: rotateY(180deg);
+    box-shadow: 2em 2em 4em rgba(65, 72, 84, 0.373);
+}
+
+.card-grand-container{
+    margin: 1em 4em;
+    text-align: center;
+}
+
+.card-button{
+    width: 20vw;
+    border: none;
+    border-radius: 14px;
+    letter-spacing: 1.5px;
+    margin-top: 1em;
+    color: aliceblue;
+    padding: 0 1em;
+    height: 30px;
+    background-color: #0071e3;
+}
+
+.card-button:hover {
+    background-color: #208dfa;
+    color: whitesmoke;
+}
+
+.card-name{
+    font-size: 2em;
+}
