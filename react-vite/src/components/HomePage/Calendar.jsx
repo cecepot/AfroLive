@@ -115,7 +115,6 @@ function Calendar() {
                                     const currMonth = monthsArray[monthIndx].slice(0, 3)
                                     const currentYear = array[i].getFullYear()
                                     const currDay = array[i].getDate()
-                                    console.log(event)
                                     if (month == currMonth && currentYear == year && currDay == day) {
                                         const start = event.start_time.toLocaleString().slice(0, 5)
                                         return (
@@ -176,6 +175,7 @@ function Calendar() {
 
 
     return (
+        <>
         <section className="cal-component">
             <h2 className="cal-title">Calendar</h2>
             <div className="cal-container">
@@ -187,7 +187,7 @@ function Calendar() {
                 <div className="weeks">
                     {daysArray.map((days) => {
                         return (
-                            <p className="weekNames">{days}</p>
+                            <p key={days.id} className="weekNames">{days}</p>
                         )
                     })}
                     {finalDaysArr.map((days) => days)}
@@ -195,6 +195,7 @@ function Calendar() {
                 <p></p>
             </div>
         </section>
+        </>
     )
 }
 

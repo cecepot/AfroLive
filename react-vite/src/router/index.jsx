@@ -18,19 +18,24 @@ import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 import LandingPage from '../components/LandingPage/LandingPage';
 import AboutPage from '../components/HomePage/About';
 
+
+
+
+
+
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: "/landing",
-        element: <LandingPage/>,
+        element: <LandingPage />,
       },
       {
         path: "/",
         element: (
           <ProtectedRoute>
-            <HomePage />
+              <HomePage />
           </ProtectedRoute>
         ),
       },
