@@ -36,21 +36,27 @@ function LoginFormPage() {
   };
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     setLoading(true)
     let email = 'demo@aa.io'
     let password = 'password'
-    dispatch(thunkLogin({ email, password }))
-    navigate('/')
-    // setLoading(false)
+    const demoUser = await dispatch(thunkLogin({ email, password }))
+    if (demoUser){
+      setLoading(false)
+      setErrors(demoUser)
+    }else{
+      navigate('/')
+    }
 
   }
 
+  if (loading) {
+    return <Loader />
+}
 
   return (
     <>
-    {loading &&  <Loader /> }
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit} className="form">
@@ -84,7 +90,6 @@ function LoginFormPage() {
         </div>
         <NavLink to={"/signup"}><button className="log-button-diff mouse">signup</button></NavLink>
       </form>
-
     </>
   );
 }
