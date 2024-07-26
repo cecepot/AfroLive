@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useEffect } from "react";
 import { thunkCurrentEvent } from "../../redux/events";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { FaFill, FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa6";
 
 function EventPage() {
