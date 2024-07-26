@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { thunkCurrentEvent, thunkUpdateEvent, thunkUserEvents } from "../../redux/events"
+import {thunkUpdateEvent, thunkUserEvents } from "../../redux/events"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import Loader from "../LoadingComponent/Loader";
 
@@ -146,9 +146,6 @@ function EditListing() {
 
         setImageLoading(true);
 
-        for (const [key, value] of formData.entries()) {
-            // console.log(`${key}: ${value}`);
-        }
         const updatedEvent = await dispatch(thunkUpdateEvent(formData, listingId))
         if (updatedEvent) {
             setImageLoading(false)
