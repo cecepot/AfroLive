@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useReducer} from "react";
+import { useState, useEffect, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
@@ -17,7 +17,6 @@ function ProfileButton() {
   const [blur, setBlur] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
-  const [profileClass, setProfileClass] = useState('')
 
   // const toggleMenu = (e) => {
   //   e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
