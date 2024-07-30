@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { thunkUpdateCards, thunkGetCards } from "../../redux/cards";
 
@@ -8,7 +8,6 @@ import { thunkUpdateCards, thunkGetCards } from "../../redux/cards";
 function EditCardForm() {
     const [name, setName] = useState("")
     const [owner_name, setOwner_name] = useState("")
-    const [card_number, setCard_number] = useState("")
     const [expiration_date, setExpiration_date] = useState("")
     const [cvv, setCvv] = useState("")
     const [billing_address, setBilling_address] = useState("")

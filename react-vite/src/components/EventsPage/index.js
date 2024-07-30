@@ -1,3 +1,1 @@
-import EventPage from "./EventPage";
-
 

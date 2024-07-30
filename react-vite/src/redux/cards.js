@@ -2,7 +2,7 @@ const GET_CARDS = 'cards/getall'
 const CREATE_CARD = 'cards/new'
 const UPDATE_CARD = 'cards/update'
 const GET_CURRENT_CARD = 'cards/current'
-const DELETE_CARD = 'card/delete'
+// const DELETE_CARD = 'card/delete'
 
 const getCards = (cards) => ({
     type: GET_CARDS,

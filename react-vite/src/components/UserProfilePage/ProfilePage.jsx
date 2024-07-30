@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { BsFillCreditCard2BackFill } from "react-icons/bs";
 import { FaRectangleList } from "react-icons/fa6";
-import { HiTicket } from "react-icons/hi2";
+
 
 function ProfilePage(){
 const currentUser = useSelector((state) => state.session.user)
