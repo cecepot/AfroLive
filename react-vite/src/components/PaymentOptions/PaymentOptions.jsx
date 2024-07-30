@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { thunkDeleteCard, thunkGetCards, thunkGetCurrentCard } from "../../redux/cards"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { IoIosCard } from "react-icons/io";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
