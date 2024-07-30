@@ -100,7 +100,7 @@ function Calendar() {
                                     const currentYear = array[i].getFullYear()
                                     const currDay = array[i].getDate()
                                     if (month == currMonth && currentYear == year && currDay == day) {
-                                        return (<p className="cal-event-title">~ {event.title}</p>)
+                                        return (<p key={event.id} className="cal-event-title">~ {event.title}</p>)
                                     }
                                 })}
                             </div>
@@ -118,7 +118,7 @@ function Calendar() {
                                     if (month == currMonth && currentYear == year && currDay == day) {
                                         const start = event.start_time.toLocaleString().slice(0, 5)
                                         return (
-                                            <div className="mouse cal-event-sub" onClick={(e) => handleNav(e, event.id, event)}>
+                                            <div key={event.id} className="mouse cal-event-sub" onClick={(e) => handleNav(e, event.id, event)}>
                                                 <img className="cal-image" src={event.image_url} alt="" />
                                                 <div className="cal-event-lower">
                                                     <p className="cal-event-title">{event.title}</p>

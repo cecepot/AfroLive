@@ -89,10 +89,7 @@ function NewListing() {
         formData.append("additional_notes", additional_notes);
 
         setImageLoading(true);
-        for (const [key, value] of formData.entries()) {
-            // console.log(`${key}: ${value}`);
-        }
-
+    
 
         const newEvent = await dispatch(thunkCreateEvent(formData));
         // history.push("/images");
