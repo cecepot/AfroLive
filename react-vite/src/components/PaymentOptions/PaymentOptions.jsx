@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { thunkDeleteCard, thunkGetCards, thunkGetCurrentCard } from "../../redux/cards"
 import { useEffect, useState } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
-import Loader from "../LoadingComponent/Loader"
 import { IoIosCard } from "react-icons/io";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useModal } from "../../context/Modal"
@@ -47,7 +46,6 @@ function PaymentOptions() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(true);
 
     // if (isLoading) {
     //     return <Loader />;
