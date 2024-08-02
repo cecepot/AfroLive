@@ -637,6 +637,23 @@ input::file-selector-button {
 
 
 /* landing page */
+.landing-image{
+    width: 70%;
+    height: 30%;
+}
+.landing-container{
+    background-image: url("https://res.cloudinary.com/dv9oyy79u/image/upload/v1722557204/kente1_vv5c2c.jpg");
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+.background-screen{
+    background-color: rgba(0, 0, 0, 0.71);
+    width: 100vw;
+    height: 100vh;
+}
+
 .slider-image {
     width: 75%;
     height: 100%;
