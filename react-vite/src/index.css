@@ -462,7 +462,7 @@ label {
 
 .log-button-container {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .log-button {
@@ -678,8 +678,14 @@ input::file-selector-button {
 }
 
 .landing-white{
-    color: rgba(245, 245, 245, 0.884);
+    color: rgba(245, 245, 245, 0.636);
+    font-size: 1em;
+    font-family: "Cagliostro", sans-serif;
 }
+.landing-input{
+    height: 2em;
+}
+
 
 .afrolive{
     color: #EAF0F6;
