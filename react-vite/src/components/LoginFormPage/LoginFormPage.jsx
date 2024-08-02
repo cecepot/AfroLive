@@ -62,8 +62,8 @@ function LoginFormPage() {
       <form onSubmit={handleSubmit} className="form">
         <div>
           <p className="error">{errors.email && errors.email}</p>
-          <label>
-            Email
+          <label className="landing-white">
+            Email :
             <input
               type="text"
               value={email}
@@ -74,8 +74,8 @@ function LoginFormPage() {
         </div>
         <div>
           <p className="error">{errors.password && errors.password}</p>
-          <label>
-            Password
+          <label className="landing-white">
+            Password :
             <input
               type="password"
               value={password}
