@@ -670,6 +670,13 @@ input::file-selector-button {
     width: 100vw;
     height: 100vh;
 }
+.landing-form{
+    background-color: rgba(0, 0, 0, 0.782);
+    width: 30vw;
+    padding: 2em;
+    border-radius: 1em;
+}
+
 .landing-white{
     color: rgba(245, 245, 245, 0.884);
 }

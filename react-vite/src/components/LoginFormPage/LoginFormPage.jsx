@@ -59,7 +59,7 @@ function LoginFormPage() {
     <>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit} className="form landing-form">
         <div>
           <p className="error">{errors.email && errors.email}</p>
           <label className="landing-white">
