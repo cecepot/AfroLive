@@ -637,6 +637,58 @@ input::file-selector-button {
 
 
 /* landing page */
+.landing-form-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cagliostro-regular {
+    font-family: "Cagliostro", sans-serif;
+    font-weight: 2000;
+    font-style: normal;
+  }
+
+
+.lobster-two-bold {
+    font-family: "Lobster Two", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+
+
+.landing-image{
+    width: 70%;
+    height: 30%;
+}
+.landing-container{
+    background-image: url("https://res.cloudinary.com/dv9oyy79u/image/upload/v1722557204/kente1_vv5c2c.jpg");
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+.landing-white{
+    color: rgba(245, 245, 245, 0.884);
+}
+
+.afrolive{
+    color: #EAF0F6;
+    text-align: center;
+    font-size: 12em;
+}
+.background-screen{
+    background-color: rgba(0, 0, 0, 0.71);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .slider-image {
     width: 75%;
     height: 100%;

@@ -6,12 +6,15 @@ import LoginFormPage from "../LoginFormPage"
 function LandingPage() {
     return (
 
-        <div className="payment-form-background">
-            <div className="form-container">
-                <h1 className="form-title">Welcome to Afrolive</h1>
-                <LoginFormPage />
+        < section className="landing-container" >
+            <div className="background-screen">
+                <h1 className="afrolive cagliostro-regular">AfroLive</h1>
+                <div className="landing-form-container">
+                    <LoginFormPage />
+                </div>
             </div>
-        </div>
+        </section>
+
 
     )
 }
