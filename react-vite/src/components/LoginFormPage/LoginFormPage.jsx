@@ -59,7 +59,8 @@ function LoginFormPage() {
     <>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit} className="form landing-form">
+        <p>Welcome back to Afrolive!</p>
         <div>
           <p className="error">{errors.email && errors.email}</p>
           <label className="landing-white">
@@ -69,6 +70,7 @@ function LoginFormPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="landing-input"
             />
           </label>
         </div>
@@ -81,13 +83,16 @@ function LoginFormPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="landing-input"
             />
           </label>
         </div>
         <div className="log-button-container">
           <button type="submit" className="log-button mouse">Log In</button>
-          <button onClick={(e) => handleLogin(e)} className="log-button mouse">Login demo user</button>
+          <p> or </p>
+          <button onClick={(e) => handleLogin(e)} className="log-button mouse"> Demo user</button>
         </div>
+        <p>Don't have an account yet? Join the community</p>
         <NavLink to={"/signup"}><button className="log-button-diff mouse">signup</button></NavLink>
       </form>
     </>

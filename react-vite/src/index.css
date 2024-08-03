@@ -462,15 +462,16 @@ label {
 
 .log-button-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .log-button {
-    background-color: #0071e3;
-    width: 30%;
+    background-color: #0071e3bb;
+    width: 40%;
     height: 30px;
     border: none;
-    border-radius: 14px;
+    border-radius: 6px;
     letter-spacing: 1.5px;
     margin-top: 1em;
     color: aliceblue;
@@ -670,9 +671,22 @@ input::file-selector-button {
     width: 100vw;
     height: 100vh;
 }
-.landing-white{
-    color: rgba(245, 245, 245, 0.884);
+.landing-form{
+    background-color: rgba(0, 0, 0, 0.782);
+    width: 30vw;
+    padding: 2em;
+    border-radius: 1em;
 }
+
+.landing-white{
+    color: rgba(245, 245, 245, 0.636);
+    font-size: 1em;
+    font-family: "Cagliostro", sans-serif;
+}
+.landing-input{
+    height: 2em;
+}
+
 
 .afrolive{
     color: #EAF0F6;
