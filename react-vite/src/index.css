@@ -463,14 +463,15 @@ label {
 .log-button-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .log-button {
-    background-color: #0071e3;
-    width: 30%;
+    background-color: #0071e3bb;
+    width: 40%;
     height: 30px;
     border: none;
-    border-radius: 14px;
+    border-radius: 6px;
     letter-spacing: 1.5px;
     margin-top: 1em;
     color: aliceblue;
