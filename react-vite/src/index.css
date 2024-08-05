@@ -462,26 +462,25 @@ label {
 
 
 .log-button-container {
-    margin-top: 1em;
+    margin: 2em 0 0 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.5em;
+    justify-content: flex-start;
+    margin-bottom: 1em;
 }
 
 .log-button {
-    /* background-color: #0071e3bb; */
     background-color: transparent;
-    width: 30%;
-    height: 30px;
     border: none;
-    border-radius: 10px;
-    letter-spacing: 1.5px;
-    color: aliceblue;
+    border-radius: none;
+    color:  rgba(172, 255, 47, 0.411);
+    font-size: 0.9em;
 }
 
 .log-button:hover {
-    background-color: #208dfa;
-    color: whitesmoke;
+    color: rgba(172, 255, 47, 0.614);
+    text-decoration: underline;
 }
 
 .log-button-diff {
@@ -705,12 +704,12 @@ input::file-selector-button {
 
 .sign-up {
     color: rgba(172, 255, 47, 0.411);
-    text-decoration: underline;
     font-size: 0.9em;
 }
 
 .sign-up:hover {
     color: rgba(172, 255, 47, 0.614);
+    text-decoration: underline;
 }
 
 .landing-label-flex {
