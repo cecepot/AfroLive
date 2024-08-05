@@ -461,19 +461,20 @@ label {
 
 
 .log-button-container {
+    margin-top: 1em;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .log-button {
-    background-color: #0071e3bb;
-    width: 40%;
+    /* background-color: #0071e3bb; */
+    background-color: transparent;
+    width: 30%;
     height: 30px;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     letter-spacing: 1.5px;
-    margin-top: 1em;
     color: aliceblue;
 }
 
@@ -674,19 +675,39 @@ input::file-selector-button {
 .landing-form{
     background-color: rgba(0, 0, 0, 0.782);
     width: 30vw;
-    padding: 2em;
+    padding: 2em 4em 2em 4em;
     border-radius: 1em;
 }
 
 .landing-white{
-    color: rgba(245, 245, 245, 0.636);
+    color: rgba(245, 245, 245, 0.585);
     font-size: 1em;
     font-family: "Cagliostro", sans-serif;
 }
+
 .landing-input{
+    margin-top: 0.5em;
+    width: 70%;
     height: 2em;
+    background-color: transparent;
+    border-bottom: solid 1px rgba(245, 245, 245, 0.585);
+    border-radius: 0px;
+    caret-color: white;
+}
+.landing-input:focus{
+outline: none;
+border-bottom:solid 0.5px white ;
 }
 
+
+.landing-label-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.landing-input-container{
+    width: 60%;
+}
 
 .afrolive{
     color: #EAF0F6;

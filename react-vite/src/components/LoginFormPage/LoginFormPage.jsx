@@ -61,10 +61,10 @@ function LoginFormPage() {
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit} className="form landing-form">
         <p>Welcome back to Afrolive!</p>
-        <div>
+        <div >
           <p className="error">{errors.email && errors.email}</p>
-          <label className="landing-white">
-            Email :
+          <label className="landing-white landing-label-flex">
+            Email
             <input
               type="text"
               value={email}
@@ -76,8 +76,8 @@ function LoginFormPage() {
         </div>
         <div>
           <p className="error">{errors.password && errors.password}</p>
-          <label className="landing-white">
-            Password :
+          <label className="landing-white landing-label-flex">
+            Password
             <input
               type="password"
               value={password}
