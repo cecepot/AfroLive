@@ -60,7 +60,7 @@ function LoginFormPage() {
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit} className="form landing-form">
-        <p>Welcome back to Afrolive!</p>
+        <p className="landing-white">Welcome back to Afrolive!</p>
         <div >
           <p className="error">{errors.email && errors.email}</p>
           <label className="landing-white landing-label-flex">
@@ -92,8 +92,7 @@ function LoginFormPage() {
           <p> or </p>
           <button onClick={(e) => handleLogin(e)} className="log-button mouse"> Demo user</button>
         </div>
-        <p>Don't have an account yet? Join the community</p>
-        <NavLink to={"/signup"}><button className="log-button-diff mouse">signup</button></NavLink>
+        <p className="landing-white">Don't have an account yet ? <NavLink to={"/signup"}><span className=" mouse sign-up">Join the community</span></NavLink></p>
       </form>
     </>
   );
