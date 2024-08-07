@@ -866,9 +866,15 @@ input::file-selector-button {
 }
 
 .cal-title {
-    text-align: center;
     font-size: 6em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 0.5em;
+    color: white;
+    font-family: "Cagliostro", sans-serif;
+    letter-spacing: 0.5em;
 }
 
 

@@ -13,8 +13,8 @@ function HomePage() {
 
     return (
         <>
-            <div className="upcoming"><p>Upcoming Events</p></div>
-            <Calendar />
+            {/* <div className="upcoming"><p>Upcoming Events</p></div> */}
+            <Calendar/>
         </>
     )
 }

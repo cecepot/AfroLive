@@ -28,7 +28,7 @@ div>p {
   color: #4B4B4B;
 }
 
-.blur {
+/* .blur {
   top: 100;
   left: 0;
   width: 100%;
@@ -38,6 +38,10 @@ div>p {
   z-index: 3;
   backdrop-filter: blur(5px);
   transition: visibility 0.3s ease-in-out;
+} */
+
+.homepage-banner{
+  background-image: url("https://res.cloudinary.com/dv9oyy79u/image/upload/v1722557204/kente1_vv5c2c.jpg");
 }
 
 .profile-button {
