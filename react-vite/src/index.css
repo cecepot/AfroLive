@@ -951,26 +951,14 @@ input::file-selector-button {
     background-color: rgb(247, 247, 247);
 }
 
-.cal-image {
-    width: 60px;
-    height: 70px;
-    border-top-left-radius: 2em;
-    border-bottom-left-radius: 2em;
-}
-
 .cal-event-sub {
     margin: 1em 0;
     display: flex;
     gap: 1em;
     width: 96%;
-    background-color: #eaf0f633;
     border-top-left-radius: 2em;
     border-bottom-right-radius: 2em;
     border-bottom-left-radius: 2em;
-}
-
-.cal-event-sub:hover {
-    background-color: #eaf0f687;
 }
 
 .cal-side {
