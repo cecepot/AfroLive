@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react";
+import { useState,useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
@@ -54,19 +54,19 @@ function ProfileButton() {
 
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
+  //   const closeMenu = (e) => {
+  //     if (ulRef.current && !ulRef.current.contains(e.target)) {
+  //       setShowMenu(false);
+  //     }
+  //   };
 
-    document.addEventListener("click", closeMenu);
+  //   document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
 
@@ -78,10 +78,8 @@ function ProfileButton() {
 
   return (
     <>
-      <div className="profile-button mouse nav-hover" onMouseEnter={toggleMenu}>
-        <FaUserCircle />
-
-        Account
+      <div className="mouse" onMouseEnter={toggleMenu}>
+        <FaUserCircle className="profile-button nav-hover"/>
       </div>
       {showMenu && (
         <>

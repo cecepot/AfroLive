@@ -60,8 +60,8 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 6em;
     position: relative;
+    padding: 1em;
     background-color: white;
 }
 
@@ -127,6 +127,7 @@ a {
 .click:hover,
 .nav-hover:hover {
     color: #1D1D1F;
+    fill: #1D1D1F;
 }
 
 
@@ -866,18 +867,20 @@ input::file-selector-button {
 }
 
 .cal-title {
-    text-align: center;
     font-size: 6em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 0.5em;
+    color: white;
+    font-family: "Cagliostro", sans-serif;
+    letter-spacing: 0.5em;
 }
 
 
 .cal-days>p {
     color: #4B4B4B;
-}
-
-.cal-component {
-    margin-top: 2em;
 }
 
 .cal-events {

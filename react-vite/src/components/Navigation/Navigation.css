@@ -1,15 +1,14 @@
 .profile-dropdown {
   margin-top: 10px;
   position: absolute;
-  /* display: none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1em;
+  gap: 0.5em;
   padding-left: 3.8em;
   align-items: center;
   width: 100%;
-  height: 30em;
+  height: 12em;
   z-index: 4;
   top: 100;
   left: 0;
@@ -28,7 +27,7 @@ div>p {
   color: #4B4B4B;
 }
 
-.blur {
+/* .blur {
   top: 100;
   left: 0;
   width: 100%;
@@ -38,9 +37,12 @@ div>p {
   z-index: 3;
   backdrop-filter: blur(5px);
   transition: visibility 0.3s ease-in-out;
+} */
+
+.homepage-banner{
+  background-image: url("https://res.cloudinary.com/dv9oyy79u/image/upload/v1722557204/kente1_vv5c2c.jpg");
 }
 
 .profile-button {
-  display: flex;
-  align-items: center;
+  fill: #4B4B4B;
 }
