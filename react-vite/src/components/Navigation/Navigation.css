@@ -1,7 +1,6 @@
 .profile-dropdown {
   margin-top: 10px;
   position: absolute;
-  /* display: none; */
   display: flex;
   flex-direction: column;
   justify-content: center;
