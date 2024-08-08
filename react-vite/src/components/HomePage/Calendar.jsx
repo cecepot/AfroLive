@@ -176,7 +176,7 @@ function Calendar() {
 
     return (
         <>
-        <section className="cal-component">
+        <section >
             <h2 className="cal-title homepage-banner">Calendar</h2>
             <div className="cal-container">
                 <div className="cal-header">

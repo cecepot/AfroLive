@@ -60,8 +60,8 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 6em;
     position: relative;
+    padding: 1em;
     background-color: white;
 }
 
@@ -880,10 +880,6 @@ input::file-selector-button {
 
 .cal-days>p {
     color: #4B4B4B;
-}
-
-.cal-component {
-    margin-top: 2em;
 }
 
 .cal-events {
