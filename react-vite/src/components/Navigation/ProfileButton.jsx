@@ -78,10 +78,8 @@ function ProfileButton() {
 
   return (
     <>
-      <div className="profile-button mouse nav-hover" onMouseEnter={toggleMenu}>
-        <FaUserCircle />
-
-        Account
+      <div className="mouse" onMouseEnter={toggleMenu}>
+        <FaUserCircle className="profile-button nav-hover"/>
       </div>
       {showMenu && (
         <>
