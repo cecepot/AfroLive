@@ -849,6 +849,7 @@ input::file-selector-button {
 
 .weekNames {
     text-align: center;
+    font-family: "Cagliostro", sans-serif;
 }
 
 .cal-header {
@@ -863,7 +864,7 @@ input::file-selector-button {
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    margin-bottom: 4em;
+    padding: 4em 0 2em 0;
 }
 
 .cal-title {
@@ -909,6 +910,10 @@ input::file-selector-button {
     overflow: auto;
 }
 
+.month{
+    font-family: "Cagliostro", sans-serif;
+    font-size: xx-large;
+}
 
 .flip-container {
     height: 100%;
