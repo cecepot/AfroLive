@@ -908,6 +908,10 @@ input::file-selector-button {
     height: 100%;
     background: linear-gradient(-45deg, #ff9c56, #ffd27e, #ffda6c, #ff4171);
     overflow: auto;
+    border: 6px solid white;
+    padding: 0.4em;
+    border-bottom: none;
+    border-right: none;
 }
 
 .month{
