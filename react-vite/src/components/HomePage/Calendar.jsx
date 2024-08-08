@@ -177,7 +177,7 @@ function Calendar() {
     return (
         <>
         <section >
-            <h2 className="cal-title homepage-banner">Calendar</h2>
+            {/* <h2 className="cal-title homepage-banner">Calendar</h2> */}
             <div className="cal-container">
                 <div className="cal-header">
                     <div className="mouse" onClick={() => prevMonth(chosenDate)}><GrPrevious /></div>
