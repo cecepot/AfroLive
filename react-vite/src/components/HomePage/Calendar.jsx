@@ -119,7 +119,6 @@ function Calendar() {
                                         const start = event.start_time.toLocaleString().slice(0, 5)
                                         return (
                                             <div key={event.id} className="mouse cal-event-sub" onClick={(e) => handleNav(e, event.id, event)}>
-                                                <img className="cal-image" src={event.image_url} alt="" />
                                                 <div className="cal-event-lower">
                                                     <p className="cal-event-title">{event.title}</p>
                                                     <span className="cal-side"><FaLocationDot /> <p> {event.venue}</p></span>
