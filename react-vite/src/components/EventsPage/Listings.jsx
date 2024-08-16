@@ -1,15 +1,22 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useDispatch, useSelector} from "react-redux"
+import { useEffect, useState } from "react"
 import { thunkDeleteEvent, thunkUserEvents } from "../../redux/events"
 import { NavLink, useNavigate } from "react-router-dom"
 // import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useModal } from "../../context/Modal"
+import Loader from "../LoadingComponent/Loader";
+
+
+
 
 const DeleteListingModal = ({ id }) => {
     const { closeModal } = useModal();
     const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
+
+
+
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -45,13 +52,19 @@ function Listings() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         dispatch(thunkUserEvents(user.id))
+        setLoading(true)
     }, [dispatch, user.id])
 
     const listings = useSelector(state => state.event.userEvents)
 
+
+    useEffect(()=>{
+        setLoading(false)
+    },[listings])
     // const handleDelete = (listingId) => {
     //     // e.preventDefault()
     //     // console.log(e)
@@ -67,6 +80,13 @@ function Listings() {
         e.preventDefault()
         navigate(`/users/${userId}/listings/${listingId}`, { state: { data: listing } })
     }
+
+
+    if (loading) {
+        return <Loader />
+    }
+
+
 
     return (
 
