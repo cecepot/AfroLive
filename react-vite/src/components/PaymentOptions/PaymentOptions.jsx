@@ -5,7 +5,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { IoIosCard } from "react-icons/io";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useModal } from "../../context/Modal"
-
+import Loader from "../LoadingComponent/Loader";
 
 const DeleteCardModal = ({ id, cardId }) => {
     const { closeModal } = useModal();
@@ -62,9 +62,11 @@ function PaymentOptions() {
         navigate(`/users/${id}/cards/${cardId}/edit`, { state: { data: card } })
     }
 
+    if(!cards.length){
+        return <Loader/>
+    }
 
 
-    
     if (cards.length === 0) {
         return (
             <section className="payment-form-background ">
