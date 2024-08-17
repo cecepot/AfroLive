@@ -52,18 +52,18 @@ function Listings() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         dispatch(thunkUserEvents(user.id))
-        setLoading(true)
+        // setLoading(true)
     }, [dispatch, user.id])
 
     const listings = useSelector(state => state.event.userEvents)
 
 
     useEffect(()=>{
-        setLoading(false)
+        listings && setLoading(false)
     },[listings])
     // const handleDelete = (listingId) => {
     //     // e.preventDefault()
