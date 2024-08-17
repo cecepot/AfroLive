@@ -62,7 +62,10 @@ function PaymentOptions() {
         navigate(`/users/${id}/cards/${cardId}/edit`, { state: { data: card } })
     }
 
-    if (!cards.length) {
+
+
+    
+    if (cards.length === 0) {
         return (
             <section className="payment-form-background ">
                 <div className="payment-container">
