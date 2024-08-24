@@ -7,6 +7,7 @@
     color: #1D1D1F;
 }
 
+
 .mouse {
     cursor: pointer;
 }
@@ -15,6 +16,7 @@ a {
     text-decoration: none;
     color: black;
 }
+
 
 .error {
     color: brown;
